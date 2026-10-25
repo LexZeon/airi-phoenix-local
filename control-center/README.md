@@ -59,6 +59,10 @@ $env:AIRI_CONTROL_DATA_DIR = 'C:\path\to\private\control-state'
 
 ## 已验证的两个可选速度项
 
-最终目录提供 `qwen-efficient` 与 `sapi-huihui`，默认仍为 `qwen-soft`。新UI实际显示Serena同句6.08s与慧慧接口中位约0.06s，已验证切换选择框/证据展示后恢复默认，没有点击应用、自动试听或横向溢出；不把这份UI观察当成扬声器回放。见 [临时三卡映射](verification-speed-options.json)、[接口与样例](verification-speed-ui-api.json)、[真实浏览器](verification-speed-browser.json)。
+最终目录提供 `qwen-efficient` 与 `sapi-huihui`，工具初始默认是 `qwen-soft`，可由使用者明确选择切换。新UI实际显示Serena同句6.08s与慧慧接口中位约0.06s，已验证切换选择框/证据展示后恢复默认，没有点击应用、自动试听或横向溢出；不把这份UI观察当成扬声器回放。见 [临时三卡映射](verification-speed-options.json)、[接口与样例](verification-speed-ui-api.json)、[真实浏览器](verification-speed-browser.json)。
 
 使用SAPI前将 [voice/windows-sapi](../voice/windows-sapi/README.md) 源码部署到 `<base>/runtime/airi-sapi`，或显式设置 `AIRI_SAPI_ROOT`。内部 `ensure_token()` 只在配置应用时取得本机key；catalog/preferences不返回它。启动模板会检查全局、主角色和所有附加卡的speech provider，需要9947才启动SAPI；默认完整停止只终止经严格身份检查的owned服务，KeepServices保留。无SAPI部署时不要把该选项视为已安装。
+
+Serena优化版的UI选择、实际voice ID和原模式回退步骤见[启用/回退方法](../docs/speech-options.md#在控制台启用-serena-优化版与回退)。仅“记住选择”不会应用；需要应用并启动/重启后再核对全局和每卡speech。
+
+[实际优化版启用验证](verification-efficient-activation.json)已确认三卡override和分层运行时读回/就绪，控制台偏好同步。未执行本次启用后的实际回退、物理首声计时或角色视觉验收；这些不从设置成功推断。

@@ -1,6 +1,6 @@
 # 保留默认，先按实测选择语音方案
 
-本轮使用固定原创合成句，未访问私聊、麦克风或屏幕内容，未切换用户的默认卡或声音。当前默认仍是 `phoenix-soft`。以下是不同验证层级，不能把文件生成、HTTP 返回和扬声器首声混在一起。
+比较测试使用固定原创合成句，未访问私聊、麦克风或屏幕内容，也未在测试中切换用户的卡或声音。工具的初始默认是 `phoenix-soft`；使用者可以明确选择优化版。以下是不同验证层级，不能把文件生成、HTTP 返回和扬声器首声混在一起。
 
 | 本地方案 | 当前实测 | 保留/改变的能力 |
 |---|---|---|
@@ -19,4 +19,19 @@ SenseVoice暖请求0.233s，小LLM的28token测试prompt暖TTFT0.079s；它们�
 
 更换方案时只改所选的speech provider/model/voice，保留hearing、vision与角色；多张受管理卡可能各有modulesOverride，须同步所选卡而不是仅修改全局defaults。先保留原选择与revision，失败可回切。自动化结论只写实际覆盖范围：原SDK scene binding测试仅有文本完成观察，语音因果仍INCONCLUSIVE，不拿全局TTS计数作端到端证明。
 
+## 在控制台启用 Serena 优化版与回退
+
+适用：已有本仓库控制台、支持优化别名的9945服务，以及对应的一键启动器；先确认原声音能够正常使用。不需要另下模型或更换角色素材。
+
+1. 打开本机控制台 `http://127.0.0.1:9944/`，在“角色声音”选择“Serena · 温柔优化版”。控制台选择ID是 `qwen-efficient`，实际模型仍为 `phoenix-qwen3-tts-local`，voice为 `phoenix-soft-efficient`。
+2. 保留其他三项选择，点击“应用并启动 AIRI”；应用已运行时按钮显示“应用并重启 AIRI”。“记住选择”只保存偏好；“只应用设置”不会重启当前进程，不能单凭点击它就判断新voice已经载入。
+3. 等待AIRI与声音服务就绪。受管理多卡应同时更新speech的provider/model/voice与selectionRevision，保留各自avatar和激活选择；不要只核对全局defaults而遗漏每卡override。
+4. 回退时选择“Serena · 温柔”（`qwen-soft` → `phoenix-soft`），再执行同一应用/启动操作。这会恢复原请求模式，不需要回滚代码或下载权重。
+
+约6.1秒来自前述固定5.2秒合成音频的HTTP小样本对照，不是每句话的承诺，也不是麦克风到扬声器的总等待。
+
 [Windows SAPI adapter源码与实际验证](../voice/windows-sapi/README.md)独立监听9947，随机本机Bearer token不进入公开包/偏好响应，默认未切换。上述HTTP数字包含整份合法WAV收到的客户端wall time；不是只引用COM内部生成时间，也不代表扬声器已经发声。
+
+已完成一次使用者明确选择后的实际启用：[匿名验证](../control-center/verification-efficient-activation.json)确认3张受管理卡的voice均为优化别名；主运行时与另一张2D卡解析结果匹配，3D卡模块更新/激活获确认，helper revision与配置对齐，声音/待机/贴纸ready、renderer错误0。控制台偏好也已同步。此证据验证配置与指定运行时读回，不是物理发声计时，不使用全局TTS计数证明因果；也不代表任何角色美术已经最终视觉接受。
+
+回退步骤使用同一已测配置/启动机制；本次启用后没有再执行实际回退，以保留使用者选择。工具源码默认与既有ZIP不变，自己的部署按明确选择配置。

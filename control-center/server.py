@@ -18,6 +18,7 @@ from profiles import (BASE, ROOT, DATA_ROOT, CONTROL_PORT, SETTINGS, PREFERENCES
                       current_profile, public_profile, merge_input, apply_profile, local_url)
 from airi_catalog import catalog, WORKBENCH, QWEN, SPEECH, SAPI, CODEX_CHAT
 from codex_bridge import CodexTaskBridge
+from aliyun_bridge import AliyunTtsBridge
 
 PORT=CONTROL_PORT
 APP_ID='airi-local-control-center'
@@ -26,6 +27,7 @@ TOKEN=secrets.token_urlsafe(32)
 STATE=DATA_ROOT; LOGS=DATA_ROOT/'logs'
 for directory in (STATE,LOGS,REQUESTS): directory.mkdir(parents=True,exist_ok=True)
 CODEX=CodexTaskBridge(ROOT,STATE)
+ALIYUN=AliyunTtsBridge(BASE/'control-center')
 PS=Path(os.environ.get('WINDIR','C:/Windows'))/'System32/WindowsPowerShell/v1.0/powershell.exe'
 JOBS={}; JOB_LOCK=threading.RLock()
 STATUS={'checkedAt':None,'services':[]}
@@ -36,6 +38,7 @@ SAMPLES={voice:QWEN/'samples'/f'{voice}.wav' for voice in ('phoenix-soft','phoen
 SAMPLES['melo']=SPEECH/'verification/chinese-offline.wav'
 SAMPLES['huihui']=SAPI/'samples/huihui-soft.wav'
 SERVICES.append(('codex-chat','ChatGPT 在线聊天',9948,'/health'))
+SERVICES.append(('aliyun-tts','阿里云语音',9949,'/health'))
 
 def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -188,6 +191,11 @@ class Handler(BaseHTTPRequestHandler):
             with LOCK:return self.respond(200,{'app':APP_ID,'csrfToken':TOKEN,'catalog':catalog(),'preferences':preferences(),'applied':public_profile(current_profile()),'status':STATUS})
         if route=='/api/status':return self.respond(200,STATUS)
         if route=='/api/catalog':return self.respond(200,catalog())
+        if route=='/api/aliyun/config':return self.respond(200,ALIYUN.status())
+        if route=='/api/aliyun/sample.wav':
+            if urllib.parse.urlsplit(self.path).query:return self.respond(400,{'error':'试听只使用固定样例路径。'})
+            try:return self.respond(200,ALIYUN.sample_audio(),'audio/wav')
+            except ValueError as error:return self.respond(404,{'error':str(error)})
         if route=='/api/codex/status':return self.respond(200,CODEX.status())
         if route.startswith('/api/codex/jobs/'):
             try:return self.respond(200,CODEX.snapshot(route.rsplit('/',1)[-1]))
@@ -203,7 +211,7 @@ class Handler(BaseHTTPRequestHandler):
             file=SAMPLES.get(route.rsplit('/',1)[-1])
             if not file or not file.is_file():return self.respond(404,{'error':'试听文件尚不存在。'})
             return self.respond(200,file.read_bytes(),'audio/wav')
-        static={'/':('index.html','text/html'),'/app.js':('app.js','text/javascript'),'/style.css':('style.css','text/css'),'/codex-tasks.js':('codex-tasks.js','text/javascript'),'/codex-tasks.css':('codex-tasks.css','text/css'),'/favicon.svg':('favicon.svg','image/svg+xml')}
+        static={'/':('index.html','text/html'),'/app.js':('app.js','text/javascript'),'/style.css':('style.css','text/css'),'/codex-tasks.js':('codex-tasks.js','text/javascript'),'/codex-tasks.css':('codex-tasks.css','text/css'),'/aliyun-tts.js':('aliyun-tts.js','text/javascript'),'/aliyun-tts.css':('aliyun-tts.css','text/css'),'/favicon.svg':('favicon.svg','image/svg+xml')}
         if route in static:
             name,mime=static[route];return self.respond(200,(ROOT/'web'/name).read_bytes(),mime+'; charset=utf-8')
         return self.respond(404,{'error':'Not found'})
@@ -215,6 +223,11 @@ class Handler(BaseHTTPRequestHandler):
             data=json.loads(self.rfile.read(length))
             if not isinstance(data,dict):raise ValueError('请求无效。')
             route=urllib.parse.urlsplit(self.path).path
+            if route=='/api/aliyun/config':
+                return self.respond(200,{'ok':True,'config':ALIYUN.save(data),'message':'阿里云设置已保存在本机，尚未切换 AIRI 的声音。'})
+            if route=='/api/aliyun/test':
+                if data:raise ValueError('试听使用固定短句，不接受自定义文本或文件。')
+                return self.respond(200,ALIYUN.test())
             if route=='/api/codex/start':
                 return self.respond(202,{'ok':True,'job':CODEX.start(data.get('task'),data.get('workspace'),data.get('mode','read-only'),data.get('target','new'))})
             if route=='/api/codex/stop':

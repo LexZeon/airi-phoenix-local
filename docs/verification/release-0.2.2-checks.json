@@ -1,0 +1,34 @@
+{
+  "version": "0.2.2",
+  "publisherReviewOfSource": true,
+  "independentReadOnlyPublicationReview": true,
+  "privatePathsTokenShapesAndRuntimeModelIdsFound": false,
+  "explicitBinaryWhitelistReviewed": true,
+  "restrictedMediaWeightsCoreProfilesKeysOrDpapiIncluded": false,
+  "tests": {
+    "aliyunAdapterOfflineCases": 25,
+    "aliyunConsoleOfflineCases": 14,
+    "publishedOnlineSelectionCases": 9,
+    "existingConsoleIsolationCases": 8,
+    "pythonSyntaxFiles": 7,
+    "powerShellSyntaxFiles": 6,
+    "nodeSyntaxFiles": 2,
+    "skillMetadataValid": true,
+    "inheritedDeploymentOverridesIsolatedAndExternalSentinelUnchanged": true
+  },
+  "actualOwnerChecks": {
+    "windowsPowerShell5OwnedStartDuplicateHealthStop": true,
+    "pythonVenvRedirectorHandled": true,
+    "productionBrowserNoKeyConfigurationFlow": true,
+    "currentLocalSelectionPreserved": true,
+    "airiStayedStopped": true,
+    "screenStayedOff": true,
+    "otherServicesAndSettingsPreserved": true,
+    "realCloudRequests": 0,
+    "realCredentialsReadOrSaved": false,
+    "realCloudLatencyMeasured": false,
+    "actualAiriPlaybackTested": false
+  },
+  "timingBoundary": "Upstream first audio and complete validated playable WAV are separate; current AIRI waits for the complete sentence ArrayBuffer. No physical voice-chain claim.",
+  "exactArchiveVerification": "Published separately next to the final ZIP after fresh extraction and original robot/Core smoke."
+}

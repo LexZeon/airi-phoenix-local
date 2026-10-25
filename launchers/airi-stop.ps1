@@ -63,6 +63,11 @@ try {
             & $shell -NoProfile -ExecutionPolicy Bypass -File $codexChatStop
             if ($LASTEXITCODE -ne 0) { throw 'The ChatGPT online chat adapter could not be safely stopped.' }
         }
+        $aliyunStop = Join-Path $script:AiriBase 'runtime\airi-aliyun-tts\stop.ps1'
+        if (Test-Path -LiteralPath $aliyunStop) {
+            & $shell -NoProfile -ExecutionPolicy Bypass -File $aliyunStop
+            if ($LASTEXITCODE -ne 0) { throw 'The Aliyun voice adapter could not be safely stopped.' }
+        }
     }
     Write-Output 'AIRI stopped.'
     exit 0

@@ -34,3 +34,10 @@ examples/deskbot/output/
 
 control-center/state/
 control-center/codex-workspace/
+
+# Local cloud speech credentials and generated data.
+*.dpapi
+**/private/
+voice/aliyun-tts/api-token.txt
+voice/aliyun-tts/server-state.json
+voice/aliyun-tts/samples/

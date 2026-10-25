@@ -4,6 +4,7 @@ import os
 import statistics
 from profiles import BASE, read_json, CHOICES
 from codex_bridge import discover_codex
+from aliyun_bridge import AliyunTtsBridge
 
 MODELS=Path(os.environ.get('AIRI_MODELS_ROOT', str(BASE/'models'))).expanduser().resolve()
 WORKBENCH=Path(os.environ.get('AIRI_WORKBENCH', str(BASE/'workbench'))).expanduser().resolve()
@@ -12,11 +13,14 @@ QWEN=Path(os.environ.get('AIRI_TTS_ROOT', str(BASE/'runtime/airi-qwen-tts'))).ex
 SAPI=Path(os.environ.get('AIRI_SAPI_ROOT', str(BASE/'runtime/airi-sapi'))).expanduser().resolve()
 CODEX_CHAT=Path(os.environ.get('AIRI_CODEX_CHAT_ROOT', str(BASE/'runtime/airi-codex-chat'))).expanduser().resolve()
 
+ALIYUN_TTS=Path(os.environ.get('AIRI_ALIYUN_TTS_ROOT', str(BASE/'runtime/airi-aliyun-tts'))).expanduser().resolve()
+
 def installed(path):
     try: return {'file':str(path),'bytes':path.stat().st_size,'exists':True}
     except OSError: return {'file':str(path),'bytes':0,'exists':False}
 
 def catalog():
+    aliyun=AliyunTtsBridge(BASE/'control-center').status()
     cfg=read_json(SPEECH/'config.json',{})
     asr=Path(cfg.get('asr_directory',BASE/'open-llm-vtuber/models'))/'model.int8.onnx'
     qwen=MODELS/'TTS/Qwen3-TTS-12Hz-1.7B-CustomVoice/model.safetensors'
@@ -28,6 +32,7 @@ def catalog():
       'qwen-tts':installed(qwen),
       'sapi':{'file':'Windows system voice','bytes':0,'kind':'system-voice','exists':(SAPI/'samples/huihui-soft.wav').is_file()},
       'codex-chat':{'file':'Official Codex account connection','bytes':0,'kind':'online-account','exists':bool(discover_codex() and (CODEX_CHAT/'server.py').is_file() and (CODEX_CHAT/'verification-live-persona.json').is_file())},
+      'aliyun-tts':{'file':'Aliyun cloud speech connection','bytes':0,'kind':'online-speech','exists':(ALIYUN_TTS/'aliyun_config.py').is_file()},
     }
     verified=read_json(QWEN/'verification.json',read_json(QWEN/'tests/verification.json',{}))
     samples=read_json(QWEN/'samples/sample-report.json',{})
@@ -43,6 +48,7 @@ def catalog():
       ('qwen-soft','角色声音','推荐','Serena · 温柔','自然温柔的公开预设音色；整段生成后播放，有等待时间。',[8,16],[6,12],'tts','qwen-tts'),
       ('qwen-efficient','角色声音','同音色备选','Serena · 温柔优化版','保留同一声音与风格；本机短句对照更快，收益会随后台负载波动。',[8,16],[6,12],'tts','qwen-tts'),
       ('sapi-huihui','角色声音','系统轻量','慧慧 · 系统声音','无需新增模型，出声快；声音较机械，不能保留 Serena 的自然风格。',[0.2,1],[0,0],'tts','sapi'),
+      ('aliyun-tts','角色声音','在线可选','阿里云 · 在线语音','配置百炼密钥后试听测速，再决定是否使用；合成时会在线处理回复文字。',[0.2,1],[0,0],'tts','aliyun-tts'),
       ('qwen-drowsy','角色声音','微倦','Serena · 困倦','更松弛、带微倦语气的风格，复用同一份已安装权重。',[8,16],[6,12],'tts','qwen-tts'),
       ('qwen-focused','角色声音','认真','Serena · 专注','清楚、认真的风格，复用同一份已安装权重。',[8,16],[6,12],'tts','qwen-tts'),
     ]
@@ -60,6 +66,22 @@ def catalog():
             item['capabilities']={'text':True,'images':False,'tools':False,'tokenStreaming':False}
             item['memory']['basis']='本机仅运行连接程序，主要计算在云端；不是本机模型最低配置。'
             item['latency']={'firstContentSeconds':report.get('firstContentSeconds'),'samples':1,'scope':'合成角色问候，首个完整回答事件；不是逐token流式或实际AIRI长历史表现。'}
+        if id_=='aliyun-tts':
+            item['online']=True
+            item['voice']=aliyun.get('voice','Serena')
+            item['configured']=aliyun.get('configured',False)
+            item['keyConfigured']=aliyun.get('keyConfigured',False)
+            item['cloudTested']=aliyun.get('cloudTested',False)
+            item['capabilities']={'speech':True,'streamingPlayback':False,'styleInstructions':aliyun.get('styleSupported',False)}
+            item['memory']['basis']='本机仅运行音频连接程序，语音合成在云端；不用新增语音模型权重。'
+            measured=aliyun.get('lastTest',{})
+            timings=measured.get('timings',{})
+            if measured.get('status')=='success' and timings.get('audioDurationSeconds',0)>0:
+                seconds=timings['completeWavMs']/1000
+                duration=timings['audioDurationSeconds']
+                item['evidence']=[{'title':'阿里云固定短句测速','source':'本机保存的阿里云试听结果','testedAt':measured.get('checkedAt',measured.get('testedAt','')),
+                    'audioSeconds':duration,'generationSeconds':seconds,'rtf':seconds/duration,
+                    'note':'云端首音频块约 '+str(round(timings['firstAudioMs']/1000,3))+' 秒；当前 AIRI 收齐完整小句后播放，不等于实际开口等待。'}]
         if asset=='qwen-tts':
             sample=next((s for s in samples.get('samples',[]) if s.get('voice')==CHOICES[id_][3]),None)
             if sample: item['evidence']=[{'source':'runtime/airi-qwen-tts/samples/sample-report.json','testedAt':samples.get('testedAt'),

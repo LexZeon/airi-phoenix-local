@@ -1,0 +1,12 @@
+{
+  "test": "aliyun-tts-offline-adapter",
+  "testsRun": 25,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "actualCurrentUserDpapiTested": true,
+  "realCloudRequests": 0,
+  "realCredentialsRead": false,
+  "scope": "Temporary fixtures, fake SSE/HTTP engine and synthetic DPAPI credential only; not a cloud latency or AIRI playback benchmark."
+}

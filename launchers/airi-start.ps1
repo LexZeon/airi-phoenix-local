@@ -45,10 +45,12 @@ try {
     }
     $needsQwenSpeech = $false
     $needsSapiSpeech = $false
+    $needsAliyunSpeech = $false
     foreach ($providerId in $selectedSpeechProviders) {
         $providerProperty = $offlinePreset.providers.PSObject.Properties[$providerId]
         if ($providerProperty -and $providerProperty.Value.config.baseUrl -match '^http://(?:127\.0\.0\.1|localhost|\[::1\]):9945(?:/|$)') { $needsQwenSpeech = $true }
         if ($providerProperty -and $providerProperty.Value.config.baseUrl -match '^http://(?:127\.0\.0\.1|localhost|\[::1\]):9947(?:/|$)') { $needsSapiSpeech = $true }
+        if ($providerProperty -and $providerProperty.Value.config.baseUrl -match '^http://(?:127\.0\.0\.1|localhost|\[::1\]):9949(?:/|$)') { $needsAliyunSpeech = $true }
     }
     if ($needsQwenSpeech) {
         & $shell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $script:AiriBase 'runtime\airi-qwen-tts\start.ps1')
@@ -57,6 +59,13 @@ try {
     if ($needsSapiSpeech) {
         & $shell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $script:AiriBase 'runtime\airi-sapi\start.ps1')
         if ($LASTEXITCODE -ne 0) { throw 'The selected Windows voice adapter did not become ready.' }
+    }
+    if ($needsAliyunSpeech) {
+        & $shell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $script:AiriBase 'runtime\airi-aliyun-tts\start.ps1')
+        if ($LASTEXITCODE -ne 0) { throw 'The selected Aliyun voice adapter did not become ready.' }
+    } elseif (Test-Path -LiteralPath (Join-Path $script:AiriBase 'runtime\airi-aliyun-tts\server-state.json')) {
+        & $shell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $script:AiriBase 'runtime\airi-aliyun-tts\stop.ps1')
+        if ($LASTEXITCODE -ne 0) { throw 'The optional Aliyun voice adapter could not be safely stopped for local voice.' }
     }
     $electron = Join-Path $script:AiriRepo 'apps\stage-tamagotchi\node_modules\electron\dist\electron.exe'
     $appDir = Join-Path $script:AiriRepo 'apps\stage-tamagotchi'

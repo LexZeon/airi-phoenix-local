@@ -1,0 +1,22 @@
+{
+  "test": "production-console-aliyun-no-key-browser-acceptance",
+  "testedOn": "2026-10-25",
+  "success": true,
+  "consoleRestarted": true,
+  "visibleAliyunServiceStatus": "needs-configuration",
+  "visibleSpeechDropdownChoice": true,
+  "dropdownOpensConfigurationWithoutSelectingVoice": true,
+  "dialogHeaderAndEmptyPasswordInputVisible": true,
+  "regionAndVoiceControlsOperated": true,
+  "advancedModeAndStyleControlsVisible": true,
+  "defaultSimpleModeRestoredWithoutSaving": true,
+  "testAndApplyDisabledWithoutKey": true,
+  "closingDialogPreservesCurrentVoice": true,
+  "airiWasStoppedAndRemainedStopped": true,
+  "currentLocalSpeechSelectionPreserved": true,
+  "screenObservationRemainedOff": true,
+  "cloudRequests": 0,
+  "realCredentialsReadOrSaved": false,
+  "privateScreenshotExcludedFromPublication": true,
+  "scope": "Actual control-console browser interaction with no API Key. This is not a real cloud API, voice-quality, latency, or native AIRI audio playback test."
+}

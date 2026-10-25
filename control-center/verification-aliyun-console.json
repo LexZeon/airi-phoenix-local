@@ -1,0 +1,25 @@
+{
+  "test": "aliyun-console-isolated-dpapi-and-loopback-http-fixtures",
+  "testedAt": "2026-10-25T19:48:52.679114+00:00",
+  "passed": 14,
+  "total": 14,
+  "success": true,
+  "realCloudRequests": 0,
+  "realCredentialsRead": false,
+  "realSettingsChanged": false,
+  "servicesStarted": false,
+  "productionServerRestarted": false,
+  "temporaryLoopbackHttpServer": true,
+  "scope": "Synthetic protocol/UI boundaries; not cloud speed, voice quality or actual AIRI playback.",
+  "sourceSha256": {
+    "aliyun_bridge.py": "08714a67e5cebb844456fc7b4c46429e75043d2782c58900f05941909b0ca021",
+    "server.py": "2536b7e09a3c5373700b24bf40ce01aa28bf917dd09914d8795c0272cbc49920",
+    "profiles.py": "ffa1740813e02f1d5944f7fb0075b62ab514ba101f62337fc6c284753f6ca776",
+    "airi_catalog.py": "83e728094d58f1f173dbd7d76d4bf51a5c97854496a96a0ea4fc64a82d1f7f99",
+    "web/app.js": "5aeb64782ab42f3208421b6f1e9693d639b4580e7d8f35f8ae8ce4a415f3d6c6",
+    "web/index.html": "7c27d6006075de5348a130a11a680634b3594b51c26bceb9a4ad1fed6ad91193",
+    "web/aliyun-tts.js": "fb670884016193f13590554e03dfc143c960a7e82e06c7d8ba30a61b42253334",
+    "web/aliyun-tts.css": "cf8d87bae03d6603bfc18568becf5d2da3058838bdf92065702dd3b3ff787beb"
+  },
+  "runtimeConfigSourceSha256": "d726994c7153a6ea77cae3af4191928d8aecae67072d2f2ebe7523efde964e65"
+}

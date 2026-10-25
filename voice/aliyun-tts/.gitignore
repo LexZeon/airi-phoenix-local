@@ -1,0 +1,8 @@
+private/
+logs/
+samples/
+api-token.txt
+server-state.json
+*.private.json
+*.dpapi
+__pycache__/

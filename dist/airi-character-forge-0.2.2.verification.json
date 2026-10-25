@@ -1,0 +1,39 @@
+{
+  "version": "0.2.2",
+  "ok": true,
+  "scope": "Exact public ZIP extracted into an unrelated temporary directory, original bundled robot init/inspect/build and external licensed Core validation",
+  "zipSha256": "a207b90a470be2faaa50767d465545f3ebb0949d316394cdf10caa6b68ee3db1",
+  "steps": [
+    {
+      "stage": "init",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "inspect",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "build",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "code": "OK"
+    }
+  ],
+  "validationSummary": {
+    "status": "PASS",
+    "geometryCases": 72,
+    "meshes": 6,
+    "parameters": 6,
+    "expressions": 3
+  },
+  "markdownMissingLinks": [],
+  "coreBundled": false,
+  "privateModelOrProfileUsed": false,
+  "newNativeAppOrCloudTest": false
+}

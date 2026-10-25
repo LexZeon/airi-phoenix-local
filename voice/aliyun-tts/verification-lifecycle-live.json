@@ -1,0 +1,12 @@
+{
+  "firstStartReady": true,
+  "airiSettingsUnchanged": true,
+  "stopped": true,
+  "test": "aliyun-owned-lifecycle-real-windows-powershell-5",
+  "pythonVenvRedirectorHandled": true,
+  "cloudCalls": 0,
+  "duplicateSamePidAndInstance": true,
+  "configured": false,
+  "realKeyReadOrSaved": false,
+  "otherServicesPreserved": true
+}

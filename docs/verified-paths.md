@@ -165,3 +165,9 @@ MCP是可选legacy2025-11-25 stdio接口，18协议/路径边界测试及真实r
 [统一屏幕关闭方法](screen-access-off.md)收录已测试的取消、epoch和writer清理，以及按钮/工具权限联动；真实原生按钮开关后79.07秒无新发布，两窗口均关闭且旧writer已清，详见单独匿名native报告。[Windows登录自启](windows-sign-in.md)只注册已有一键启动器，读取回验证，不冒称已经注销/登录验过。
 
 [MMD构图保存](../airi-integration/offline-shell/MMD-CAMERA-PERSISTENCE.md)保存摄像机而非仅模型平移/scale：按modelId和主窗/preview分开，模型fit完成后恢复，初始化和旧异步加载不能覆盖新数据。V2的41项检查包含实际bundled OrbitControls数值投影往返与Vue受控model时序；主app重启已读回stage/restored并核对近景。补丁先确认唯一compiled region和全部锚点，未知版本失败停止；V1升级必须用冻结生成器重放原备份并逐字节匹配，上游源码保持干净。
+
+## 本机保存密钥的可选云端语音
+
+[阿里云转接服务](../voice/aliyun-tts/README.md)提供9949完整WAV接口，控制台可见配置/固定句试听/明确应用流程，当前本地选择不变。简易版与高级3.1分别采用对应官方端点和音色；密钥用当前用户DPAPI保存，AIRI只存独立本地token。25项adapter、14项console隔离检查与真实Windows启动/重复启动/健康/停止通过；它们验证可复用程序路径，真实云请求为0。
+
+取得自己的Key后才做云端合成测试；首上游音频、完整WAV、实际AIRI播放分开计量。当前AIRI仍按完整小句播放，不能从上游SSE推断低延迟开口。详见[具体边界与官方来源](../voice/aliyun-tts/verified-method.md)。

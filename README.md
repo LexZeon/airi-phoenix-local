@@ -6,7 +6,7 @@
 
 **先读 [START_HERE.md](START_HERE.md)。** Skill 名为 `$airi-character-forge`，入口为根目录 [SKILL.md](SKILL.md)。
 
-[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.1.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
+[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.2.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
 
 | 模块 | 已有内容与实际状态 |
 | --- | --- |
@@ -62,3 +62,5 @@ Windows on ARM 的本机部署曾复用已有 Qwen3.5 9B、SenseVoice 和创作�
 [MMD构图保存工具](airi-integration/offline-shell/MMD-CAMERA-PERSISTENCE.md)按模型区分主窗/设置预览，保存拖动、缩放和视角；V2通过41项VM、compiled生命周期与真实Three/Vue检查，原生重启已恢复选定近景并核对可见画幅。它只补丁已有编译资产，不附AIRI第三方资产或私人视角种子。
 
 [本机Codex任务入口](control-center/codex-task-assistant-verified.md)复用官方CLI已登录的ChatGPT账号，明确点击才提交任务，附9项离线回归和一次真实只读合成文件验证；已有任务续写未测。[可选在线文字聊天](online-chat/README.md)另提供9948纯文字adapter，保留本地选项；真实AIRI SDK合成文字路径6.461秒通过，直接图片/工具调用与逐token流式不支持，私人任务ID与登录状态不附包。
+
+[可选阿里云语音](voice/aliyun-tts/README.md)已加入角色声音列表与本机密钥/音色/试听面板；25项adapter、14项控制台隔离检查及真实Windows owned服务启停通过。当前没有真实Key，云端合成/速度/实际AIRI播放仍未测，不改变本地9B＋慧慧与关闭屏幕的当前选择。

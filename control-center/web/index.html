@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>我的 AIRI · 本机配置台</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/codex-tasks.css"><script src="/app.js" defer></script><script src="/codex-tasks.js" defer></script></head>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>我的 AIRI · 本机配置台</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/codex-tasks.css"><link rel="stylesheet" href="/aliyun-tts.css"><script src="/app.js" defer></script><script src="/codex-tasks.js" defer></script><script src="/aliyun-tts.js" defer></script></head>
 <body><div class="app-shell">
 <aside class="sidebar"><a class="brand" href="/"><span class="brand-mark">✳</span><span>我的 AIRI<small>LOCAL COMPANION</small></span></a><div class="sidebar-label">陪伴，从这里开始</div><nav aria-label="AIRI四项设置"><a href="#chat">◔ <span>聊天</span></a><a href="#vision">◉ <span>看屏幕</span></a><a href="#asr">≋ <span>听你说话</span></a><a href="#tts">♫ <span>角色声音</span></a></nav><div class="sidebar-label services-label">本机服务</div><div id="services"></div><div class="sidebar-bottom"><i></i><span>仅在这台电脑上<small>不下载新模型</small></span><button id="refresh" aria-label="刷新状态">↻</button></div></aside>
 <main><header class="topbar"><span>AIRI <b>/</b> 我的配置台</span><div><span class="private-pill"><i></i> 本机私用</span><span class="avatar">L</span></div></header>
@@ -29,4 +29,27 @@
 <footer><span>本机配置台 · 复用已安装服务 · 不公开发布</span><span id="last-check">读取状态中</span></footer></div></main></div>
 <dialog id="advanced-dialog"><button class="dialog-close" id="advanced-close" aria-label="关闭高级设置">×</button><div class="eyebrow">OTHER LOCAL OPTIONS</div><h2>接入其他本机服务</h2><p>可复用本机 Ollama，或填写已经启动的兼容接口。不下载模型，也不连接外部地址。</p><div class="advanced-row"><label>用于哪一项<select id="advanced-module"><option value="chat">聊天</option><option value="vision">看屏幕</option><option value="asr">听你说话</option><option value="tts">角色声音</option></select></label><label>服务类型<select id="advanced-adapter"><option value="custom">本机 OpenAI 兼容接口</option><option value="ollama">本机 Ollama</option></select></label></div>
 <label>本机服务地址<input id="endpoint" placeholder="http://127.0.0.1:端口/v1/" autocomplete="off"></label><div class="inline-row"><label class="grow">模型名称<input id="custom-model" placeholder="服务返回的模型 ID" autocomplete="off" list="local-models"></label><button class="secondary-button" id="check-endpoint">检测连接</button></div><datalist id="local-models"></datalist><label id="voice-label" hidden>音色名称<input id="custom-voice" placeholder="该声音服务支持的 voice ID"></label><label>本机服务密钥（可选）<input id="api-key" type="password" placeholder="没有则留空；已保存的密钥留空保留" autocomplete="new-password"></label><div id="endpoint-state" class="detail-note" role="status">不同服务支持的聊天、图像与音频能力可能不同。</div><div class="dialog-actions"><button id="use-custom" class="primary-button">使用这个方案</button></div></dialog>
+<dialog id="aliyun-dialog" aria-labelledby="aliyun-title">
+<button id="aliyun-close" class="dialog-close" type="button" aria-label="关闭阿里云语音设置">×</button>
+<div class="eyebrow">在线角色声音</div><h2 id="aliyun-title">阿里云语音</h2>
+<p>先保存密钥并试听，觉得合适再应用。这里仅发送要朗读的文字，不发送麦克风录音或屏幕。</p>
+<div id="aliyun-state" class="aliyun-state" role="status">正在读取本机配置…</div>
+<label for="aliyun-key">百炼密钥（API Key）<input id="aliyun-key" type="password" autocomplete="new-password" spellcheck="false" placeholder="粘贴你创建的 API Key；已保存时留空保留"></label>
+<p class="aliyun-small"><a href="https://bailian.console.aliyun.com/cn-beijing/model/settings/api-key" target="_blank" rel="noopener noreferrer">打开百炼密钥页面 ↗</a> · 密钥只加密保存在本机，不会在页面回显。</p>
+<div class="aliyun-row"><label for="aliyun-region">密钥所在地域<select id="aliyun-region"><option value="beijing">北京</option><option value="singapore">新加坡</option></select></label><label for="aliyun-voice">声音<select id="aliyun-voice"><option value="Serena">Serena · 温柔女声</option></select></label></div>
+<p id="aliyun-voice-note" class="aliyun-small">简易语音只需密钥，使用公开预设音色。</p>
+<details id="aliyun-advanced"><summary>需要更细的语气？更多选项</summary>
+<label for="aliyun-mode">语音方案<select id="aliyun-mode"><option value="simple">简易语音 · 只需密钥</option><option value="expressive">情绪语音 3.1 · 还需 API Host</option></select></label>
+<div id="aliyun-expressive" hidden>
+<label for="aliyun-host">百炼提供的 API Host<input id="aliyun-host" autocomplete="off" spellcheck="false" placeholder="粘贴控制台提供的官方 maas.aliyuncs.com 域名"></label>
+<p class="aliyun-small">从创建密钥弹窗或业务空间管理中复制 API Host，并选择对应地域。</p>
+<label for="aliyun-style">语气<select id="aliyun-style"><option value="gentle">温柔微倦</option><option value="drowsy">更放松、略困倦</option><option value="focused">工作时利落</option><option value="neutral">自然中性</option></select></label>
+<label for="aliyun-instruction">补充语气（可选）<textarea id="aliyun-instruction" rows="2" maxlength="300" placeholder="例如：温柔、略倦，节奏稍慢；说明事情时清楚利落。"></textarea></label>
+</div></details>
+<p id="aliyun-save-note" class="aliyun-small">保存不会切换当前声音；已使用阿里语音时，新音色和语气用于下一句。</p>
+<div class="aliyun-actions"><button id="aliyun-save" class="secondary-button" type="button" disabled>保存设置</button><button id="aliyun-test" class="secondary-button" type="button" disabled>试听测速</button><button id="aliyun-use" class="primary-button" type="button" disabled>使用这个方案</button></div>
+<p id="aliyun-test-state" class="aliyun-result" role="status">尚未实测。填好密钥后可生成一条固定中文短句。</p>
+<audio id="aliyun-player" controls preload="none" hidden></audio>
+<p class="aliyun-small">首段音频表示云端首包到达时间。当前 AIRI 收齐完整小句后播放，实际开口还包含聊天和播放等待；百炼按量付费。</p>
+</dialog>
 <div id="toast" class="toast" role="status" hidden></div></body></html>

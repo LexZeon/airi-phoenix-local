@@ -9,7 +9,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.2.1"
+VERSION = "0.2.2"
 FOLDER = "airi-character-forge"
 ROOT_FILES = {".gitignore", "AGENTS.md", "LICENSE", "README.md", "RIGHTS.md", "SKILL.md", "START_HERE.md"}
 FOLDERS = {"agents", "agent_bridge", "airi-integration", "character-tools", "control-center", "diagnostics", "launchers", "mmd-tools", "docs", "examples", "prompts", "rig-tools", "scripts", "shared-speech", "sticker-tools", "voice", "online-chat"}
@@ -17,10 +17,11 @@ TEXT_SUFFIXES = {".py", ".md", ".txt", ".json", ".cjs", ".mjs", ".html", ".yaml"
 BINARY_FILES = {"rig-tools/examples/robot/artwork/parts.png", "examples/deskbot/artwork/parts.png",
     "docs/images/robot-preview.png", "voice/samples/phoenix-soft.wav",
     "voice/samples/phoenix-drowsy.wav", "voice/samples/phoenix-focused.wav", "mmd-tools/examples/natural-idle.vmd"}
-EXCLUDE_PARTS = {".git", "__pycache__", "node_modules", ".venv", "runtime", "state", "logs", "backups", "work", "output", "local-assets", "electron-profile", "isolated-profile", ".browser-profile", "codex-workspace"}
-PRIVATE_FILENAMES = {"api-token.txt", "server-state.json", "worker-settings.json", "codex-preferences.json"}
+EXCLUDE_PARTS = {".git", "__pycache__", "node_modules", ".venv", "runtime", "state", "logs", "backups", "work", "output", "local-assets", "electron-profile", "isolated-profile", ".browser-profile", "codex-workspace", "private"}
+PRIVATE_FILENAMES = {"api-token.txt", "server-state.json", "worker-settings.json", "codex-preferences.json", "settings.json", "secret.dpapi"}
 EXTRA_SOURCE_FILES = {"control-center/web/app.js", "control-center/web/style.css", "control-center/web/favicon.svg", "launchers/airi-select-profile.ps1", "launchers/control-center-start.ps1", "launchers/control-center-stop.ps1", "airi-integration/character-3d-bootstrap.js", "mmd-tools/mmd-idle-driver.js", "voice/bench_sapi.ps1", "voice/windows-sapi/.gitignore", "voice/windows-sapi/common.ps1", "voice/windows-sapi/start.ps1", "voice/windows-sapi/stop.ps1", "voice/windows-sapi/worker.ps1", "airi-integration/offline-shell/character-bootstrap.js", "airi-integration/offline-shell/character-3d-bootstrap.js", "airi-integration/offline-shell/character-view-controller.js", "airi-integration/offline-shell/mmd-idle-driver.js", "launchers/airi-env.ps1", "launchers/airi-start.ps1", "launchers/airi-stop.ps1", "launchers/airi-update.ps1", "launchers/airi-model-common.ps1", "launchers/airi-model-start.ps1", "launchers/airi-model-stop.ps1", "launchers/airi-model-health.ps1", "launchers/airi-speech-start.ps1", "launchers/airi-speech-stop.ps1"}
 EXTRA_SOURCE_FILES.update({"launchers/airi-autostart.ps1", "airi-integration/offline-shell/screen-control-bootstrap.js", "airi-integration/offline-shell/online-chat-bootstrap.js", "control-center/web/codex-tasks.js", "control-center/web/codex-tasks.css", "online-chat/.gitignore", "online-chat/common.ps1", "online-chat/start.ps1", "online-chat/stop.ps1", "online-chat/health.ps1"})
+EXTRA_SOURCE_FILES.update({"control-center/web/aliyun-tts.js", "control-center/web/aliyun-tts.css", "voice/aliyun-tts/.gitignore", "voice/aliyun-tts/common.ps1", "voice/aliyun-tts/start.ps1", "voice/aliyun-tts/stop.ps1", "voice/aliyun-tts/health.ps1"})
 
 
 def source_files():
@@ -36,7 +37,7 @@ def source_files():
         if path.is_symlink():
             raise ValueError(f"Symlink is not a releasable source file: {relative}")
         name = relative.as_posix()
-        if path.name.endswith('.private.json') or path.name in PRIVATE_FILENAMES:
+        if path.name.endswith(('.private.json', '.dpapi')) or path.name in PRIVATE_FILENAMES:
             raise ValueError(f"Private runtime state is not releasable: {name}")
         if relative.parts[:2] == ('online-chat', 'empty'):
             continue
@@ -85,7 +86,7 @@ def main():
     files = source_files()
     manifest = {"name": FOLDER, "version": VERSION, "license": "MIT for original code/docs/prompts/robot; third-party and character rights separate",
         "entry": "SKILL.md", "start": "START_HERE.md", "selfContainedSource": True,
-        "externalRequirements": ["Python/Pillow", "optional Node and independently licensed Core", "optional GPU/PyTorch plus separately downloaded TTS weights", "agent-supplied semantic image tools", "optional installed official Codex CLI with own login for online features"],
+        "externalRequirements": ["Python/Pillow", "optional Node and independently licensed Core", "optional GPU/PyTorch plus separately downloaded TTS weights", "agent-supplied semantic image tools", "optional installed official Codex CLI with own login for online features", "optional Aliyun account, regional API Key, Windows DPAPI and network for cloud speech"],
         "files": [{"file": name, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()} for name, data in files]}
     output = args.out.resolve()
     if output == ROOT or output.is_dir():

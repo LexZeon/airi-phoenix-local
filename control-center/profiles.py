@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import sys
 import threading
 from contextlib import contextmanager
 import msvcrt
@@ -35,6 +36,7 @@ CHOICES = {
  'qwen-soft': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-soft'),
  'qwen-efficient': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-soft-efficient'),
  'sapi-huihui': ('tts', 'http://127.0.0.1:9947/v1/', 'windows-sapi-local', 'huihui'),
+ 'aliyun-tts': ('tts', 'http://127.0.0.1:9949/v1/', 'aliyun-qwen-tts', 'configured'),
  'qwen-drowsy': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-drowsy'),
  'qwen-focused': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-focused'),
 }
@@ -118,6 +120,18 @@ def endpoint(profile, module):
     choice = profile['selections'][module]
     if choice in ('custom','ollama'): return dict(profile['custom'][module])
     _, base, model, voice = CHOICES[choice]
+    if choice == 'aliyun-tts':
+        config_path = Path(os.environ.get('AIRI_ALIYUN_TTS_ROOT', str(BASE / 'runtime/airi-aliyun-tts'))) / 'aliyun_config.py'
+        if not config_path.is_file(): raise ValueError('阿里云语音连接程序尚未安装。')
+        spec = importlib.util.spec_from_file_location('airi_aliyun_profile_config', config_path)
+        module_object = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module_object
+        spec.loader.exec_module(module_object)
+        config = module_object.get_public_settings(root=config_path.parent)
+        if not config.get('configured'): raise ValueError('请先在“配置阿里云”中保存 API Key 和对应地域设置。')
+        if not config.get('cloudTested'): raise ValueError('请先完成“试听测速”，确认当前阿里云语音设置可用后再选择。')
+        return {'baseUrl':base,'model':model,'apiKey':module_object.ensure_token(config_path.parent/'api-token.txt'),
+                'voice':'configured'}
     if choice == 'codex-chatgpt':
         adapter = Path(os.environ.get('AIRI_CODEX_CHAT_ROOT', str(BASE / 'runtime/airi-codex-chat'))) / 'server.py'
         if not adapter.is_file(): raise ValueError('ChatGPT 在线聊天适配器尚未安装。')
@@ -148,6 +162,9 @@ def current_profile():
         model = selected.get('model') or config.get('storage',{}).get(f'settings/{key}/active-model') or provider.get('model')
         base = provider.get('baseUrl','')
         voice = selected.get('voice_id') or provider.get('voice') or config.get('storage',{}).get('settings/speech/voice')
+        if module == 'tts' and base == CHOICES['aliyun-tts'][1] and model == CHOICES['aliyun-tts'][2]:
+            result['selections'][module] = 'aliyun-tts'
+            continue
         match = next((id_ for id_, values in CHOICES.items() if values[0] == module and values[1] == base and values[2] == model and (module!='tts' or values[3] == voice)), None)
         if match: result['selections'][module] = match
         elif base and model:

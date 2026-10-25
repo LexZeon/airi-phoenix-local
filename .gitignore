@@ -1,0 +1,15 @@
+# Public record must not include machine profiles, credentials or research media.
+.env
+.env.*
+*token*
+*credential*
+runtime/
+backups/
+logs/
+official-reference*
+storyboards/
+*.gguf
+*.onnx
+*.safetensors
+node_modules/
+__pycache__/

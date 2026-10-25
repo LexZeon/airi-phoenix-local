@@ -1,0 +1,13 @@
+{
+  "test": "real-local-sdk-deannouncement-and-compiled-registry-semantics",
+  "updateObserved": true,
+  "leaveObserved": true,
+  "writerRemovedAfterLeave": true,
+  "emptyReplaceLeavesEntry": true,
+  "syntheticContextRoutedOnlyToTestObserver": true,
+  "privateEventsRead": false,
+  "nativeAppContextInspected": false,
+  "limits": [
+    "Tests the live channel and installed core registry; native AIRI screen-stop UI state is a separate app test after installing the new shell."
+  ]
+}

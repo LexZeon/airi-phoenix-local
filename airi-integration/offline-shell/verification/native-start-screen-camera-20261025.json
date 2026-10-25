@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-25T16:46:01.1286694Z",
+  "appReady": true,
+  "mmdCamera": {
+    "phase": "preserved",
+    "seeded": false,
+    "errorCode": null,
+    "views": [
+      {
+        "scope": "stage",
+        "restored": true,
+        "loadStatus": "restored"
+      }
+    ]
+  },
+  "screenOff": {
+    "enabled": false,
+    "capturing": false,
+    "publishedCount": 3,
+    "contextClearStatus": "cleared",
+    "clearedWriterCount": 1,
+    "controlsErrorCode": null,
+    "controls": [
+      {
+        "computerUseEnabled": false,
+        "capabilityStatusPresent": true,
+        "screenWriterPresent": false,
+        "visionTickerRunning": false
+      },
+      {
+        "computerUseEnabled": false,
+        "capabilityStatusPresent": true,
+        "screenWriterPresent": false,
+        "visionTickerRunning": false
+      }
+    ]
+  },
+  "nativeButtonOnPreviouslyPublished": 1,
+  "artCardCount": 3,
+  "rendererDiagnosticErrors": 0,
+  "offObservationSeconds": 79.07,
+  "offPublishedCountUnchanged": true,
+  "offStillDisabled": true
+}

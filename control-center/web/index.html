@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>我的 AIRI · 本机配置台</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>我的 AIRI · 本机配置台</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/codex-tasks.css"><script src="/app.js" defer></script><script src="/codex-tasks.js" defer></script></head>
 <body><div class="app-shell">
 <aside class="sidebar"><a class="brand" href="/"><span class="brand-mark">✳</span><span>我的 AIRI<small>LOCAL COMPANION</small></span></a><div class="sidebar-label">陪伴，从这里开始</div><nav aria-label="AIRI四项设置"><a href="#chat">◔ <span>聊天</span></a><a href="#vision">◉ <span>看屏幕</span></a><a href="#asr">≋ <span>听你说话</span></a><a href="#tts">♫ <span>角色声音</span></a></nav><div class="sidebar-label services-label">本机服务</div><div id="services"></div><div class="sidebar-bottom"><i></i><span>仅在这台电脑上<small>不下载新模型</small></span><button id="refresh" aria-label="刷新状态">↻</button></div></aside>
 <main><header class="topbar"><span>AIRI <b>/</b> 我的配置台</span><div><span class="private-pill"><i></i> 本机私用</span><span class="avatar">L</span></div></header>
-<div class="main-content"><section class="hero"><div class="eyebrow">A LITTLE CLOSER, RIGHT HERE</div><h1>让她按你喜欢的方式陪伴<span>。</span></h1><p>选一个适合的方案，再应用到 AIRI。所有模型都留在本机。</p><div id="runtime-state" class="runtime-state">正在读取 AIRI 状态…</div></section>
+<div class="main-content"><section class="hero"><div class="eyebrow">本地优先，在线可选</div><h1>让她按你喜欢的方式陪伴<span>。</span></h1><p>选一个适合的方案，再应用到 AIRI。本地模型和角色文件留在本机；在线选项会明确标出。</p><div id="runtime-state" class="runtime-state">正在读取 AIRI 状态…</div></section>
 <section aria-labelledby="profiles-title"><div class="section-heading"><h2 id="profiles-title">先选一个日常方案</h2><span>也可以在下面逐项调整</span></div><div class="profile-grid">
 <button class="profile-card" data-preset="gentle"><span class="profile-icon">☾</span><span class="profile-tag">推荐</span><strong>温柔微倦</strong><span>9B 聊天 · Serena 温柔声音</span><small>声音更有语气，整段生成后播放</small></button>
 <button class="profile-card" data-preset="quick"><span class="profile-icon">↗</span><span class="profile-tag">响应快</span><strong>轻快日常</strong><span>9B 聊天 · Melo 通用声音</span><small>优先较短等待，声音更朴素</small></button>
@@ -13,6 +13,19 @@
 <section class="apply-panel" aria-label="应用方案"><div><strong id="selection-state">正在读取设置</strong><span id="selection-summary"></span></div><div class="apply-actions"><button id="remember" class="text-button">记住选择</button><button id="apply-only" class="secondary-button">只应用设置</button><button id="apply-start" class="primary-button">应用并启动 AIRI ↗</button></div><p>“记住选择”只保存偏好；“只应用设置”会修改 AIRI 配置；“应用并启动”会重新打开 AIRI，让新设置生效。</p><div id="action-status" role="status" hidden></div></section>
 <details class="resource-panel"><summary><span>资源建议与本机实测</span><small>没有统一评分，只展示真实记录</small><b>＋</b></summary><div id="resources"></div></details>
 <section id="hardware" class="hardware-card" aria-label="本机统一内存与当前余量">正在读取本机硬件…</section>
+<section id="codex-tasks" class="codex-panel" aria-labelledby="codex-title">
+<div class="section-heading"><h2 id="codex-title">ChatGPT 账号 · Codex 任务助手 <small>在线</small></h2><button id="codex-refresh" class="text-button" type="button">重新检测</button></div>
+<p class="codex-intro">复用本机 Codex 已登录的账号，处理你主动提交的任务。进展和结果显示在下方；AIRI 日常聊天使用上方选择的方案。</p>
+<div id="codex-state" class="codex-state" role="status">正在检测 Codex 安装与登录…</div>
+<form id="codex-form">
+<label for="codex-task">交给 Codex 的任务<textarea id="codex-task" rows="4" maxlength="4000" placeholder="例如：检查这个项目，并给出三个最值得改进的地方。" required></textarea></label>
+<div class="codex-options"><label for="codex-target">任务去向<select id="codex-target"><option value="new">新独立任务</option></select></label><label for="codex-mode">允许做什么<select id="codex-mode"><option value="read-only">只读 · 查看和建议</option><option value="workspace-write">允许修改该工作目录</option></select></label></div>
+<label for="codex-workspace">工作文件夹<input id="codex-workspace" type="text" autocomplete="off" spellcheck="false" placeholder="已存在的本机文件夹完整路径" required></label>
+<p id="codex-scope-note" class="codex-note"></p>
+<p class="codex-note">任务及为任务读取的文件会在线处理。只会在你点击执行后提交；不会自动发送 AIRI 对话或屏幕。目录可以改为其他已存在的本地文件夹。</p>
+<div class="codex-actions"><button id="codex-run" class="primary-button" type="submit" disabled>交给 Codex ↗</button><button id="codex-stop" class="secondary-button" type="button" disabled>停止任务</button><span id="codex-job-state" role="status">尚未提交任务</span></div>
+</form><div id="codex-progress" class="codex-progress" aria-live="polite"></div><pre id="codex-output" class="codex-output" tabindex="0" aria-label="Codex 任务结果">结果会显示在这里。</pre>
+</section>
 <footer><span>本机配置台 · 复用已安装服务 · 不公开发布</span><span id="last-check">读取状态中</span></footer></div></main></div>
 <dialog id="advanced-dialog"><button class="dialog-close" id="advanced-close" aria-label="关闭高级设置">×</button><div class="eyebrow">OTHER LOCAL OPTIONS</div><h2>接入其他本机服务</h2><p>可复用本机 Ollama，或填写已经启动的兼容接口。不下载模型，也不连接外部地址。</p><div class="advanced-row"><label>用于哪一项<select id="advanced-module"><option value="chat">聊天</option><option value="vision">看屏幕</option><option value="asr">听你说话</option><option value="tts">角色声音</option></select></label><label>服务类型<select id="advanced-adapter"><option value="custom">本机 OpenAI 兼容接口</option><option value="ollama">本机 Ollama</option></select></label></div>
 <label>本机服务地址<input id="endpoint" placeholder="http://127.0.0.1:端口/v1/" autocomplete="off"></label><div class="inline-row"><label class="grow">模型名称<input id="custom-model" placeholder="服务返回的模型 ID" autocomplete="off" list="local-models"></label><button class="secondary-button" id="check-endpoint">检测连接</button></div><datalist id="local-models"></datalist><label id="voice-label" hidden>音色名称<input id="custom-voice" placeholder="该声音服务支持的 voice ID"></label><label>本机服务密钥（可选）<input id="api-key" type="password" placeholder="没有则留空；已保存的密钥留空保留" autocomplete="new-password"></label><div id="endpoint-state" class="detail-note" role="status">不同服务支持的聊天、图像与音频能力可能不同。</div><div class="dialog-actions"><button id="use-custom" class="primary-button">使用这个方案</button></div></dialog>

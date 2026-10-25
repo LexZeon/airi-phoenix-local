@@ -1,0 +1,6 @@
+api-token.txt
+server-state.json
+worker-settings.json
+logs/
+empty/
+__pycache__/

@@ -1,0 +1,30 @@
+{
+  "test": "unified-screen-bootstrap-with-production-structured-clone-and-proxy-definitions",
+  "passed": 15,
+  "checks": [
+    "production structuredClone rejects legacy shallow-spread nested Proxy with DataCloneError",
+    "JSON definition clone allows production structuredClone without serializing execute",
+    "existing Proxy-backed tool retains nested schema, id, activation flags and icon",
+    "future Proxy-backed tool registration is serializable and guarded",
+    "helper-off initializes both UI windows off",
+    "off blocks existing computer tool executor",
+    "explicit UI-on enables helper and other window without feedback",
+    "explicit UI-off disables helper and other window",
+    "future tool executors are guarded",
+    "off discards late native tool result",
+    "off stops vision ticker and screen-capture ambient sampling",
+    "independent capability status appears off and is removed on without deleting unrelated context",
+    "rapid UI on/off before IPC replies preserves final off intent",
+    "renderer reports contain whitelisted booleans only",
+    "late replicated Pinia default cannot enable helper"
+  ],
+  "actualStructuredCloneVerified": true,
+  "nestedProxyRejectionVerified": true,
+  "actualVueProxyVerified": true,
+  "realAppRestarted": false,
+  "actualNativeToolRun": false,
+  "privateDataRead": false,
+  "limits": [
+    "Store/IPC adapters use the production addTools structuredClone projection and real Proxy definitions; optional --assets also loads the installed Vue reactive implementation. Installed native-window behavior still needs app validation after restart."
+  ]
+}

@@ -1,9 +1,27 @@
 'use strict'
 
-const { ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer } = require('electron')
 
 const CHANNEL = 'airi-offline'
 const MARKER = 'airi-offline/profile-revision'
+
+// Only AIRI's own local main frames receive this narrow IPC bridge; main validates the sender again.
+if (process.isMainFrame && location.protocol === 'file:') {
+  contextBridge.exposeInMainWorld('airiOfflineScreen', {
+    getState: () => ipcRenderer.invoke(`${CHANNEL}:get-screen-state`),
+    setEnabled: enabled => {
+      if (typeof enabled !== 'boolean') return Promise.reject(new Error('INVALID_SCREEN_CONTROL_REQUEST'))
+      return ipcRenderer.invoke(`${CHANNEL}:set-screen-enabled`, enabled)
+    },
+    reportState: status => ipcRenderer.send(`${CHANNEL}:screen-control-status`, status),
+    onState: callback => {
+      if (typeof callback !== 'function') throw new Error('INVALID_SCREEN_CONTROL_CALLBACK')
+      const listener = (_event, state) => callback(state)
+      ipcRenderer.on(`${CHANNEL}:screen-state`, listener)
+      return () => ipcRenderer.removeListener(`${CHANNEL}:screen-state`, listener)
+    },
+  })
+}
 
 function object(value) {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value)

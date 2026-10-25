@@ -1,0 +1,11 @@
+{
+  "test": "codex-chat-real-owned-lifecycle",
+  "firstStartReady": true,
+  "duplicateSamePid": true,
+  "duplicateSameInstance": true,
+  "stopped": true,
+  "otherListeningProcessesUnchanged": true,
+  "airiSettingsHashUnchanged": true,
+  "cloudCalls": 0,
+  "modelSelectionChanged": false
+}

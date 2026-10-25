@@ -1,0 +1,25 @@
+{
+  "test": "real-loopback-chatgpt-codex-persona-sse",
+  "model": "gpt-6.1-sol",
+  "success": true,
+  "doneReceived": true,
+  "firstSseEventSeconds": 0.015551999997114763,
+  "firstContentSeconds": 5.9526814999990165,
+  "totalSeconds": 5.952937099995324,
+  "contentEvents": 1,
+  "streaming": "completed-agent-message-events",
+  "syntheticPersonaSample": "回来啦……辛苦了。先坐下歇一会儿吧，今天忙的那些事，可以暂时放下了。我陪你。",
+  "chineseReply": true,
+  "selfIdentifiesAsCodingAssistant": false,
+  "privateConversationUsed": false,
+  "screenUsed": false,
+  "scratchFileCount": 0,
+  "workerMetrics": {
+    "completed": 1,
+    "failed": 0,
+    "toolAttemptsRejected": 0,
+    "lastDurationSeconds": 5.937
+  },
+  "error": null,
+  "productionPortUsed": false
+}

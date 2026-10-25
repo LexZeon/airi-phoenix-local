@@ -1,7 +1,7 @@
 'use strict';
 const $=selector=>document.querySelector(selector);
 const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const modules=[{id:'chat',name:'聊天',icon:'◔',note:'想聊什么，由她来回应。'},{id:'vision',name:'看屏幕',icon:'◉',note:'让她理解屏幕上的画面。'},{id:'asr',name:'听你说话',icon:'≋',note:'把你说的话变成文字。'},{id:'tts',name:'角色声音',icon:'♫',note:'选一个喜欢的声音和语气。'}];
+const modules=[{id:'chat',name:'聊天',icon:'◔',note:'想聊什么，由她来回应。'},{id:'vision',name:'看屏幕',icon:'◉',note:'默认关闭，在 AIRI 聊天中手动开启。'},{id:'asr',name:'听你说话',icon:'≋',note:'把你说的话变成文字。'},{id:'tts',name:'角色声音',icon:'♫',note:'选一个喜欢的声音和语气。'}];
 const presets={gentle:{chat:'qwen9',vision:'vision9',asr:'sensevoice',tts:'qwen-soft'},quick:{chat:'qwen9',vision:'vision9',asr:'sensevoice',tts:'melo'},focus:{chat:'qwen27',vision:'vision9',asr:'sensevoice',tts:'qwen-focused'}};
 let catalog={items:[]},draft,applied,preferences,status={services:[]},csrf='',busy=false,toastTimer,audio;
 const clone=value=>JSON.parse(JSON.stringify(value));
@@ -26,10 +26,12 @@ function renderSummary(){
 }
 function stateFor(module){
  const choice=draft.selections[module];
+ if(module==='chat'&&choice==='codex-chatgpt'){const running=service('codex-chat');return {online:Boolean(running?.online),text:running?.online?'本机连接程序已就绪 · 需联网及账号额度':'在线可选 · 应用并启动后连接'};}
  if(choice==='custom')return {online:false,text:'自填本机服务 · 应用前可检测连接'};
  if(choice==='ollama'){const running=service('ollama');return {online:Boolean(running?.online),text:running?.online?'Ollama 在线 · 能力取决于所选模型':'Ollama 尚未启动'};}
  const id=module==='chat'?(choice==='qwen27'?'workbench':'chat'):module==='vision'?'vision':choice.startsWith('qwen-')?'qwen-tts':'speech';
  const running=service(id);
+ if(module==='vision'&&running?.online)return {online:true,text:service('airi')?.screenEnabled===true?'视觉模型就绪 · 正在观察':'视觉模型就绪 · 观察已关闭'};
  if(module==='chat'&&running?.online&&running.loadedChoice!==choice)return {online:false,text:'应用并启动时切换到 '+(choice==='qwen27'?'27B':'9B')};
  return {online:Boolean(running?.online),text:running?.online?'本机服务已就绪':selected(module)?.installed?'已安装 · 应用并启动时加载':'文件尚未就绪'};
 }
@@ -41,7 +43,7 @@ function renderModules(){
   const options=items.map(item=>'<option value="'+item.id+'" '+(choice===item.id?'selected':'')+'>'+escapeHtml(item.name)+'</option>').join('');
   const extra=(module.id==='chat'||module.id==='vision'?'<option value="ollama" '+(choice==='ollama'?'selected':'')+'>本机 Ollama…</option>':'')+'<option value="custom" '+(choice==='custom'?'selected':'')+'>其他本机兼容服务…</option>';
   const item=selected(module.id);
-  return '<article class="module-card" id="'+module.id+'"><div class="module-header"><h3>'+module.name+'</h3><span class="module-icon">'+module.icon+'</span></div><p>'+module.note+'</p><select aria-label="'+module.name+'方案" data-module="'+module.id+'">'+options+extra+'</select><div class="module-state"></div><div class="module-extra">'+(item?.sample?'<button class="sample-button" data-sample="'+escapeHtml(item.sample)+'">▷ 试听这个声音</button>':'')+(choice==='custom'||choice==='ollama'?'<button class="text-button" data-edit="'+module.id+'">编辑连接</button>':'')+'</div>'+(module.id==='tts'?'<div id="audio-slot"></div>':'')+'</article>';
+  return '<article class="module-card" id="'+module.id+'"><div class="module-header"><h3>'+module.name+'</h3><span class="module-icon">'+module.icon+'</span></div><p>'+module.note+'</p><select aria-label="'+module.name+'方案" data-module="'+module.id+'">'+options+extra+'</select><div class="module-state"></div><div class="module-extra">'+(item?.sample?'<button class="sample-button" data-sample="'+escapeHtml(item.sample)+'">▷ 试听这个声音</button>':'')+(choice==='custom'||choice==='ollama'?'<button class="text-button" data-edit="'+module.id+'">编辑连接</button>':'')+(item?.online?'<button class="text-button" data-offline-nine>改回离线 9B 并应用 ↶</button>':'')+'</div>'+(item?.online?'<p class="online-option-note">联网 · 使用 ChatGPT/Codex 额度 · 只支持文字，完整回答后交付。与桌面 ChatGPT 独立会话。</p>':'')+(module.id==='tts'?'<div id="audio-slot"></div>':'')+'</article>';
  }).join('');
  for(const element of document.querySelectorAll('[data-module]'))element.addEventListener('change',()=>{
   const module=element.dataset.module,choice=element.value,previous=draft.selections[module];
@@ -49,6 +51,7 @@ function renderModules(){
   draft.selections[module]=choice;renderModules();selectionChanged();
  });
  for(const element of document.querySelectorAll('[data-edit]'))element.addEventListener('click',()=>openAdvanced(element.dataset.edit,draft.selections[element.dataset.edit]));
+ for(const button of document.querySelectorAll('[data-offline-nine]'))button.addEventListener('click',()=>{if(busy)return;draft.selections.chat='qwen9';renderModules();selectionChanged();runOperation('start');});
  for(const button of document.querySelectorAll('[data-sample]'))button.addEventListener('click',async()=>{
   if(audio)audio.pause();
   audio=document.createElement('audio');audio.controls=true;audio.src=button.dataset.sample;audio.preload='auto';$('#audio-slot').replaceChildren(audio);
@@ -57,12 +60,13 @@ function renderModules(){
  updateModuleStates();
 }
 function renderResources(){
- const rows=modules.map(module=>{const item=selected(module.id);return '<tr><td>'+module.name+'<code>'+escapeHtml(friendly(module.id))+'</code></td><td>'+ (item?item.memory.ramGiB.join('–')+' GiB':'依服务而定')+'</td><td>'+(item?item.memory.gpuGiB[1]?item.memory.gpuGiB.join('–')+' GiB':'CPU，无需 GPU':'依服务而定')+'</td><td>'+(item?item.asset.kind==='system-voice'?'系统自带':giB(item.asset.bytes)+' GiB':'原位接入')+'</td></tr>';}).join('');
+ const rows=modules.map(module=>{const item=selected(module.id);return '<tr><td>'+module.name+'<code>'+escapeHtml(friendly(module.id))+'</code></td><td>'+ (item?item.memory.ramGiB.join('–')+' GiB':'依服务而定')+'</td><td>'+(item?item.memory.gpuGiB[1]?item.memory.gpuGiB.join('–')+' GiB':item.online?'主要在云端计算':'CPU，无需 GPU':'依服务而定')+'</td><td>'+(item?item.asset.kind==='system-voice'?'系统自带':item.asset.kind==='online-account'?'云端，无本机权重':giB(item.asset.bytes)+' GiB':'原位接入')+'</td></tr>';}).join('');
  const evidence=selected('tts')?.evidence||[];
  $('#resources').innerHTML='<table class="resource-table"><thead><tr><th>当前方案</th><th>主机余量建议</th><th>GPU / 统一内存建议</th><th>主文件大小</th></tr></thead><tbody>'+rows+'</tbody></table><p class="detail-note">资源区间是加载余量建议，不是最低配置。推荐的9B聊天与看屏幕共用一个服务，表中资源不能重复相加；27B使用独立文字服务。Serena的几种模式共用一份权重。UMA内存不可把RAM和GPU数字相加。</p>'+evidence.map(item=>'<div class="evidence"><strong>'+escapeHtml(item.title||'本机合成样例')+'</strong>音频 '+item.audioSeconds.toFixed(2)+' 秒 · 可播等待 '+item.generationSeconds.toFixed(2)+' 秒 · 耗时 / 音频时长 '+item.rtf.toFixed(2)+'<small>'+escapeHtml(item.testedAt)+' · '+escapeHtml(item.source)+'</small><small>'+escapeHtml(item.note)+'</small></div>').join('')+'<p class="detail-note">聊天、看屏幕与识别尚无可比的同题性能记录。这里不填虚构分数，也不把历史样例当作每次响应保证。</p>';
+ if(selected('chat')?.online){const note=document.createElement('p');note.className='detail-note';const latency=selected('chat').latency;note.textContent='在线聊天合成角色问候实测：首个完整回答约 '+Number(latency?.firstContentSeconds||0).toFixed(2)+' 秒（1次）。按完整回答事件交付，非逐字流式；不同于实际 AIRI 长历史，不保证比本地更快。';$('#resources').append(note);}
 }
 function renderStatus(){
- $('#services').innerHTML=status.services.filter(item=>!['ollama','workbench'].includes(item.id)).map(item=>'<div class="service"><i class="'+(item.online?'on':'')+'"></i><span>'+escapeHtml(item.label)+'</span><small>'+(item.online?'就绪':'未启动')+'</small></div>').join('');
+ $('#services').innerHTML=status.services.filter(item=>!['ollama','workbench'].includes(item.id)).map(item=>{const watching=item.id==='vision',active=watching?service('airi')?.screenEnabled===true:item.online;return '<div class="service"><i class="'+(active?'on':'')+'"></i><span>'+escapeHtml(item.label)+'</span><small>'+(watching?(active?'观察中':'已关闭'):(item.online?'就绪':'未启动'))+'</small></div>';}).join('');
  const h=status.hardware||{},total=h.gpuTotalMiB?h.gpuTotalMiB/1024:0,free=h.gpuFreeMiB?h.gpuFreeMiB/1024:0,used=h.gpuUsedMiB?h.gpuUsedMiB/1024:0;
  $('#hardware').innerHTML='<div class="hardware-heading"><span>✳</span><strong>NVIDIA RTX Spark N1X</strong><small>'+(total?'当前实测':'等待实时计数')+'</small></div><div class="hardware-numbers"><div><span>物理统一内存</span><b>'+((h.physicalBytes||128*1024**3)/1024**3).toFixed(0)+'<small> GiB</small></b></div><div><span>GPU 可分配总量</span><b>'+(total?total.toFixed(1):'—')+'<small> GiB</small></b></div><div><span>当前 GPU 空闲</span><b>'+(total?free.toFixed(1):'—')+'<small> GiB</small></b></div><div><span>GPU 负载</span><b>'+(h.gpuUtilization??'—')+'<small> %</small></b></div></div><progress max="100" value="'+(total?used/total*100:0)+'" aria-label="GPU内存使用比例"></progress><p>同一 UMA 物理池，RAM 与 GPU 数字不能相加。Windows 可见 '+(h.windowsVisibleBytes?giB(h.windowsVisibleBytes)+' GiB':'读取中')+'。<small>'+escapeHtml(h.gpuSource||'GPU计数读取中')+' · '+escapeHtml(h.source||'')+'</small></p>';
  $('#last-check').textContent=status.checkedAt?'最近检查 '+new Date(status.checkedAt).toLocaleTimeString('zh-CN',{hour12:false}):'正在检查本机服务';
@@ -110,4 +114,4 @@ $('#advanced-open').addEventListener('click',()=>openAdvanced());$('#advanced-cl
 $('#use-custom').addEventListener('click',()=>{const module=$('#advanced-module').value,item=advancedConfig();if(!item.model||!item.baseUrl){toast('请填写本机服务地址和模型名称。');return;}draft.custom[module]=item;draft.selections[module]=$('#advanced-adapter').value;$('#advanced-dialog').close();renderModules();selectionChanged();});
 $('#check-endpoint').addEventListener('click',async()=>{const button=$('#check-endpoint');button.disabled=true;$('#endpoint-state').textContent='正在检测本机连接…';try{const config=advancedConfig(),result=await api('/api/check-endpoint',{module:$('#advanced-module').value,baseUrl:config.baseUrl,apiKey:config.apiKey});$('#endpoint-state').textContent=result.message+' '+result.models.join('、');$('#local-models').innerHTML=result.models.map(model=>'<option value="'+escapeHtml(model)+'"></option>').join('');if(!config.model&&result.models.length===1)$('#custom-model').value=result.models[0];}catch(error){$('#endpoint-state').textContent=error.message;}finally{button.disabled=false;}});
 $('#refresh').addEventListener('click',()=>{refreshStatus();toast('已读取最近一次服务状态。');});
-(async()=>{try{const data=await api('/api/bootstrap');csrf=data.csrfToken;catalog=data.catalog;preferences=data.preferences;applied=data.applied;draft=clone(preferences.profile||applied);status=data.status;renderModules();selectionChanged();renderStatus();setInterval(refreshStatus,8000);}catch(error){$('#module-grid').textContent='未能读取本机设置：'+error.message;}})();
+(async()=>{try{const data=await api('/api/bootstrap');csrf=data.csrfToken;catalog=data.catalog;preferences=data.preferences;applied=data.applied;draft=clone(preferences.profile||applied);status=data.status;renderModules();selectionChanged();renderStatus();window.airiControlSession={csrfToken:csrf};window.dispatchEvent(new CustomEvent('airi-control-ready',{detail:window.airiControlSession}));setInterval(refreshStatus,8000);}catch(error){$('#module-grid').textContent='未能读取本机设置：'+error.message;}})();

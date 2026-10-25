@@ -58,6 +58,11 @@ try {
             & $shell -NoProfile -ExecutionPolicy Bypass -File $sapiStop
             if ($LASTEXITCODE -ne 0) { throw 'The Windows voice adapter could not be safely stopped.' }
         }
+        $codexChatStop = Join-Path $script:AiriBase 'runtime\airi-codex-chat\stop.ps1'
+        if (Test-Path -LiteralPath $codexChatStop) {
+            & $shell -NoProfile -ExecutionPolicy Bypass -File $codexChatStop
+            if ($LASTEXITCODE -ne 0) { throw 'The ChatGPT online chat adapter could not be safely stopped.' }
+        }
     }
     Write-Output 'AIRI stopped.'
     exit 0

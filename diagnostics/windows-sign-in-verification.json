@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-25",
+  "localRegistration": {
+    "currentUserStartupShortcutCreated": true,
+    "targetArgumentsAndWorkingDirectoryReadBack": true,
+    "windowsExplicitDisableOverrideAbsent": true,
+    "runningAppAndModelPidsPreserved": true,
+    "actualNextWindowsSignInTested": false
+  },
+  "publicTemplateFixture": {
+    "powerShellSyntaxErrors": 0,
+    "shortcutCreateAndReadBack": true,
+    "repeatEnableIdempotent": true,
+    "statusMatchesTarget": true,
+    "disableRemovesOnlyFixtureShortcut": true,
+    "launcherExecutedByRegistration": false,
+    "usedRealUserStartupFolder": false
+  },
+  "privatePathsShortcutBytesAndUserStateIncluded": false,
+  "registeredCommandTest": {
+    "actualHiddenCommandExecuted": true,
+    "initialExitCode": 1,
+    "initialFailure": "Get-FileHash unavailable in actual hidden process",
+    "compatibilityFix": ".NET SHA256 file stream",
+    "retryExitCode": 0,
+    "listenerCreationTimesPreserved": true,
+    "finalHealthReady": true,
+    "actualWindowsLoginTested": false
+  },
+  "publicEnvironmentTemplate": {
+    "syntaxErrors": 0,
+    "knownAbcSha256FixturePassed": true,
+    "rootEnvironmentOverridesPreserved": true,
+    "patcherOutputSuppressed": true
+  }
+}

@@ -3,12 +3,14 @@ from pathlib import Path
 import os
 import statistics
 from profiles import BASE, read_json, CHOICES
+from codex_bridge import discover_codex
 
 MODELS=Path(os.environ.get('AIRI_MODELS_ROOT', str(BASE/'models'))).expanduser().resolve()
 WORKBENCH=Path(os.environ.get('AIRI_WORKBENCH', str(BASE/'workbench'))).expanduser().resolve()
 SPEECH=Path(os.environ.get('AIRI_SPEECH_ROOT', str(BASE/'runtime/airi-speech'))).expanduser().resolve()
 QWEN=Path(os.environ.get('AIRI_TTS_ROOT', str(BASE/'runtime/airi-qwen-tts'))).expanduser().resolve()
 SAPI=Path(os.environ.get('AIRI_SAPI_ROOT', str(BASE/'runtime/airi-sapi'))).expanduser().resolve()
+CODEX_CHAT=Path(os.environ.get('AIRI_CODEX_CHAT_ROOT', str(BASE/'runtime/airi-codex-chat'))).expanduser().resolve()
 
 def installed(path):
     try: return {'file':str(path),'bytes':path.stat().st_size,'exists':True}
@@ -25,6 +27,7 @@ def catalog():
       'sensevoice':installed(asr),'melo':installed(SPEECH/'models/melo-zh-en/model.int8.onnx'),
       'qwen-tts':installed(qwen),
       'sapi':{'file':'Windows system voice','bytes':0,'kind':'system-voice','exists':(SAPI/'samples/huihui-soft.wav').is_file()},
+      'codex-chat':{'file':'Official Codex account connection','bytes':0,'kind':'online-account','exists':bool(discover_codex() and (CODEX_CHAT/'server.py').is_file() and (CODEX_CHAT/'verification-live-persona.json').is_file())},
     }
     verified=read_json(QWEN/'verification.json',read_json(QWEN/'tests/verification.json',{}))
     samples=read_json(QWEN/'samples/sample-report.json',{})
@@ -33,6 +36,7 @@ def catalog():
     specs=[
       ('qwen9','聊天','响应快','9B 日常聊天','与看屏幕共用已就绪的9B服务和32768上下文，不重复加载。',[8,16],[8,14],'chat','qwen9'),
       ('qwen27','聊天','占用较多','27B 更多容量','复杂任务可以尝试；未做同题对比，不保证每次更快或更准确。',[16,32],[20,30],'chat','qwen27'),
+      ('codex-chatgpt','聊天','在线可选','ChatGPT 账号 · 在线聊天','使用 ChatGPT/Codex 账号额度，只支持文字；完整回答后交付，与桌面 ChatGPT 独立会话。',[0.2,1],[0,0],'chat','codex-chat'),
       ('vision9','看屏幕','推荐','9B 看屏幕','已有配套视觉文件，用于屏幕画面和图片理解。',[8,16],[8,14],'vision','qwen9'),
       ('sensevoice','听你说话','响应快','SenseVoice 本地识别','本机语音识别服务，支持中文等语言；不上传录音。',[1,3],[0,0],'asr','sensevoice'),
       ('melo','角色声音','响应快','Melo 通用声音','中英双语的轻量备用声音，适合想尽快听到回复时使用。',[1,3],[0,0],'tts','melo'),
@@ -50,6 +54,12 @@ def catalog():
               'asset':assets[asset], 'endpoint':CHOICES[id_][1], 'model':CHOICES[id_][2], 'voice':CHOICES[id_][3],
               'evidence':[]}
         if module=='vision': item['installed']=item['installed'] and assets['qwen9']['exists'];item['sharedWeight']=assets['qwen9']
+        if id_=='codex-chatgpt':
+            report=read_json(CODEX_CHAT/'verification-live-persona.json',{})
+            item['online']=True
+            item['capabilities']={'text':True,'images':False,'tools':False,'tokenStreaming':False}
+            item['memory']['basis']='本机仅运行连接程序，主要计算在云端；不是本机模型最低配置。'
+            item['latency']={'firstContentSeconds':report.get('firstContentSeconds'),'samples':1,'scope':'合成角色问候，首个完整回答事件；不是逐token流式或实际AIRI长历史表现。'}
         if asset=='qwen-tts':
             sample=next((s for s in samples.get('samples',[]) if s.get('voice')==CHOICES[id_][3]),None)
             if sample: item['evidence']=[{'source':'runtime/airi-qwen-tts/samples/sample-report.json','testedAt':samples.get('testedAt'),
@@ -86,5 +96,5 @@ def catalog():
         items.append(item)
     return {'items':items,'hardware':{'name':os.environ.get('AIRI_HARDWARE_LABEL','本机硬件'),
       'note':'使用UMA时，Windows和GPU可能报告同一物理内存池的不同口径，不能相加。实际计数以当前CIM/nvidia-smi为准。'},
-      'scope':'仅展示可接入 AIRI 的本机聊天、视觉、识别、语音方案；不下载新模型。',
+      'scope':'本地优先，在线可选；展示可接入 AIRI 的聊天、视觉、识别、语音方案，不下载新模型。',
       'scoreNote':'没有可比实测的项目不填分数；资源区间为建议，不代表性能排名。'}

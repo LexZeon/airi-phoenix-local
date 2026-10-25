@@ -66,3 +66,15 @@ $env:AIRI_CONTROL_DATA_DIR = 'C:\path\to\private\control-state'
 Serena优化版的UI选择、实际voice ID和原模式回退步骤见[启用/回退方法](../docs/speech-options.md#在控制台启用-serena-优化版与回退)。仅“记住选择”不会应用；需要应用并启动/重启后再核对全局和每卡speech。
 
 [实际优化版启用验证](verification-efficient-activation.json)已确认三卡override和分层运行时读回/就绪，控制台偏好同步。未执行本次启用后的实际回退、物理首声计时或角色视觉验收；这些不从设置成功推断。
+
+## 复用本机 Codex 登录的任务入口
+
+[Codex任务助手方法](codex-task-assistant-verified.md)附独立 `codex_bridge.py`、页面模块和8项离线子进程/API测试。它复用官方CLI及用户已有登录；不读取/复制auth或cookie，不替换AIRI日常聊天模型，也不自动转发其对话或屏幕。只有用户提交任务后才在线运行，默认只读；目录、目标和写入模式在表单里明确选择。
+
+需要已有可用的官方CLI；可用 `AIRI_CODEX_EXE` 指定已有executable，用 `AIRI_CODEX_WORKSPACE` 指定默认本地文件夹。任务正文从stdin送入，用户配置的CLI模型默认值保留。子进程环境保留系统/登录发现及代理变量，排除外层桌面任务的临时工具管道和身份，避免错误继承当前agent会话。
+
+默认创建独立临时任务。若使用者明确要续接某个已有任务，可在私有 `AIRI_CONTROL_DATA_DIR/codex-preferences.json` 设置自己的 `defaultWorkspace`、`targetThreadId`、`targetThreadLabel`；UUID必须由可信本机任务元数据取得，不猜测，不公开。元数据读取与真实续写是不同验证：本次只验证了指定任务元数据；实际追加必须由使用者明确提交，尚未测试。不要把本仓库聊天历史/目录当作自己的默认目标。
+
+控制台的任务结果仅在有界内存中保留；外部CLI本身的本地状态和账户行为另循其机制。`state/`与默认`codex-workspace/`都不进入Git和ZIP。窗口关闭会取消本控制台跟踪的活动Codex子进程，不停止AIRI或模型。此功能不是ChatGPT桌面窗口的UI自动化。
+
+[生产页面与回退报告](verification-online-console-production.json)记录原生页面实际显示在线选项、Codex登录/已有目标和工作目录表单，按钮可用；在线下拉展示后恢复本地9B。运行配置最终为9B＋Windows慧慧，屏幕观察关闭、3D近景恢复、9948适配器停止；没有把Serena优化别名误当当前声音。Serena优化仍是可选项。已有任务实际追加保持未测；本页可见/已登录不等于已发送任务。视觉模型“就绪”与屏幕“观察已关闭”现在分别显示。

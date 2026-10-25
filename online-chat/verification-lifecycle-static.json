@@ -1,0 +1,35 @@
+{
+  "test": "codex-chat-lifecycle-static-and-synthetic-cim",
+  "identityChecks": [
+    "exact-script-executable-port-launch-accepted",
+    "pid-reuse-rejected",
+    "wrong-script-rejected",
+    "wrong-host-rejected",
+    "wrong-port-rejected",
+    "wrong-launch-rejected",
+    "missing-process-safe-noop"
+  ],
+  "passed": 7,
+  "syntax": [
+    {
+      "file": "common.ps1",
+      "syntaxErrors": 0
+    },
+    {
+      "file": "start.ps1",
+      "syntaxErrors": 0
+    },
+    {
+      "file": "stop.ps1",
+      "syntaxErrors": 0
+    },
+    {
+      "file": "health.ps1",
+      "syntaxErrors": 0
+    }
+  ],
+  "realProcessStartedOrStopped": false,
+  "productionPortStarted": false,
+  "productionTokenRead": false,
+  "limits": "No real production start/duplicate-start/stop was performed; this checks syntax and identity guards only."
+}

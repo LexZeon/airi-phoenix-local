@@ -1,0 +1,154 @@
+{
+  "date": "2026-10-25",
+  "status": "PASS",
+  "modelRevisionLabel": "007 reference-face candidate",
+  "coreCases": 135,
+  "standardWebGLFrames": 29,
+  "extendedWebGLFrames": 45,
+  "checks": [
+    {
+      "name": "core-accepts-and-checks-135-cases",
+      "pass": true
+    },
+    {
+      "name": "two-real-iris-clip-masks",
+      "pass": true
+    },
+    {
+      "name": "actual-AIRI-WebGL2",
+      "pass": true
+    },
+    {
+      "name": "extended-pose-matrix-rendered",
+      "pass": true
+    },
+    {
+      "name": "neutral-both-irises-visible",
+      "pass": true
+    },
+    {
+      "name": "blink-left-has-no-gold-iris-ghost",
+      "pass": true
+    },
+    {
+      "name": "blink-right-has-no-gold-iris-ghost",
+      "pass": true
+    },
+    {
+      "name": "blink-both-has-no-gold-iris-ghost",
+      "pass": true
+    },
+    {
+      "name": "quarter-blink-has-no-gold-iris-ghost",
+      "pass": true
+    },
+    {
+      "name": "blink-left-preserves-other-eye",
+      "pass": true
+    },
+    {
+      "name": "blink-right-preserves-other-eye",
+      "pass": true
+    },
+    {
+      "name": "mouth-open-visible",
+      "pass": true
+    },
+    {
+      "name": "mouth-does-not-change-eyes",
+      "pass": true
+    },
+    {
+      "name": "gaze-left-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "gaze-left-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "gaze-right-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "gaze-right-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "gaze-up-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "gaze-up-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "gaze-down-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "gaze-down-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-left-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-left-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-right-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-right-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-up-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-up-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-down-moves-visible-gold-both-in-semantic-direction",
+      "pass": true
+    },
+    {
+      "name": "open065-gaze-down-same-signed-Core-iris-travel",
+      "pass": true
+    },
+    {
+      "name": "base-nose-skin-and-features-stay-together-under-bodyX",
+      "pass": true
+    },
+    {
+      "name": "approved-base-body-hair-clothes-source-bytes-unchanged",
+      "pass": true
+    },
+    {
+      "name": "twelve-distinct-expression-renderings",
+      "pass": true
+    },
+    {
+      "name": "candidate-preparation-keeps-canonical-006-separate",
+      "pass": true
+    }
+  ],
+  "checkCount": 33,
+  "facePlaneContexts": 6,
+  "maxFaceBodyXDisplacementAuthoringPx": 0,
+  "approvedBodyHairClothingSourcePreserved": true,
+  "neutralCentroidEqualityUsedAsArtisticAcceptance": false,
+  "mainAppImportVerified": true,
+  "canonicalModelReplaced": true,
+  "privateArtworkModelsScreenshotsAndPathsIncluded": false,
+  "mainAppActiveVisualInspected": false,
+  "userFinalVisualAccepted": false,
+  "mainAppImportEvidence": "Actual helper reports additional standing card imported, avatarType live2d, modelFormat live2d-zip, and a new display model binding; IDs are excluded.",
+  "candidateBuildChangedVoiceOrCurrentView": false
+}

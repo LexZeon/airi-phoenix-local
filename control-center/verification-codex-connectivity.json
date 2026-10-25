@@ -1,0 +1,23 @@
+{
+  "test": "official-local-codex-cli-synthetic-connectivity",
+  "date": "2026-10-25",
+  "cliVersion": "0.164.0-alpha.11.1",
+  "success": true,
+  "answerExactlyOK": true,
+  "elapsedSeconds": 3.6617085,
+  "exitCode": 0,
+  "ephemeral": true,
+  "sandbox": "read-only",
+  "explicitModelSelected": false,
+  "model": "inherited user default; JSON events did not report its name",
+  "toolEvents": 0,
+  "eventCounts": {"thread.started": 1, "turn.started": 1, "item.completed": 1, "turn.completed": 1},
+  "credentialsReadOrExported": false,
+  "stderrContentRetained": false,
+  "existingThreadMetadataReadable": true,
+  "existingThreadHistoryRequested": false,
+  "existingThreadTurnsReturned": 0,
+  "existingThreadTaskSent": false,
+  "existingThreadContinuationTested": false,
+  "productionServerRestarted": false
+}

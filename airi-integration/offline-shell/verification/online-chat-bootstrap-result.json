@@ -1,0 +1,14 @@
+{
+  "test": "online-chat-public-llm-action-hook-no-private-map",
+  "passed": 7,
+  "checks": [
+    "actual public store shape without Maps installs",
+    "exact online model disables tool resolution",
+    "unrelated options preserved",
+    "offline9B unchanged",
+    "unrelated endpoint unchanged",
+    "other protocol unchanged",
+    "missing options and reuse supported"
+  ],
+  "actualAiriRequestTested": false
+}

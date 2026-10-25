@@ -1,0 +1,9 @@
+{
+  "test": "codex-task-bridge-offline-subprocess-and-loopback-api",
+  "passed": 9,
+  "total": 9,
+  "success": true,
+  "realCodexTasksSubmitted": false,
+  "productionServerRestarted": false,
+  "credentialsRead": false
+}

@@ -1,0 +1,17 @@
+{
+  "test": "screen-stop-production-functions-with-synthetic-adapters",
+  "passed": 5,
+  "checks": [
+    "disabled: no thumbnail or inference",
+    "off during thumbnail: no subsequent inference; only own writer removed",
+    "off during HTTP: request aborted; ignored-abort late response cannot publish",
+    "off during SDK connect: no thumbnail/inference/publish afterwards",
+    "rapid off/on: old-context clear completes before a new publication"
+  ],
+  "realDesktopCaptured": false,
+  "inferenceRun": false,
+  "appRestarted": false,
+  "limits": [
+    "Synthetic adapters validate lifecycle/races; real native-window context state requires the installed shell after restart."
+  ]
+}

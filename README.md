@@ -6,7 +6,7 @@
 
 **先读 [START_HERE.md](START_HERE.md)。** Skill 名为 `$airi-character-forge`，入口为根目录 [SKILL.md](SKILL.md)。
 
-[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.0.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
+[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.1.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
 
 | 模块 | 已有内容与实际状态 |
 | --- | --- |
@@ -16,9 +16,9 @@
 | 聊天贴纸／表情包 | 来源查询、静态PNG制备、真实store导入helper及5+5测试通过；9个本机官方帧制备通过，真实store导入/持久化/设置/缩略图已通过（9新增+12默认，启用50%）；真实聊天选图/显示另验；不带图片 |
 | 语音 | Qwen3-TTS 1.7B CustomVoice 内置 Serena + 三种原创风格；真实 WAV/MP3/API/队列和离线请求层验证通过；可选省输出别名与独立Windows慧慧adapter均有合成输入实测，默认保留 |
 | 常服 Live2D 案例 | 本机官图原像素保真模型：14 drawable、19 实绑参数、12 不同表情，Core 133 组合及实际 AIRI WebGL 离屏通过；中性 RGBA 与原图逐像素一致 |
-| 当前角色交付分工 | 三张独立卡：官图2D（实际桌面已可见，已在app注册12表情，完整可见控制/语音联合另验）、站姿2D（技术/Core/WebGL通过；旧眼向问题已在006按开口/瞳孔质心修正，原生小窗中性眼位已无明显外斜；四向极值/独立眨眼仅离屏验证）、用户自有3D（本机前台显示已验证，模型不公开） |
+| 当前角色交付分工 | 三张独立卡：官图2D（实际桌面已可见，已在app注册12表情，完整可见控制/语音联合另验）、站姿2D（参考脸候选007通过135 Core组合、29＋45实际WebGL帧和33项检查，主app已导入，活动原生视觉检查/用户最终接受另验）、用户自有3D（本机前台显示已验证，模型不公开） |
 | 实际接卡／SDK观察 | 用户自有PMX ZIP经真实Pinia注册并激活；SDK合成文本完成已观察，TTS全局计数变化未精确关联（因果INCONCLUSIVE），自然3D待机已接入并可见；物理麦克风/声卡全测另验 |
-| 尚未完成 | 真实聊天选贴纸、完整物理声链与使用者最终语音选型；HTTP/候选与控制台证据已有实测，默认未切 |
+| 尚未完成 | 真实聊天选贴纸、完整物理声链、角色最终视觉接受及云端TTS候选实测；本地HTTP候选与控制台证据已有实测，实际选择依用户配置 |
 
 官方图片、官图派生纹理/MOC3 包、官方 MMD 包、Core、模型权重和用户配置都不在公开下载中。`examples/phoenix/rig-project.recipe.json`只保留坐标和参数配方，不能在缺少本地来源文件时直接构建；可直接构建的例子是 robot 和 DeskBot。
 
@@ -56,3 +56,9 @@ Windows on ARM 的本机部署曾复用已有 Qwen3.5 9B、SenseVoice 和创作�
 [离线 wrapper 与一键启动模板](airi-integration/offline-shell/SETUP.md)保留正常 AIRI main/renderer，并记录已实测 Windows UTF-8 与进程身份修复；[9942共享语音](shared-speech/README.md)复用现有 SenseVoice 和小型 Melo，模型、Python 环境和所有真实 settings 均在包外。
 
 [实测语音选择表](docs/speech-options.md)对照Serena默认/可选省输出模式、Melo、系统慧慧和未测云端；保持默认，选择权留给使用者。
+
+[文字响应审计](diagnostics/llm-latency-audit.md)核实9B已关闭思考，并实测短输入与约12K未缓存合成输入的读取延迟；不把短prompt结果冒充实际角色对话速度。[屏幕权限方法](docs/screen-access-off.md)使已有按钮与后台助手统一关闭，清除旧屏幕摘要并阻止晚到结果；5项worker、15项生产Proxy逻辑及真实SDK检查通过，原生按钮开关后79.07秒无新发布。[Windows登录自启](docs/windows-sign-in.md)复用原一键启动器；[参考脸QA](docs/live2d-face-qa-lessons.md)说明数值对齐与人物自然度的区别。
+
+[MMD构图保存工具](airi-integration/offline-shell/MMD-CAMERA-PERSISTENCE.md)按模型区分主窗/设置预览，保存拖动、缩放和视角；V2通过41项VM、compiled生命周期与真实Three/Vue检查，原生重启已恢复选定近景并核对可见画幅。它只补丁已有编译资产，不附AIRI第三方资产或私人视角种子。
+
+[本机Codex任务入口](control-center/codex-task-assistant-verified.md)复用官方CLI已登录的ChatGPT账号，明确点击才提交任务，附9项离线回归和一次真实只读合成文件验证；已有任务续写未测。[可选在线文字聊天](online-chat/README.md)另提供9948纯文字adapter，保留本地选项；真实AIRI SDK合成文字路径6.461秒通过，直接图片/工具调用与逐token流式不支持，私人任务ID与登录状态不附包。

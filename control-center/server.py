@@ -16,7 +16,8 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from profiles import (BASE, ROOT, DATA_ROOT, CONTROL_PORT, SETTINGS, PREFERENCES, REQUESTS, LOCK, read_json, atomic_json,
                       current_profile, public_profile, merge_input, apply_profile, local_url)
-from airi_catalog import catalog, WORKBENCH, QWEN, SPEECH, SAPI
+from airi_catalog import catalog, WORKBENCH, QWEN, SPEECH, SAPI, CODEX_CHAT
+from codex_bridge import CodexTaskBridge
 
 PORT=CONTROL_PORT
 APP_ID='airi-local-control-center'
@@ -24,6 +25,7 @@ ORIGIN=f'http://127.0.0.1:{PORT}'
 TOKEN=secrets.token_urlsafe(32)
 STATE=DATA_ROOT; LOGS=DATA_ROOT/'logs'
 for directory in (STATE,LOGS,REQUESTS): directory.mkdir(parents=True,exist_ok=True)
+CODEX=CodexTaskBridge(ROOT,STATE)
 PS=Path(os.environ.get('WINDIR','C:/Windows'))/'System32/WindowsPowerShell/v1.0/powershell.exe'
 JOBS={}; JOB_LOCK=threading.RLock()
 STATUS={'checkedAt':None,'services':[]}
@@ -33,6 +35,7 @@ SERVICES=[('chat','聊天',9941,'/v1/models'),('vision','看屏幕',9941,'/v1/mo
 SAMPLES={voice:QWEN/'samples'/f'{voice}.wav' for voice in ('phoenix-soft','phoenix-drowsy','phoenix-focused')}
 SAMPLES['melo']=SPEECH/'verification/chinese-offline.wav'
 SAMPLES['huihui']=SAPI/'samples/huihui-soft.wav'
+SERVICES.append(('codex-chat','ChatGPT 在线聊天',9948,'/health'))
 
 def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -57,7 +60,7 @@ def probe(item):
             count=next(iter(data.get('data',[])),{}).get('meta',{}).get('n_params',0)
             result['loadedChoice']='qwen27' if count>20_000_000_000 else 'qwen9' if count>5_000_000_000 else None
         if id_=='ollama':result['models']=[m.get('name') for m in data.get('models',[]) if isinstance(m,dict)]
-        if id_=='airi': result.update(revision=data.get('revision'),character=data.get('character',{}),profile=data.get('profile',{}))
+        if id_=='airi': result.update(revision=data.get('revision'),character=data.get('character',{}),profile=data.get('profile',{}),screenEnabled=data.get('screen',{}).get('enabled') is True)
         if id_=='qwen-tts':result['metrics']=data.get('metrics',{})
     except Exception as error:result['error']=type(error).__name__
     return result
@@ -113,13 +116,14 @@ def _launch_job(action,profile=None,service_id=None):
         profile=merge_input(profile)
         file=REQUESTS/('selection-'+secrets.token_hex(16)+'.json')
         atomic_json(file,profile)
-        script=ROOT.parent/'launchers/airi-select-profile.ps1';argv=['-ProfileFile',str(file),'-StartAiri'];timeout=600
+        script=BASE/'launchers/airi-select-profile.ps1';argv=['-ProfileFile',str(file),'-StartAiri'];timeout=600
     elif action=='start-service':
         mapping={
           'chat':(BASE/'launchers/airi-model-start.ps1',['-NoPause']),
           'vision':(BASE/'launchers/airi-model-start.ps1',['-NoPause']),
           'speech':(BASE/'launchers/airi-speech-start.ps1',[]),
           'qwen-tts':(QWEN/'start.ps1',[]),
+          'codex-chat':(CODEX_CHAT/'start.ps1',[]),
           'ollama':(WORKBENCH/'Start-Ollama.ps1',[])}
         if service_id not in mapping:raise ValueError('不支持这个启动操作。')
         script,argv=mapping[service_id];timeout=300
@@ -184,6 +188,10 @@ class Handler(BaseHTTPRequestHandler):
             with LOCK:return self.respond(200,{'app':APP_ID,'csrfToken':TOKEN,'catalog':catalog(),'preferences':preferences(),'applied':public_profile(current_profile()),'status':STATUS})
         if route=='/api/status':return self.respond(200,STATUS)
         if route=='/api/catalog':return self.respond(200,catalog())
+        if route=='/api/codex/status':return self.respond(200,CODEX.status())
+        if route.startswith('/api/codex/jobs/'):
+            try:return self.respond(200,CODEX.snapshot(route.rsplit('/',1)[-1]))
+            except ValueError as error:return self.respond(404,{'error':str(error)})
         if route.startswith('/api/jobs/'):
             id_=route.rsplit('/',1)[-1];job=JOBS.get(id_);return self.respond(200 if job else 404,job or {'error':'未知操作。'})
         if route.startswith('/api/logs/'):
@@ -195,7 +203,7 @@ class Handler(BaseHTTPRequestHandler):
             file=SAMPLES.get(route.rsplit('/',1)[-1])
             if not file or not file.is_file():return self.respond(404,{'error':'试听文件尚不存在。'})
             return self.respond(200,file.read_bytes(),'audio/wav')
-        static={'/':('index.html','text/html'),'/app.js':('app.js','text/javascript'),'/style.css':('style.css','text/css'),'/favicon.svg':('favicon.svg','image/svg+xml')}
+        static={'/':('index.html','text/html'),'/app.js':('app.js','text/javascript'),'/style.css':('style.css','text/css'),'/codex-tasks.js':('codex-tasks.js','text/javascript'),'/codex-tasks.css':('codex-tasks.css','text/css'),'/favicon.svg':('favicon.svg','image/svg+xml')}
         if route in static:
             name,mime=static[route];return self.respond(200,(ROOT/'web'/name).read_bytes(),mime+'; charset=utf-8')
         return self.respond(404,{'error':'Not found'})
@@ -207,6 +215,10 @@ class Handler(BaseHTTPRequestHandler):
             data=json.loads(self.rfile.read(length))
             if not isinstance(data,dict):raise ValueError('请求无效。')
             route=urllib.parse.urlsplit(self.path).path
+            if route=='/api/codex/start':
+                return self.respond(202,{'ok':True,'job':CODEX.start(data.get('task'),data.get('workspace'),data.get('mode','read-only'),data.get('target','new'))})
+            if route=='/api/codex/stop':
+                return self.respond(200,{'ok':True,'job':CODEX.stop(data.get('jobId'))})
             if route=='/api/preferences':
                 profile=merge_input(data.get('profile'));saved=save_preferences(profile)
                 return self.respond(200,{'ok':True,'preferences':saved,'message':'选择已记住。尚未改动 AIRI 设置。'})
@@ -240,4 +252,4 @@ if __name__=='__main__':
     atomic_json(STATE/'server.json',{'app':APP_ID,'pid':os.getpid(),'script':str(Path(__file__).resolve()),'startedAt':now(),'port':PORT})
     threading.Thread(target=status_loop,daemon=True).start()
     try:httpd.serve_forever(poll_interval=.25)
-    finally:httpd.server_close()
+    finally:CODEX.close();httpd.server_close()

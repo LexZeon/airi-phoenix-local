@@ -1,0 +1,23 @@
+{
+  "test": "real-codex-task-read-synthetic-sentinel",
+  "date": "2026-10-25",
+  "passed": true,
+  "answerExactlyMatchesFile": true,
+  "fileHashUnchanged": true,
+  "actualToolCompletedEvents": [
+    {
+      "type": "command_execution",
+      "status": "completed",
+      "exitCode": 0,
+      "outputContainsSyntheticSentinel": true
+    }
+  ],
+  "elapsedSeconds": 15.648515099979704,
+  "promptContainedFileContents": false,
+  "sandbox": "read-only",
+  "target": "new-independent-ephemeral",
+  "existingUserThreadUsed": false,
+  "realUserFilesUsed": false,
+  "rawDiagnosticsPublic": false,
+  "limits": "One successful diagnostic retry; not a task-latency benchmark or workspace-write/old-thread continuation validation."
+}

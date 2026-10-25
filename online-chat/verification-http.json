@@ -1,0 +1,11 @@
+{
+  "test": "codex-chat-http-with-synthetic-worker",
+  "passed": 13,
+  "total": 13,
+  "success": true,
+  "realCLIOrCloudCalls": false,
+  "productionPortStarted": false,
+  "productionTokenCreatedOrRead": false,
+  "streaming": "completed-agent-message-events",
+  "tokenStreamingClaimed": false
+}

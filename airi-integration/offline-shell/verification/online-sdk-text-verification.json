@@ -1,0 +1,48 @@
+{
+  "test": "airi-online-provider-sdk-synthetic-text-observation",
+  "scope": "Independent SDK scene binding through AIRI provider compatibility; no microphone, speech, screen or host playback test.",
+  "syntheticOnly": true,
+  "startedAt": "2026-10-25T17:26:30.155Z",
+  "timeoutLimitMs": 90000,
+  "inputSent": true,
+  "matchedAssistantEvents": 1,
+  "matchedCompleteEvents": 1,
+  "replyCharacters": 13,
+  "expectedPhraseObserved": true,
+  "connectionErrorCount": 0,
+  "tokenFirstByteMeasured": false,
+  "physicalAudioMeasured": false,
+  "gatewayCounterAttribution": "Global counter deltas are concurrent observations, not request-correlated causal proof.",
+  "rawReplyIdsTokensOrPrivateEventsRetained": false,
+  "status": "online-text-observation-pass",
+  "before": {
+    "ready": true,
+    "metrics": {
+      "requests": 0,
+      "completed": 0,
+      "failed": 0,
+      "cancelled": 0,
+      "busy_rejections": 0
+    }
+  },
+  "after": {
+    "ready": true,
+    "metrics": {
+      "requests": 1,
+      "completed": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "busy_rejections": 0
+    }
+  },
+  "gatewayMetricDelta": {
+    "requests": 1,
+    "completed": 1,
+    "failed": 0,
+    "cancelled": 0,
+    "busy_rejections": 0
+  },
+  "gatewayCompletionObserved": true,
+  "elapsedMs": 6461,
+  "finishedAt": "2026-10-25T17:26:36.616Z"
+}

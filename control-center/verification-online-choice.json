@@ -1,0 +1,18 @@
+{
+  "test": "published-online-choice-isolated-fixture",
+  "passed": 9,
+  "checks": [
+    "default-remains-local-9b",
+    "online-choice-text-chat-only",
+    "online-marked-and-no-images-tools",
+    "complete-answer-streaming-disclosed",
+    "loopback-token-generated-only-in-fixture",
+    "public-selection-does-not-expose-token",
+    "vision-local-and-voice-preserved",
+    "online-cannot-be-vision-choice",
+    "isolated-settings-file-unchanged"
+  ],
+  "realSettingsReadOrChanged": false,
+  "servicesStarted": false,
+  "credentialsRead": false
+}

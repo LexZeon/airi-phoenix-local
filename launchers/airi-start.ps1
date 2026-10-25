@@ -24,6 +24,20 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'The offline speech service did not become ready.' }
     try { $offlinePreset = Get-Content -LiteralPath (Join-Path $script:AiriBase 'runtime\airi-offline\offline-settings.json') -Raw -Encoding UTF8 | ConvertFrom-Json }
     catch { throw 'The offline preset is not valid UTF-8 JSON. Check runtime\airi-offline\offline-settings.json.' }
+    $chatProviders = @($offlinePreset.modules.consciousness.provider, $offlinePreset.character.modulesOverride.consciousness.provider)
+    foreach ($managedCharacter in @($offlinePreset.additionalCharacters)) { $chatProviders += $managedCharacter.modulesOverride.consciousness.provider }
+    $needsCodexChat = $false
+    foreach ($providerId in @($chatProviders | Where-Object { $_ })) {
+        $providerProperty = $offlinePreset.providers.PSObject.Properties[$providerId]
+        if ($providerProperty -and $providerProperty.Value.config.baseUrl -match '^http://(?:127\.0\.0\.1|localhost|\[::1\]):9948(?:/|$)') { $needsCodexChat = $true }
+    }
+    if ($needsCodexChat) {
+        & $shell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $script:AiriBase 'runtime\airi-codex-chat\start.ps1')
+        if ($LASTEXITCODE -ne 0) { throw 'The selected ChatGPT online chat adapter did not become ready.' }
+    } elseif (Test-Path -LiteralPath (Join-Path $script:AiriBase 'runtime\airi-codex-chat\server-state.json')) {
+        & $shell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $script:AiriBase 'runtime\airi-codex-chat\stop.ps1')
+        if ($LASTEXITCODE -ne 0) { throw 'The optional online chat adapter could not be safely stopped for local mode.' }
+    }
     $selectedSpeechProviders = @($offlinePreset.modules.speech.provider)
     if ($offlinePreset.character.modulesOverride.speech.provider) { $selectedSpeechProviders += $offlinePreset.character.modulesOverride.speech.provider }
     foreach ($managedCharacter in @($offlinePreset.additionalCharacters)) {

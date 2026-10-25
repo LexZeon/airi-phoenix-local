@@ -1,0 +1,14 @@
+{
+  "test": "registered-startup-command-duplicate-run",
+  "exitCode": 1,
+  "ownedAndIndependentListenerPidsPreserved": true,
+  "hiddenWindow": true,
+  "actualWindowsLoginTested": false,
+  "checkedAt": "2026-10-25T16:48:25.9669012Z",
+  "initialFailure": "Get-FileHash was unavailable in the actual hidden startup process",
+  "compatibilityFix": "Use .NET SHA256 stream hashing in the offline asset installer",
+  "retryExitCode": 0,
+  "listenersStillPredateInitialTest": true,
+  "finalHealthReady": true,
+  "recheckedAt": "2026-10-25T16:53:18.7148044Z"
+}

@@ -1,6 +1,7 @@
 # Runtime data and external dependencies never belong in the public package.
 .env
 .env.*
+*.private.json
 *credential*
 *.gguf
 *.onnx
@@ -32,3 +33,4 @@ storyboards/
 examples/deskbot/output/
 
 control-center/state/
+control-center/codex-workspace/

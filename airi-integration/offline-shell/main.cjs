@@ -31,7 +31,9 @@ const state = {
   additionalCharacters: [],
   stickers: { phase: 'idle', imported: 0, reused: 0, errorCode: null },
   mmdIdle: { phase: 'idle', errorCode: null },
-  screen: { enabled: Boolean(preset.screen.enabled), capturing: false, publishedCount: 0, failureCount: 0, skippedCount: 0, lastDurationMs: null, lastPublishedAt: null, lastErrorCode: null, clientStatus: 'idle' },
+  mmdCamera: { phase: 'not-requested', seeded: false, errorCode: null },
+  onlineChatCompatibility: { readyWindows: 0, errorCode: null },
+  screen: { enabled: preset.screen.enabled === true, capturing: false, publishedCount: 0, failureCount: 0, skippedCount: 0, lastDurationMs: null, lastPublishedAt: null, lastErrorCode: null, clientStatus: 'idle', contextClearStatus: 'not-needed', clearedWriterCount: 0, lastContextClearedAt: null, controlsReadyCount: 0, controlsErrorCode: null, controls: [] },
 }
 let tray
 let timer
@@ -41,6 +43,7 @@ let sdk
 let backupDirectory
 let captureEpoch = 0
 let activeRequest
+let contextStopPromise = Promise.resolve()
 let quitting = false
 const redirects = new Map(Object.entries(preset.vadRedirects || {}))
 const healthPort = Number(process.env.AIRI_OFFLINE_HEALTH_PORT || preset.healthPort || 9943)
@@ -241,6 +244,21 @@ function originalFrame(event) {
 }
 
 function setupIPC() {
+  ipcMain.handle(`${CHANNEL}:get-screen-state`, request => {
+    if (!originalFrame(request)) throw new Error('INVALID_SCREEN_CONTROL_FRAME')
+    return screenControlState()
+  })
+  ipcMain.handle(`${CHANNEL}:set-screen-enabled`, async (request, enabled) => {
+    if (!originalFrame(request) || typeof enabled !== 'boolean') throw new Error('INVALID_SCREEN_CONTROL_REQUEST')
+    await setCaptureEnabled(enabled)
+    return screenControlState()
+  })
+  ipcMain.on(`${CHANNEL}:screen-control-status`, (request, result) => {
+    const keys = ['computerUseEnabled', 'capabilityStatusPresent', 'screenWriterPresent', 'visionTickerRunning']
+    if (!originalFrame(request) || !result || !keys.every(key => typeof result[key] === 'boolean')) return
+    const item = { windowId: request.sender.id, ...Object.fromEntries(keys.map(key => [key, result[key]])) }
+    state.screen.controls = [...state.screen.controls.filter(value => value.windowId !== item.windowId), item].slice(-16)
+  })
   ipcMain.on(`${CHANNEL}:get-preset`, (request) => {
     request.returnValue = originalFrame(request) ? { ok: true, preset } : { ok: false }
   })
@@ -300,8 +318,26 @@ function installSessionPolicy(target) {
   })
 }
 
+async function refreshMmdCameraDiagnostics() {
+  const views = []
+  for (const window of BrowserWindow.getAllWindows().slice(0, 16)) {
+    if (window.isDestroyed() || window.webContents.isDestroyed()) continue
+    let url
+    try { url = new URL(window.webContents.getURL()) } catch { continue }
+    if (url.protocol !== 'file:' || path.resolve(fileURLToPath(url)).toLowerCase() !== path.resolve(rendererEntry).toLowerCase()) continue
+    try {
+      const result = await window.webContents.executeJavaScript('window.__airiOfflineMmdCameraDiagnostics?.() ?? []')
+      for (const item of Array.isArray(result) ? result.slice(0, 8) : []) {
+        if (!['stage', 'preview'].includes(item?.scope) || typeof item.restored !== 'boolean' || !/^[a-z-]{1,50}$/.test(item.loadStatus || '')) continue
+        views.push({ scope: item.scope, restored: item.restored, loadStatus: item.loadStatus })
+      }
+    } catch { }
+  }
+  state.mmdCamera.views = views
+}
+
 function openHealthServer() {
-  healthServer = http.createServer((request, response) => {
+  healthServer = http.createServer(async (request, response) => {
     let pathname
     try { pathname = new URL(request.url || '/', 'http://127.0.0.1').pathname } catch { pathname = '' }
     const additionalModel = (preset.additionalCharacters || []).find(item => /^[a-z][a-z0-9-]{0,79}$/.test(item.id || '') && pathname === `/characters/${item.id}/model.zip`)
@@ -327,6 +363,7 @@ function openHealthServer() {
       response.end('{"error":"not_found"}')
       return
     }
+    await refreshMmdCameraDiagnostics()
     response.writeHead(200, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' })
     response.end(JSON.stringify({ ...state, vadRedirectCount: redirects.size, nodeSocketGuard: preset.blockNodeEgress !== false && process.env.AIRI_OFFLINE_BLOCK_NODE_EGRESS !== '0' }))
   })
@@ -347,6 +384,21 @@ async function initializeManagedCharacter(contents) {
   try {
     const url = new URL(contents.getURL())
     if (url.protocol !== 'file:' || path.resolve(fileURLToPath(url)).toLowerCase() !== path.resolve(rendererEntry).toLowerCase() || url.searchParams.get('synced-leader') !== 'true') return
+    // An optional local-only seed preserves a view selected before persistence was installed.
+    // Never overwrite a saved view, and never include coordinates/IDs in helper diagnostics.
+    const cameraSeedPath = path.join(base, 'runtime', 'airi-offline', 'mmd-camera-seed.private.json')
+    if (fs.existsSync(cameraSeedPath)) {
+      try {
+        if (fs.statSync(cameraSeedPath).size > 8192) throw new Error('INVALID_CAMERA_SEED')
+        const cameraSeed = JSON.parse(fs.readFileSync(cameraSeedPath, 'utf8').replace(/^\uFEFF/, ''))
+        const { buildMmdCameraSeedScript } = require('./mmd-camera-state.cjs')
+        const seedResult = await contents.executeJavaScript(buildMmdCameraSeedScript(cameraSeed.modelId, cameraSeed.view, 'stage'))
+        if (!seedResult?.seeded && seedResult?.reason !== 'exists') throw new Error('CAMERA_SEED_UNAVAILABLE')
+        state.mmdCamera = { phase: seedResult.seeded ? 'seeded' : 'preserved', seeded: seedResult.seeded === true, errorCode: null }
+      } catch {
+        state.mmdCamera = { phase: 'failed', seeded: false, errorCode: 'CAMERA_SEED_FAILED' }
+      }
+    }
     state.character.phase = 'waiting-for-stores'
     const card = JSON.parse(fs.readFileSync(characterFile(preset.character.cardFile), 'utf8').replace(/^\uFEFF/, ''))
     const modelRevision = createHash('sha256').update(fs.readFileSync(characterFile(preset.character.modelZip))).digest('hex')
@@ -394,6 +446,37 @@ async function initializeManagedCharacter(contents) {
   }
 }
 
+async function initializeScreenControls(contents) {
+  if (contents.isDestroyed()) return
+  try {
+    const url = new URL(contents.getURL())
+    if (url.protocol !== 'file:' || path.resolve(fileURLToPath(url)).toLowerCase() !== path.resolve(rendererEntry).toLowerCase()) return
+    const source = fs.readFileSync(path.join(shellRoot, 'screen-control-bootstrap.js'), 'utf8')
+    const result = await contents.executeJavaScript(`(${source})()`)
+    if (!result?.ok) throw new Error('SCREEN_CONTROLS_NOT_READY')
+    state.screen.controlsReadyCount += 1
+    state.screen.controlsErrorCode = null
+  } catch (error) {
+    state.screen.controlsErrorCode = errorCode(error)
+    event('screen-controls-failed', { errorCode: state.screen.controlsErrorCode })
+  }
+}
+
+async function initializeOnlineChatCompatibility(contents) {
+  if (contents.isDestroyed()) return
+  try {
+    const url = new URL(contents.getURL())
+    if (url.protocol !== 'file:' || path.resolve(fileURLToPath(url)).toLowerCase() !== path.resolve(rendererEntry).toLowerCase()) return
+    const source = fs.readFileSync(path.join(shellRoot, 'online-chat-bootstrap.js'), 'utf8')
+    const result = await contents.executeJavaScript(`(${source})()`)
+    if (!result?.ok) throw new Error('ONLINE_CHAT_COMPATIBILITY_NOT_READY')
+    state.onlineChatCompatibility.readyWindows += 1
+    state.onlineChatCompatibility.errorCode = null
+  } catch (error) {
+    state.onlineChatCompatibility.errorCode = errorCode(error)
+  }
+}
+
 async function connectContext(epoch) {
   if (!sdk) {
     const sdkPath = process.env.AIRI_SERVER_SDK_PATH || path.join(base, 'airi', 'packages', 'server-sdk', 'dist', 'index.mjs')
@@ -416,7 +499,7 @@ async function connectContext(epoch) {
           possibleEvents: ['context:update'],
           autoConnect: false,
           autoReconnect: true,
-          onStateChange: ({ status }) => { state.screen.clientStatus = status },
+          onStateChange: ({ status }) => { state.screen.clientStatus = state.screen.enabled && !quitting ? status : 'closed' },
         })
       }
       await contextClient.connect({ timeout: 3000 })
@@ -437,22 +520,26 @@ async function captureAndPublish() {
   }
   const epoch = captureEpoch
   const started = Date.now()
+  let requestController
   state.screen.capturing = true
   try {
     if (!await connectContext(epoch)) throw Object.assign(new Error('CHANNEL_NOT_READY'), { code: 'CHANNEL_NOT_READY' })
     if (epoch !== captureEpoch || !state.screen.enabled) return
     const sources = await desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { width: 1280, height: 720 }, fetchWindowIcons: false })
+    // Turning capture off while Electron is obtaining a thumbnail must not start inference afterwards.
+    if (epoch !== captureEpoch || !state.screen.enabled || quitting) return
     const primaryId = String(screen.getPrimaryDisplay().id)
     const source = sources.find(candidate => candidate.display_id === primaryId) || sources[0]
     if (!source || source.thumbnail.isEmpty()) throw Object.assign(new Error('EMPTY_CAPTURE'), { code: 'EMPTY_CAPTURE' })
     const image = `data:image/jpeg;base64,${source.thumbnail.toJPEG(75).toString('base64')}`
     const endpoint = new URL('chat/completions', preset.screen.baseUrl)
     requireLocalURL(endpoint)
-    activeRequest = new AbortController()
+    requestController = new AbortController()
+    activeRequest = requestController
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: 'Bearer local' },
-      signal: AbortSignal.any([activeRequest.signal, AbortSignal.timeout(Number(preset.screen.timeoutMs) || 90000)]),
+      signal: AbortSignal.any([requestController.signal, AbortSignal.timeout(Number(preset.screen.timeoutMs) || 90000)]),
       body: JSON.stringify({
         model: preset.screen.model,
         stream: false,
@@ -484,25 +571,83 @@ async function captureAndPublish() {
       event('screen-cycle-failed', { errorCode: state.screen.lastErrorCode, failureCount: state.screen.failureCount })
     }
   } finally {
-    activeRequest = undefined
+    if (activeRequest === requestController) activeRequest = undefined
     state.screen.lastDurationMs = Date.now() - started
     state.screen.capturing = false
   }
 }
 
-function stopContext() {
+async function clearScreenContext() {
+  const writer = 'local-offline-vision:screen-observer'
+  let cleared = 0
+  let ready = 0
+  let remaining = 0
+  for (const window of BrowserWindow.getAllWindows()) {
+    if (window.isDestroyed() || window.webContents.isDestroyed()) continue
+    let url
+    try { url = new URL(window.webContents.getURL()) } catch { continue }
+    if (url.protocol !== 'file:' || path.resolve(fileURLToPath(url)).toLowerCase() !== path.resolve(rendererEntry).toLowerCase()) continue
+    const result = await window.webContents.executeJavaScript(`(() => {
+      const store = document.querySelector('#app')?.__vue_app__?.config?.globalProperties?.$pinia?._s?.get('chat-context')
+      if (!store?.removeContextWriter || !store?.getContextsSnapshot) return { ready: false }
+      const removed = store.removeContextWriter(${JSON.stringify(writer)})
+      return { ready: true, removed: Boolean(removed), remaining: Object.hasOwn(store.getContextsSnapshot(), ${JSON.stringify(writer)}) }
+    })()`)
+    if (result?.ready) ready += 1
+    if (result?.removed) cleared += 1
+    if (result?.remaining) remaining += 1
+  }
+  state.screen.clearedWriterCount += cleared
+  state.screen.contextClearStatus = remaining ? 'failed' : ready ? 'cleared' : 'no-active-store'
+  state.screen.lastContextClearedAt = new Date().toISOString()
+  if (remaining) throw Object.assign(new Error('SCREEN_CONTEXT_CLEAR_FAILED'), { code: 'SCREEN_CONTEXT_CLEAR_FAILED' })
+}
+
+function screenControlState() {
+  return { enabled: state.screen.enabled, epoch: captureEpoch, contextClearStatus: state.screen.contextClearStatus }
+}
+
+function notifyScreenControls() {
+  const value = screenControlState()
+  for (const window of BrowserWindow.getAllWindows()) {
+    if (window.isDestroyed() || window.webContents.isDestroyed()) continue
+    let url
+    try { url = new URL(window.webContents.getURL()) } catch { continue }
+    if (url.protocol === 'file:' && path.resolve(fileURLToPath(url)).toLowerCase() === path.resolve(rendererEntry).toLowerCase()) {
+      window.webContents.send(`${CHANNEL}:screen-state`, value)
+    }
+  }
+}
+
+async function stopContext() {
   activeRequest && activeRequest.abort()
-  if (contextClient) contextClient.close()
+  const client = contextClient
   contextClient = undefined
+  // An empty replace-self update leaves an entry in AIRI's registry. Remove only this writer instead.
+  // Closing its SDK connection also emits module de-announcement for normal subscribers.
+  try { await clearScreenContext() } finally { if (client) client.close() }
   state.screen.clientStatus = 'closed'
 }
 
-function setCaptureEnabled(enabled) {
-  state.screen.enabled = enabled
-  captureEpoch += 1
-  if (!enabled) stopContext()
-  else void captureAndPublish()
+async function setCaptureEnabled(enabled) {
+  state.screen.enabled = enabled === true
+  const epoch = ++captureEpoch
   refreshTray()
+  notifyScreenControls()
+  if (!state.screen.enabled) {
+    activeRequest && activeRequest.abort()
+    contextStopPromise = contextStopPromise.then(() => stopContext()).catch(error => {
+      state.screen.contextClearStatus = 'failed'
+      state.screen.lastErrorCode = errorCode(error)
+      event('screen-stop-failed', { errorCode: state.screen.lastErrorCode })
+    })
+    await contextStopPromise
+    notifyScreenControls()
+  } else {
+    // A rapid off/on toggle must finish deleting the old writer before publishing a new observation.
+    await contextStopPromise
+    if (epoch === captureEpoch && state.screen.enabled && !quitting) void captureAndPublish()
+  }
 }
 
 function showAiri() {
@@ -518,7 +663,7 @@ function showAiri() {
 function refreshTray() {
   if (!tray || tray.isDestroyed()) return
   tray.setContextMenu(Menu.buildFromTemplate([
-    { label: '屏幕感知（每20秒，本机处理）', type: 'checkbox', checked: state.screen.enabled, click: item => setCaptureEnabled(item.checked) },
+    { label: '屏幕感知（每20秒，本机处理）', type: 'checkbox', checked: state.screen.enabled, click: item => { void setCaptureEnabled(item.checked) } },
     { label: '显示 AIRI', click: showAiri },
     { type: 'separator' },
     { label: '退出 AIRI 离线助手', click: () => app.quit() },
@@ -547,6 +692,8 @@ if (preset.blockNodeEgress !== false && process.env.AIRI_OFFLINE_BLOCK_NODE_EGRE
 setupIPC()
 app.on('web-contents-created', (_event, contents) => {
   contents.on('console-message', captureRendererDiagnostic)
+  contents.on('did-finish-load', () => { void initializeScreenControls(contents) })
+  contents.on('did-finish-load', () => { void initializeOnlineChatCompatibility(contents) })
   contents.on('did-finish-load', () => { void initializeManagedCharacter(contents) })
 })
 
@@ -568,7 +715,7 @@ app.on('before-quit', () => {
   quitting = true
   captureEpoch += 1
   clearInterval(timer)
-  stopContext()
+  void stopContext().catch(() => { })
   if (healthServer) healthServer.close()
   if (tray && !tray.isDestroyed()) tray.destroy()
 })

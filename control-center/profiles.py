@@ -28,6 +28,7 @@ DEFAULT = {'chat': 'qwen9', 'vision': 'vision9', 'asr': 'sensevoice', 'tts': 'qw
 CHOICES = {
  'qwen9': ('chat', 'http://127.0.0.1:9941/v1/', 'airi-qwen3.5-9b', None),
  'qwen27': ('chat', 'http://127.0.0.1:9931/v1/', 'spark-primary', None),
+ 'codex-chatgpt': ('chat', 'http://127.0.0.1:9948/v1/', 'chatgpt-codex-text', None),
  'vision9': ('vision', 'http://127.0.0.1:9941/v1/', 'airi-qwen3.5-9b', None),
  'sensevoice': ('asr', 'http://127.0.0.1:9942/v1/', 'sensevoice-local', None),
  'melo': ('tts', 'http://127.0.0.1:9942/v1/', 'melo-tts-zh-en', 'zh_default'),
@@ -117,6 +118,13 @@ def endpoint(profile, module):
     choice = profile['selections'][module]
     if choice in ('custom','ollama'): return dict(profile['custom'][module])
     _, base, model, voice = CHOICES[choice]
+    if choice == 'codex-chatgpt':
+        adapter = Path(os.environ.get('AIRI_CODEX_CHAT_ROOT', str(BASE / 'runtime/airi-codex-chat'))) / 'server.py'
+        if not adapter.is_file(): raise ValueError('ChatGPT 在线聊天适配器尚未安装。')
+        spec = importlib.util.spec_from_file_location('airi_codex_chat_local_token', adapter)
+        module_object = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module_object)
+        return {'baseUrl':base,'model':model,'apiKey':module_object.ensure_token(adapter.parent/'api-token.txt'),'voice':None}
     if choice == 'sapi-huihui':
         token_module = Path(os.environ.get('AIRI_SAPI_ROOT', str(BASE / 'runtime/airi-sapi'))) / 'token_store.py'
         if not token_module.is_file(): raise ValueError('系统语音适配器尚未安装。')

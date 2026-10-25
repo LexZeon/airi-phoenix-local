@@ -1,0 +1,20 @@
+{
+  "test": "installed-cli-tool-execution-rejection",
+  "date": "2026-10-25",
+  "cliVersion": "0.164.0-alpha.11.1",
+  "model": "gpt-6.1-sol",
+  "modelAvailableFromOfficialModelList": true,
+  "ignoreUserConfig": true,
+  "ephemeral": true,
+  "sandbox": "read-only",
+  "dedicatedScratchEmpty": true,
+  "parentToolsPipeAndThreadEnvironmentRemoved": true,
+  "toolRelatedFeaturesDisabled": 23,
+  "startupExecutionFailClosedMarkerObserved": true,
+  "actualNativeRouterRejectionObserved": true,
+  "routerDiagnostic": "code-mode host is disabled",
+  "toolSchemasClaimedRemoved": false,
+  "probeTouchedFilesOrNetworkTools": false,
+  "rawEnvironmentOrCredentialsRetained": false,
+  "limits": "Current CLI/model execution guard; not a permanent guarantee for other versions or models."
+}

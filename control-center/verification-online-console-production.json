@@ -1,0 +1,19 @@
+{
+  "test": "production-console-online-and-local-restore",
+  "checkedAt": "2026-10-25T17:37:32.4405759Z",
+  "nativeBrowserObserved": true,
+  "onlineChoiceVisible": true,
+  "onlineChoiceUiReturnedToLocal": true,
+  "screenOffLabelVisible": true,
+  "codexInstalled": true,
+  "codexLoggedIn": true,
+  "specifiedThreadConfigured": true,
+  "specifiedWorkspaceMatches": true,
+  "existingThreadAppendTested": false,
+  "localChatRestored": true,
+  "systemVoicePreserved": true,
+  "screenOff": true,
+  "cameraRestored": true,
+  "onlineCompatibilityReady": true,
+  "adapter9948Stopped": true
+}

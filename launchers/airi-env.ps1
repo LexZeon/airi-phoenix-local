@@ -2,6 +2,12 @@
 $script:AiriBase = if ($env:AIRI_COMPANIONS_ROOT) { $env:AIRI_COMPANIONS_ROOT } else { Split-Path -Parent $PSScriptRoot }
 $script:AiriRepo = if ($env:AIRI_REPO_ROOT) { $env:AIRI_REPO_ROOT } else { Join-Path $script:AiriBase 'airi' }
 
+function Get-AiriFileSha256([string]$LiteralPath) {
+    $hasher = [Security.Cryptography.SHA256]::Create()
+    $stream = [IO.File]::OpenRead($LiteralPath)
+    try { return [BitConverter]::ToString($hasher.ComputeHash($stream)).Replace('-', '') }
+    finally { $stream.Dispose(); $hasher.Dispose() }
+}
 function Install-AiriOfflineShell {
     $template = Join-Path $script:AiriBase 'runtime\airi-offline'
     $destination = Join-Path $script:AiriRepo 'apps\stage-tamagotchi\out\offline-shell'
@@ -12,11 +18,13 @@ function Install-AiriOfflineShell {
     # Reuse its installed files so the offline shell can serve the exact pair locally.
     $transformersDist = Join-Path $script:AiriRepo 'apps\stage-tamagotchi\node_modules\@huggingface\transformers\dist'
     $rendererAssets = Join-Path $script:AiriRepo 'apps\stage-tamagotchi\out\renderer\assets'
+    & $script:AiriNode (Join-Path $template 'patch-mmd-camera.cjs') --assets $rendererAssets --apply | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw 'The MMD camera compatibility patch failed. Check the installed AIRI renderer version.' }
     foreach ($assetName in @('ort-wasm-simd-threaded.jsep.mjs', 'ort-wasm-simd-threaded.jsep.wasm')) {
         $assetSource = Join-Path $transformersDist $assetName
         $assetTarget = Join-Path $rendererAssets $assetName
         if (-not (Test-Path -LiteralPath $assetSource)) { throw ('The installed offline audio runtime is missing: ' + $assetName) }
-        if (-not (Test-Path -LiteralPath $assetTarget) -or (Get-FileHash -LiteralPath $assetSource).Hash -ne (Get-FileHash -LiteralPath $assetTarget).Hash) {
+        if (-not (Test-Path -LiteralPath $assetTarget) -or (Get-AiriFileSha256 $assetSource) -ne (Get-AiriFileSha256 $assetTarget)) {
             Copy-Item -LiteralPath $assetSource -Destination $assetTarget -Force
         }
     }
@@ -61,7 +69,7 @@ function Set-AiriEnvironment {
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
         Invoke-WebRequest -UseBasicParsing -Uri "https://nodejs.org/dist/v$nodeVersion/$archiveName" -OutFile $archive
         $sums = (Invoke-WebRequest -UseBasicParsing -Uri "https://nodejs.org/dist/v$nodeVersion/SHASUMS256.txt").Content
-        $hash = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+        $hash = (Get-AiriFileSha256 $archive).ToLowerInvariant()
         if ($sums -notmatch ([regex]::Escape($hash) + '\s+' + [regex]::Escape($archiveName))) { throw 'Node checksum verification failed.' }
         Expand-Archive -LiteralPath $archive -DestinationPath (Join-Path $script:AiriBase 'runtime') -Force
     }

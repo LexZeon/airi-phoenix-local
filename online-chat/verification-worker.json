@@ -1,0 +1,8 @@
+{
+  "test": "text-only-closed-worker-offline-subprocess",
+  "passed": 6,
+  "total": 6,
+  "success": true,
+  "cloudCalls": false,
+  "privateDataRead": false
+}

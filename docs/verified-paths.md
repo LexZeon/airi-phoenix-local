@@ -142,7 +142,7 @@ MCP是可选legacy2025-11-25 stdio接口，18协议/路径边界测试及真实r
 
 ### 视觉语义不能被像素QA代替
 
-站姿build005曾通过135Core组合、29实际WebGL帧和13项像素QA，但用户实图显示双瞳外斜。原因是长外睫扩大眼框alpha bbox，bbox中心偏离眼白开口中心，左右虹膜分别外移约8.868/8.779px。技术测试只证明变化存在，不能证明眼向自然。006已按眼白开口连通区域质心与中央瞳孔质心对齐，缩小gaze幅度并核对Y方向；实际Core投影与额外33张WebGL已通过，主app原生小窗中性姿态已确认无明显此前外斜，但没有完整实机四向极值/独立眨眼证据；这些控制以真实离屏WebGL验收为准。官图2D原画有意目光应保留，不照搬正面中性居中规则。
+早期站姿候选通过Core组合和实际WebGL后，仍未满足使用者的脸部自然度要求。长睫毛bbox确实会误导虹膜定位，但006把瞳孔强压到眼白区域质心仍不是人物相似度答案。007恢复使用者选定参考的眼型、小瞳、高光、眉嘴和自然会聚，再按脸部鼻/嘴/头面基准定位；135 Core组合、29标准＋45扩展实际WebGL帧和33项检查通过。独立眨眼无金色残影、四向gaze和半闭眼语义方向已测，身体/脸基准复合运动也单独验证；这不等于使用者已最终接受，也不冒充主app全功能联合验收。详见[参考脸QA方法与边界](live2d-face-qa-lessons.md)和[匿名报告](../diagnostics/live2d-face-qa-status.json)。
 
 ## Windows一键重启与UTF-8 JSON的已验证修复
 
@@ -157,3 +157,11 @@ MCP是可选legacy2025-11-25 stdio接口，18协议/路径边界测试及真实r
 ## 已测速度候选与默认保留
 
 [实测选择表](speech-options.md)列Qwen默认与可选省输出别名、Melo和Windows慧慧；[控制台](../control-center/README.md)已经显示两个新选项的实际接口证据并恢复原Serena默认，未自动应用或播放。Qwen可选模式在本句HTTP对照减少约19.8%等待且WAV一致；SAPI三次完整WAV0.147/0.055/0.029s但音色功能不同。系统声线不等于角色风格，云端三项仍UNMEASURED。
+
+## 文字首字、权限开关与Windows登录
+
+[9B文字响应审计](../diagnostics/llm-latency-audit.md)核实确切llama.cpp版本的思考开关，并用39和11992 token合成输入分别测首字与server prefill；每种一次，不能宣称实际角色平均值或已实现prompt压缩提速。单slot屏幕争用也是机会证据，未把某个用户等待归因给它。
+
+[统一屏幕关闭方法](screen-access-off.md)收录已测试的取消、epoch和writer清理，以及按钮/工具权限联动；真实原生按钮开关后79.07秒无新发布，两窗口均关闭且旧writer已清，详见单独匿名native报告。[Windows登录自启](windows-sign-in.md)只注册已有一键启动器，读取回验证，不冒称已经注销/登录验过。
+
+[MMD构图保存](../airi-integration/offline-shell/MMD-CAMERA-PERSISTENCE.md)保存摄像机而非仅模型平移/scale：按modelId和主窗/preview分开，模型fit完成后恢复，初始化和旧异步加载不能覆盖新数据。V2的41项检查包含实际bundled OrbitControls数值投影往返与Vue受控model时序；主app重启已读回stage/restored并核对近景。补丁先确认唯一compiled region和全部锚点，未知版本失败停止；V1升级必须用冻结生成器重放原备份并逐字节匹配，上游源码保持干净。

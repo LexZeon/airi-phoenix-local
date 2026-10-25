@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "cases": 41,
+  "helperSha256": "5e1118e1a46fc7e6635edafc450399c0ed4a1661bdcbda018463a1f85669bf4b",
+  "coverage": [
+    {
+      "name": "scope uses exact native window role and route without audio-context readiness",
+      "passed": true
+    },
+    {
+      "name": "diagnostics expose only scope, restored and loadStatus and unregister safely",
+      "passed": true
+    },
+    {
+      "name": "factory is self-contained in a separate VM",
+      "passed": true
+    },
+    {
+      "name": "wrapper seed script writes only a missing key and validates before generation",
+      "passed": true
+    },
+    {
+      "name": "missing saved key preserves upstream fit without initial writes",
+      "passed": true
+    },
+    {
+      "name": "seed is write-once and uses whitelisted fields only",
+      "passed": true
+    },
+    {
+      "name": "restore follows fit and preserves all seven camera fields",
+      "passed": true
+    },
+    {
+      "name": "change snapshots real target, debounces writes, and end flushes",
+      "passed": true
+    },
+    {
+      "name": "already captured changes flush to the old key after props change",
+      "passed": true
+    },
+    {
+      "name": "model switching restores separate views and invalidates stale tickets",
+      "passed": true
+    },
+    {
+      "name": "same source with a new ID is a different lifecycle",
+      "passed": true
+    },
+    {
+      "name": "preview cannot overwrite stage even for the same model ID",
+      "passed": true
+    },
+    {
+      "name": "bad JSON or mismatched ID falls back to fit without overwriting",
+      "passed": true
+    },
+    {
+      "name": "invalid finite ranges and degenerate camera geometry are rejected",
+      "passed": true
+    },
+    {
+      "name": "storage denial leaves rendering and interaction usable",
+      "passed": true
+    },
+    {
+      "name": "ID-less upstream models can load but never persist",
+      "passed": true
+    },
+    {
+      "name": "not-loaded and not-fitted states cannot save or restore",
+      "passed": true
+    },
+    {
+      "name": "unmount flushes the last captured view and removes listeners",
+      "passed": true
+    },
+    {
+      "name": "current real compiled asset patches in memory and passes Node ESM syntax",
+      "passed": true
+    },
+    {
+      "name": "patch is idempotent without touching unrelated regions",
+      "passed": true
+    },
+    {
+      "name": "changed upstream anchor fails closed",
+      "passed": true
+    },
+    {
+      "name": "duplicate MMD region and partial markers fail closed",
+      "passed": true
+    },
+    {
+      "name": "real compiled setup fits then restores seeded stage view",
+      "passed": true
+    },
+    {
+      "name": "compiled main window without an audio context still restores stage and exposes safe diagnostics",
+      "passed": true
+    },
+    {
+      "name": "compiled controlled v-model prop lag cannot skip camera restoration",
+      "passed": true
+    },
+    {
+      "name": "compiled async loader discards a stale result before scene ownership",
+      "passed": true
+    },
+    {
+      "name": "compiled animation init cannot fit or restore after model switch",
+      "passed": true
+    },
+    {
+      "name": "compiled preview uses its own scope and FOV changes save there",
+      "passed": true
+    },
+    {
+      "name": "compiled stale rejection does not dispose the new model",
+      "passed": true
+    },
+    {
+      "name": "compiled model with no saved view uses global fit FOV instead of previous restored FOV",
+      "passed": true
+    },
+    {
+      "name": "compiled model without an ID still mounts using upstream fit",
+      "passed": true
+    },
+    {
+      "name": "actual bundled Vue controlled useModel setter does not immediately update its getter",
+      "passed": true
+    },
+    {
+      "name": "frozen V1 loses restoration under the reproduced controlled-model timing",
+      "passed": true
+    },
+    {
+      "name": "actual bundled OrbitControls restores pose and emits no initial write",
+      "passed": true
+    },
+    {
+      "name": "actual Orbit interaction saves real target and restores identical projection",
+      "passed": true
+    },
+    {
+      "name": "actual Orbit residual damping cannot overwrite a newly restored model",
+      "passed": true
+    },
+    {
+      "name": "apply and repeat apply work only on a copied fixture",
+      "passed": true
+    },
+    {
+      "name": "ambiguous asset directory fails without modifying either candidate",
+      "passed": true
+    },
+    {
+      "name": "V1 without a matching original backup fails without changing the installed asset",
+      "passed": true
+    },
+    {
+      "name": "V1 upgrade checks the entire old patch by exact replay and preserves originals",
+      "passed": true
+    },
+    {
+      "name": "modified V1 code cannot be silently replaced even with an original backup",
+      "passed": true
+    }
+  ],
+  "liveAssetModified": false,
+  "liveRendererRestarted": false,
+  "browserOrbitVisualVerified": false,
+  "actualBundledOrbitControlsVerified": true,
+  "numericalProjectionRoundTripVerified": true,
+  "actualVueControlledModelTimingVerified": true,
+  "frozenV1RestorationFailureReproduced": true,
+  "limits": [
+    "Compiled lifecycle uses a synthetic engine VM; actual bundled Vue controlled-model timing and Three/OrbitControls are separately tested without a native window or GPU.",
+    "Native restart, exact current closeup seed, and mouse drag/restart persistence require owner integration."
+  ]
+}

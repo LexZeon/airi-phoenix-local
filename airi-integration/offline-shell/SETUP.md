@@ -6,7 +6,7 @@
 
 ```text
 <base>/airi/                       # 已按上游依赖版本编译的 AIRI
-<base>/runtime/airi-offline/        # 本目录的 7 个运行源码与 package.json
+<base>/runtime/airi-offline/        # 本目录运行源码与 package.json，按下文选择配置
 <base>/runtime/airi-speech/         # shared-speech 源码、自己的 config.json 与本地依赖/模型
 <base>/runtime/airi-qwen-tts/        # 可选既有 9945 服务及 start.ps1/stop.ps1
 <base>/runtime/airi-offline-assets/silero-vad/onnx/model.onnx
@@ -25,6 +25,18 @@ PowerShell 5 模板使用 UTF-8 BOM，读取中文 JSON 显式 `-Encoding UTF8`�
 `GET http://127.0.0.1:9943/health` 暴露经过筛选的就绪/错误计数，没有密钥、画面、聊天或任意执行路由。wrapper 保留 selected-localStorage 备份；旧配置可能有 provider key，因此备份必须私有。网络策略仅作用本应用进程，默认阻断非回环请求，不能同时假定云 TTS 可用；混合候选需另行显式调整策略与 adapter 并实测。
 
 当前本机实际全停/全启通过，9941/42/45 与桌面 ready，独立 9931 服务未变，贴纸/待机复用无重复。公开副本只将路径改为环境配置并做语法/隔离检查，未在另一台新机器重装验收。SDK 文本观察不是语音因果测量；详见[证据边界](../README.md)。
+
+## 默认关闭的屏幕权限与登录自启
+
+同时保留 `main.cjs`、`preload.cjs` 和 `screen-control-bootstrap.js`。仅改 `screen.enabled=false` 并不能修复两套开关失配：本快照将聊天框的监控/电脑控制按钮、helper托盘与后台采样统一到主进程权限，关闭时中断请求并移除活动屏幕摘要。上下文清理、能力状态、晚到结果以及实际验收边界见[屏幕关闭方法](../../docs/screen-access-off.md)；测试在本目录 `verification/`，运行生产源码的合成生命周期检查无需真实画面。
+
+需要登录后自动启动时，用[当前用户Startup方法](../../docs/windows-sign-in.md)注册已有启动器。它不安装模型、不改变屏幕权限、不把模型服务开放到外网。下一次真实Windows登录与普通脚本注册是不同验收层。
+
+## MMD 近景与拖动视角
+
+`mmd-camera-state.cjs` 与 `patch-mmd-camera.cjs`为已有compiled MMD组件增加按模型与scene scope区分的摄像机保存；`verify-mmd-camera.cjs`对自有临时fixture执行patch幂等和生命周期检查。完整接口、备份/失败条件与实际测试边界见[MMD构图方法](MMD-CAMERA-PERSISTENCE.md)。私人种子不属于示例配置；已有用户保存值不能被启动模板覆盖。
+
+同时保留 `camera-patch-v1/` 内两份冻结源；安全升级旧补丁时须逐字节重放验证。启动器从部署模板目录执行patcher，输出显式丢弃，防止它的JSON污染函数返回的Electron路径。安装期的资产SHA256比较使用.NET文件流；这是实际隐藏登录命令中`Get-FileHash`不可用后验证过的兼容修正。公开模板也通过已知`abc` SHA256值和PowerShell语法检查，路径环境override保留。
 
 ## 此快照的配置限制
 

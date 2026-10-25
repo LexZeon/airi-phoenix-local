@@ -60,6 +60,13 @@ node airi-integration/verification/verify-app-llm-tts.mjs
 
 ## 窗口内平移：源码核实，尚未真人拖动验收
 
-受测AIRI0.12.0的MMD.vue启用OrbitControls：右键拖动或Ctrl/Shift+左键为相机PAN，普通左键ROTATE，滚轮缩放。这是相机临时操作，不是拖动整个操作系统窗口。持久模型位置可在设置→模型→MMD→场景的position.x/y调整，store使用`settings/mmd/position`本地存储。
+受测AIRI0.12.0的MMD.vue启用OrbitControls：右键拖动或Ctrl/Shift+左键为相机PAN，普通左键ROTATE，滚轮缩放。上游只在运行态保存这部分相机操作；它不同于拖动整个操作系统窗口。本地wrapper现用[MMD V2持久化补丁](offline-shell/MMD-CAMERA-PERSISTENCE.md)保存该视角，并已验原生重启恢复。持久模型位置可在设置→模型→MMD→场景的position.x/y调整，store使用`settings/mmd/position`本地存储。
 
 上述按已安装AIRI/three-stdlib源码核实，尚未计作用户实拖验收。相机平移和持久模型X/Y是两层状态；修改模型位置不应同时宣称修好了相机或原生窗口拖动。
+## Online provider SDK observation probe
+
+`offline-shell/verification/verify-online-chat-sdk.mjs` is a separate, synthetic text probe for an explicitly selected local Codex online adapter on 9948. It uses a unique scene binding and inspects only matching SDK replies; the fixed phrase differs from the earlier offline probe. The report retains booleans, counts and total observation time, with no reply text, binding IDs, credentials or private events. It does not start services, apply a provider, capture a screen or use TTS.
+
+Run it only after deliberately selecting the online provider in an existing deployment; when running from this source bundle set `AIRI_COMPANIONS_ROOT` to that deployment and optionally `APP_USER_DATA_PATH` / `AIRI_SERVER_SDK_PATH` to its actual existing local paths. It has a 90-second cutoff and closes its SDK connection in `finally`. Before/after 9948 global completion counters are concurrent observations, not request-correlated proof. SDK complete is not token TTFT and this scene does not validate host speech. Syntax validation alone is not a completed online-path test; a separate result must record actual execution.
+
+The [actual synthetic result](offline-shell/verification/online-sdk-text-verification.json) passed after the public `llm.stream` action compatibility hook was installed: one matching message and complete, expected phrase present, 6.461 seconds total. Gateway request/completion counters each increased by one with no new failure; these remain observations rather than a fabricated audio-chain result. No private reply, task ID or token is included.

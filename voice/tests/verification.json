@@ -1,0 +1,33 @@
+{
+  "ok": true,
+  "service": "airi-phoenix-qwen-tts",
+  "model": "phoenix-qwen3-tts-local",
+  "testedAt": "2026-10-25T08:14:51.488632+00:00",
+  "sampleCount": 3,
+  "apiChecksPassed": 11,
+  "networkAttempts": 0,
+  "weightsVerified": true,
+  "modelBytes": 3833402552,
+  "tokenizerBytes": 682293092,
+  "voiceAliases": [
+    "phoenix-soft",
+    "phoenix-drowsy",
+    "phoenix-focused"
+  ],
+  "defaultVoice": "phoenix-soft",
+  "mode": "batch-text-only",
+  "cloning": false,
+  "processIdentityChecks": {
+    "concurrentStartsReuseListener": true,
+    "creationTimeMismatchRejected": true,
+    "commandHashMismatchRejected": true,
+    "executableMismatchRejected": true,
+    "ps5Compatible": true,
+    "stopImplemented": true,
+    "stopActuallyRun": true,
+    "startAfterStopReady": true
+  },
+  "queueVerificationPassed": true,
+  "queueDisconnectCleanupSeconds": 0.458,
+  "expectedTestInterruptionCount": 1
+}

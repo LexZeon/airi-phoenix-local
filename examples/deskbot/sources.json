@@ -1,0 +1,8 @@
+{
+  "asset": "artwork/parts.png",
+  "source": "../../rig-tools/examples/robot/artwork/parts.png",
+  "license": "MIT",
+  "description": "Original geometric robot atlas reused by an independently authored project configuration. No official character image, AI-generated character art, Core or weights.",
+  "generation": "No image generation; deterministic crop/resize/mesh binding.",
+  "referenceSearch": "Not needed for this original fixture supplied with the tool."
+}

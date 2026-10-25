@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIRI Character Forge"
+  short_description: "Build character rigs, local voices and AIRI packages."
+  default_prompt: "Use $airi-character-forge to create my character with a sourced persona, verified rig and optional local voice, preserving a reproducible handoff."

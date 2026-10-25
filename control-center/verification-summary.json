@@ -1,0 +1,224 @@
+{
+  "api": {
+    "status": "PASS",
+    "testedAt": null,
+    "checks": [
+      {
+        "name": "catalog-has-only-four-airi-modules",
+        "pass": true
+      },
+      {
+        "name": "csrf-missing",
+        "pass": true
+      },
+      {
+        "name": "cross-origin",
+        "pass": true
+      },
+      {
+        "name": "cross-site",
+        "pass": true
+      },
+      {
+        "name": "wrong-host",
+        "pass": true
+      },
+      {
+        "name": "arbitrary-shell",
+        "pass": true
+      },
+      {
+        "name": "removed-creative-action",
+        "pass": true
+      },
+      {
+        "name": "arbitrary-script",
+        "pass": true
+      },
+      {
+        "name": "reject-url-http://example.org/v1/",
+        "pass": true
+      },
+      {
+        "name": "reject-url-http://169.254.169.254/",
+        "pass": true
+      },
+      {
+        "name": "reject-url-http://127.0.0.1:9944/api/",
+        "pass": true
+      },
+      {
+        "name": "reject-url-http://user:pass@127.0.0.1:9931/v1/",
+        "pass": true
+      },
+      {
+        "name": "reject-url-http://127.0.0.1:9931/../v1/",
+        "pass": true
+      },
+      {
+        "name": "missing-profile-400",
+        "pass": true
+      },
+      {
+        "name": "real-local-openai-compatible-model-list",
+        "pass": true
+      },
+      {
+        "name": "save-preference",
+        "pass": true
+      },
+      {
+        "name": "preference-does-not-write-airi-settings",
+        "pass": true
+      },
+      {
+        "name": "sample-phoenix-soft",
+        "pass": true
+      },
+      {
+        "name": "sample-phoenix-drowsy",
+        "pass": true
+      },
+      {
+        "name": "sample-phoenix-focused",
+        "pass": true
+      },
+      {
+        "name": "sample-melo",
+        "pass": true
+      },
+      {
+        "name": "fixture-preserves-unrelated-config",
+        "pass": true
+      },
+      {
+        "name": "fixture-preserves-character-and-adds-module-overrides",
+        "pass": true
+      },
+      {
+        "name": "fixture-ollama-provider-compatible",
+        "pass": true
+      },
+      {
+        "name": "fixture-atomic-backup-and-revision",
+        "pass": true
+      }
+    ],
+    "screenshotsIncluded": false
+  },
+  "ui": {
+    "status": "PASS",
+    "testedAt": "2026-10-25T08:39:31.457Z",
+    "checks": [
+      {
+        "name": "four-simple-module-headings",
+        "pass": true
+      },
+      {
+        "name": "no-creative-library-cards",
+        "pass": true
+      },
+      {
+        "name": "advanced-initially-closed",
+        "pass": true
+      },
+      {
+        "name": "real-ui-preference-only-keeps-settings-bytes",
+        "pass": true
+      },
+      {
+        "name": "all-four-voices-decoded-and-playable",
+        "pass": true
+      },
+      {
+        "name": "real-ui-local-compatible-endpoint-detection",
+        "pass": true
+      },
+      {
+        "name": "compatible-selection-stays-draft",
+        "pass": true
+      },
+      {
+        "name": "real-ui-apply-api-success",
+        "pass": true
+      },
+      {
+        "name": "actual-chat-shares-9941-vision-instance",
+        "pass": true
+      },
+      {
+        "name": "actual-sensevoice-and-serena-soft",
+        "pass": true
+      },
+      {
+        "name": "actual-managed-overrides-and-new-revision",
+        "pass": true
+      },
+      {
+        "name": "actual-official-rig-enabled-and-card-preserved",
+        "pass": true
+      },
+      {
+        "name": "other-root-config-kept",
+        "pass": true
+      },
+      {
+        "name": "atomic-settings-backup-created",
+        "pass": true
+      },
+      {
+        "name": "airi-not-restarted",
+        "pass": true
+      },
+      {
+        "name": "mobile-no-horizontal-overflow",
+        "pass": true
+      },
+      {
+        "name": "mobile-dialog-fits",
+        "pass": true
+      },
+      {
+        "name": "browser-page-errors-empty",
+        "pass": true
+      }
+    ],
+    "screenshotsIncluded": false
+  },
+  "uiFinal": {
+    "status": "PASS",
+    "testedAt": "2026-10-25T08:45:29.082Z",
+    "checks": [
+      {
+        "name": "runtime-revision-state-is-accurate",
+        "pass": true
+      },
+      {
+        "name": "advanced-and-resources-closed-by-default",
+        "pass": true
+      },
+      {
+        "name": "apply-button-names-real-restart",
+        "pass": true
+      },
+      {
+        "name": "resource-note-explains-shared-9b-instance",
+        "pass": true
+      },
+      {
+        "name": "mobile-expanded-resources-no-page-overflow",
+        "pass": true
+      },
+      {
+        "name": "one-mobile-advanced-panel-fits",
+        "pass": true
+      },
+      {
+        "name": "no-page-errors",
+        "pass": true
+      }
+    ],
+    "screenshotsIncluded": false
+  },
+  "scope": "Historical tests of the locally deployed console. Published source is a parameterized/sanitized template; independent fixture checks are recorded separately. No private state/settings/profile/log/audio/image was copied."
+}

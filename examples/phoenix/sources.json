@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "characterId": "phoenix-reffaella",
+  "researchedAt": "2026-10-25",
+  "purpose": "Original summaries and source pointers for a non-official fan character configuration. No official media files are redistributed.",
+  "sources": {
+    "official-character": {
+      "url": "https://zenless.hoyoverse.com/zh-cn/character/detail?id=155657",
+      "caveat": "网页标题可能显示潘引壶，正文包含多个角色；研究只采用菲欧妮段及其紧邻阵营信息。",
+      "title": "官方角色页：只提取菲欧妮实体段"
+    },
+    "official-agent-record": {
+      "url": "https://zenless.hoyoverse.com/zh-cn/news/166053",
+      "title": "代理人档案丨菲欧妮",
+      "date": "2026-09-12"
+    },
+    "official-version-update": {
+      "url": "https://zenless.hoyoverse.com/zh-cn/news/166963",
+      "title": "3.3版本重返天空的旅程更新公告",
+      "date": "2026-10-21"
+    },
+    "official-costume-notice": {
+      "url": "https://zenless.hoyoverse.com/m/zh-cn/news/166927",
+      "title": "3.3版本商城上新说明",
+      "date": "2026-10-19"
+    },
+    "official-cast": {
+      "url": "https://zenless.hoyoverse.com/zh-cn/news/163799",
+      "title": "第三季角色公开",
+      "date": "2026-04-30"
+    },
+    "official-art": {
+      "page": "https://zenless.hoyoverse.com/en-us/main?catchSpider=1",
+      "title": "官方首页菲欧妮立绘",
+      "url": "https://fastcdn.hoyoverse.com/content-v2/nap/166075/1aa5aba8052c4149131905385b053b6f_9200770839634652569.png"
+    },
+    "demo": {
+      "title": "Phoenix Character Demo - \"Do Not Die Challenge\" | Zenless Zone Zero",
+      "url": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic",
+      "officialChinesePage": "https://www.bilibili.com/video/BV1d5JQ6pEFS/",
+      "officialWebsiteIndex": "https://zenless.hoyoverse.com/zh-cn/video?catchSpider=1",
+      "author": "Zenless Zone Zero",
+      "channel": "@ZZZ_Official",
+      "channelId": "UC2SpC8rL9LaeQriE4YNdyzA",
+      "durationSeconds": 150,
+      "evidence": "The official website directly embeds this video ID; public player metadata names the official channel."
+    },
+    "ep": {
+      "title": "Phoenix EP - \"1% Battery Girl\" | Zenless Zone Zero",
+      "url": "https://www.youtube.com/watch?v=AkWvzeXDUxY",
+      "officialChinesePage": "https://www.bilibili.com/video/BV1SknF6KE5g/",
+      "officialWebsiteIndex": "https://zenless.hoyoverse.com/zh-cn/video?catchSpider=1",
+      "author": "Zenless Zone Zero",
+      "channel": "@ZZZ_Official",
+      "channelId": "UC2SpC8rL9LaeQriE4YNdyzA",
+      "durationSeconds": 226,
+      "evidence": "The official website directly embeds this video ID; public player metadata names the official channel."
+    }
+  },
+  "facts": [
+    {
+      "fact": "她隶属坎卜斯黑枝，担任裁决官；对自己的头衔说得随意。",
+      "id": "identity",
+      "sources": [
+        "official-character",
+        "official-agent-record"
+      ]
+    },
+    {
+      "fact": "她的身体容易疲乏，久站吃力；照却认为她的实战能力在组织内仅逊于首领。",
+      "id": "contrast",
+      "sources": [
+        "official-character"
+      ]
+    },
+    {
+      "fact": "官网所引实验记录描述了她特殊的生存机制：生命指标走低时，体内富集的以太会驱动一种超越状态，使通常的死亡难以成立。",
+      "id": "ether",
+      "sources": [
+        "official-character"
+      ]
+    },
+    {
+      "fact": "她和照有密切的日常照应；出门会准备葡萄糖、急救快捷拨号，并向照共享位置。",
+      "id": "zhao",
+      "sources": [
+        "official-agent-record"
+      ]
+    },
+    {
+      "fact": "琉音觉得与她出游总有乐趣，也习惯让照同行处理突发状况。",
+      "id": "dialyn",
+      "sources": [
+        "official-character"
+      ]
+    },
+    {
+      "fact": "她会拿自己的体弱开玩笑，随即安抚旁人；轻松的日常口吻与危险的工作形成反差。",
+      "note": "后一分句为对官方场景的简短归纳。",
+      "id": "humor",
+      "sources": [
+        "official-agent-record"
+      ]
+    },
+    {
+      "fact": "3.3版本正式加入的S级火属性异常代理人。",
+      "id": "battle-role",
+      "sources": [
+        "official-version-update"
+      ]
+    },
+    {
+      "fact": "3.3公告确认她有病名为生与空想症候两套替换时装；制作默认形象时应与其常服区分。",
+      "id": "costumes",
+      "sources": [
+        "official-costume-notice"
+      ]
+    },
+    {
+      "fact": "官方公布的中文声优为宋媛媛、日文声优为藤田茜。声优姓名是资料，不代表本项目拥有其录音或克隆声线授权。",
+      "note": "后一句为本地资产授权边界说明。",
+      "id": "voice",
+      "sources": [
+        "official-cast"
+      ]
+    }
+  ],
+  "appearanceObservations": [
+    "浅金色长发，额前有翘起发束，发侧圆盘饰物与低束双侧长发辫。",
+    "眼睛呈金橙色；五官柔和，常服图表情略显倦意。",
+    "白色与深灰色搭配的制服式服装，泡袖、贴身长袖或手套、长衣摆，点缀红色心形与系带细节。",
+    "背部红色装置延展多束粉橙色光焰翼，呈刃状或羽状光束，不宜随意画成普通实体鸟翼。",
+    "持有红黑配色的大型装备或武器；默认参考图没有眼罩。"
+  ],
+  "expressions": [
+    {
+      "id": "E01",
+      "expressionName": "E01_LowEnergy",
+      "label": "低能量平静",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=16s",
+      "nominalTimestamp": "00:16",
+      "nominalSeconds": 16,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "正面睁眼，眼睑偏低，嘴很小，头部平稳。",
+      "interpretation": "中性/低能量",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E02",
+      "expressionName": "E02_TiredBlink",
+      "label": "疲乏闭眼",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=26s",
+      "nominalTimestamp": "00:26",
+      "nominalSeconds": 26,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "双眼闭合、头略垂，眉形柔软，嘴轻张。",
+      "interpretation": "闭眼休息",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E03",
+      "expressionName": "E03_Hesitant",
+      "label": "迟疑疑问",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=68s",
+      "nominalTimestamp": "01:08",
+      "nominalSeconds": 68,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "双眼较圆，内眉稍抬，嘴呈小开口；情绪词是解释，五官形态可直接观察。",
+      "interpretation": "疑惑/担忧",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E04",
+      "expressionName": "E04_GentleReminder",
+      "label": "抬手示意",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=86s",
+      "nominalTimestamp": "01:26",
+      "nominalSeconds": 86,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "身体前倾、抬手朝前，眼睑收窄；手势可观察，不将其猜作固定官方台词。",
+      "interpretation": "示意/请求",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E05",
+      "expressionName": "E05_Weary",
+      "label": "低头无力",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=128s",
+      "nominalTimestamp": "02:08",
+      "nominalSeconds": 128,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "头下垂，脸部朝下，手或装备靠近肩部；参考的是姿态，口部被遮挡。",
+      "interpretation": "疲惫姿态",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": "Posture only; hidden mouth not inferred."
+    },
+    {
+      "id": "E06",
+      "expressionName": "E06_BattleSmile",
+      "label": "战斗暗面笑",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=100s",
+      "nominalTimestamp": "01:40",
+      "nominalSeconds": 100,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "火光中的脸大部分处于暗影，金色眼睛明亮，嘴角拉开成明显笑弧。",
+      "interpretation": "战斗压迫/笑",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E07",
+      "expressionName": "E07_SharpGaze",
+      "label": "锐利凝视",
+      "sourceId": "demo",
+      "sourceUrl": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic&t=120s",
+      "nominalTimestamp": "02:00",
+      "nominalSeconds": 120,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "单眼特写：眉压低、眼神聚焦，瞳色有强烈光效。只有眼部证据，不凭此补写嘴部表情。",
+      "interpretation": "认真战斗眼神",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": "Eye-only evidence; mouth is not supported by this shot."
+    },
+    {
+      "id": "E08",
+      "expressionName": "E08_Dizzy",
+      "label": "Q版晕眩",
+      "sourceId": "ep",
+      "sourceUrl": "https://www.youtube.com/watch?v=AkWvzeXDUxY&t=50s",
+      "nominalTimestamp": "00:50",
+      "nominalSeconds": 50,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "官方EP的Q版画面中，双眼是明显螺旋图案，嘴半张，面部带晕眩式夸张处理。",
+      "interpretation": "晕眩/迷糊",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official chibi/cartoon",
+      "limits": "Chibi motif must be redrawn consistently for the new rig; do not paste a thumbnail into the model."
+    },
+    {
+      "id": "E09",
+      "expressionName": "E09_Vulnerable",
+      "label": "半睁眼脆弱感",
+      "sourceId": "ep",
+      "sourceUrl": "https://www.youtube.com/watch?v=AkWvzeXDUxY&t=96s",
+      "nominalTimestamp": "01:36",
+      "nominalSeconds": 96,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "半睁眼、内眉略抬，脸部近景中有医疗面罩；面罩是该场景道具，不作为默认服饰。",
+      "interpretation": "虚弱/倦意",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E10",
+      "expressionName": "E10_SoftGaze",
+      "label": "枕边柔和目光",
+      "sourceId": "ep",
+      "sourceUrl": "https://www.youtube.com/watch?v=AkWvzeXDUxY&t=208s",
+      "nominalTimestamp": "03:28",
+      "nominalSeconds": 208,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "靠在枕边，头部侧斜，眼睛半睁、嘴角柔和。只取表情与轻微倾头，不默认复制床铺场景。",
+      "interpretation": "柔和放松",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E11",
+      "expressionName": "E11_ClosedEyeSmile",
+      "label": "闭眼浅笑",
+      "sourceId": "ep",
+      "sourceUrl": "https://www.youtube.com/watch?v=AkWvzeXDUxY&t=212s",
+      "nominalTimestamp": "03:32",
+      "nominalSeconds": 212,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "同一枕边段落中闭眼，嘴角带轻笑，面部放松。",
+      "interpretation": "安心闭眼笑",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official main character style",
+      "limits": ""
+    },
+    {
+      "id": "E12",
+      "expressionName": "E12_BrightLaugh",
+      "label": "Q版轻快大笑",
+      "sourceId": "ep",
+      "sourceUrl": "https://www.youtube.com/watch?v=AkWvzeXDUxY&t=140s",
+      "nominalTimestamp": "02:20",
+      "nominalSeconds": 140,
+      "precision": "Nominal storyboard sampling position, approximately +/-2 seconds; not an exact FFmpeg video-frame timestamp.",
+      "officiallyObservable": true,
+      "observation": "官方Q版飞行段落中眼睛闭成弧线、嘴大张，身体向前伸展。",
+      "interpretation": "轻快欢笑",
+      "interpretationIsOfficialLabel": false,
+      "stylization": "Official chibi/cartoon",
+      "limits": "Chibi motif must be redrawn consistently for the new rig; do not paste a thumbnail into the model."
+    }
+  ],
+  "limitations": [
+    "年龄、生日、身高未在本轮可取得的官方文本中确证，不采用第三方站点数字。",
+    "完整主线、信赖剧情与实验的全部来历未逐章核对，不把第三方数据库长文当作已验证官方事实。",
+    "战斗技能的逐项系数、技能名与重明触发细节不作为本阶段角色卡核心资料。"
+  ],
+  "rights": "HoYoverse character and official media rights remain with their respective owners. Code licensing does not license those materials. Expression labels and runtime parameter presets are original interpretations, not official expression names."
+}

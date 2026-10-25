@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "prompt": "Use case: stylized-concept. Asset type: ONE transparent facial-component texture atlas for a Live2D rig of Phoenix Reffaella (菲欧妮·蕾法爱菈), not a complete face. Image 1 is official visual identity. Image 2 is the actual fan-art rig base which these facial sprites must match: match its soft cream-blonde fine anime linework and gentle tired character. Create exactly a 4-column by 3-row grid of TWELVE isolated, fully separated facial component sprites on genuinely transparent background. No visible grid, no labels, no numbers, NO surrounding face skin, NO heads. Every component centered within its own equal-size cell with generous clear margin, at a consistent scale; use subtle dark brown lines. Read the positions LEFT TO RIGHT, TOP TO BOTTOM: Row 1 cell1 one open anime eye for the VIEWER'S LEFT, cell2 one matching open eye for the VIEWER'S RIGHT, cell3 one gently closed-eye lash line for viewer left, cell4 matching gently closed-eye lash line for viewer right. The two open eyes have golden-orange irises, dark outer lashes, white sclera, gentle sleepy upper lids, small shiny pupil highlights, and no eyebrows. Row 2 cell1 a single soft neutral left eyebrow, cell2 a single soft neutral right eyebrow, cell3 a tiny relaxed closed-mouth line, cell4 a small rounded vertically open speaking mouth with dark interior and visible tiny pink tongue, not a big grin. Row 3 cell1 a small warm smiling mouth line, cell2 a small worried/downturned mouth line, cell3 one subtle pale pink cheek blush patch, cell4 one tiny surprised oval mouth. All mouth components must be suitable for a delicate young adult anime character and scale consistently to the eye components. Faithful character feeling: low energy, gentle, slightly wry, not bubbly emoji. Keep the eye sprites clean enough to vertically squash for blink animation. No whole character, no skin-colored rectangles, no white background, no text, no watermark. Landscape 4:3 asset sheet, ideally 1536x1152.",
+  "references": [
+    "Official HoYoverse artwork (URL in facts.json)",
+    "rig-base-v1.png"
+  ],
+  "result": "facial-atlas-v1.png",
+  "layout": "4 columns x 3 rows, viewer's left/right",
+  "status": "Rejected likeness candidate v1; retained as process history only, not the current Phoenix artwork or a finished character.",
+  "lesson": "Do not force symmetry, remove costume/weapon/flame wings or regenerate the whole face when fidelity to a specific official pose is requested."
+}

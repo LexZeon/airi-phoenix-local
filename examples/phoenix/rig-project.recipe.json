@@ -1,0 +1,1796 @@
+{
+  "version": 1,
+  "name": "PhoenixReffaellaOfficial",
+  "canvas": [
+    2347,
+    1253
+  ],
+  "asset_root": "local-assets",
+  "sources": {
+    "base": "official-reference.png",
+    "original": "official-reference.png",
+    "leftwhite": "official-reference.png",
+    "rightwhite": "official-reference.png",
+    "skin": "artwork/official-rig/face-underlay-generated.png",
+    "whiteplate": "artwork/official-rig/eye-whites-generated.png",
+    "mask": "aperture-mask.png"
+  },
+  "source_overlays": [
+    {
+      "target": "base",
+      "source": "skin",
+      "rect": [
+        760,
+        100,
+        480,
+        480
+      ],
+      "polygons": [
+        [
+          [
+            892,
+            311
+          ],
+          [
+            901,
+            307
+          ],
+          [
+            914,
+            303
+          ],
+          [
+            927,
+            303
+          ],
+          [
+            936,
+            307
+          ],
+          [
+            940,
+            314
+          ],
+          [
+            943,
+            319
+          ],
+          [
+            940,
+            326
+          ],
+          [
+            940,
+            336
+          ],
+          [
+            936,
+            342
+          ],
+          [
+            918,
+            343
+          ],
+          [
+            905,
+            340
+          ],
+          [
+            897,
+            334
+          ],
+          [
+            890,
+            323
+          ],
+          [
+            885,
+            322
+          ],
+          [
+            888,
+            316
+          ]
+        ],
+        [
+          [
+            985,
+            313
+          ],
+          [
+            997,
+            312
+          ],
+          [
+            1007,
+            317
+          ],
+          [
+            1021,
+            321
+          ],
+          [
+            1033,
+            326
+          ],
+          [
+            1043,
+            327
+          ],
+          [
+            1040,
+            334
+          ],
+          [
+            1049,
+            343
+          ],
+          [
+            1043,
+            348
+          ],
+          [
+            1032,
+            351
+          ],
+          [
+            1025,
+            357
+          ],
+          [
+            1015,
+            359
+          ],
+          [
+            1004,
+            356
+          ],
+          [
+            994,
+            353
+          ],
+          [
+            989,
+            344
+          ],
+          [
+            987,
+            334
+          ],
+          [
+            986,
+            326
+          ],
+          [
+            980,
+            325
+          ]
+        ],
+        [
+          [
+            902,
+            301
+          ],
+          [
+            911,
+            296
+          ],
+          [
+            925,
+            295
+          ],
+          [
+            934,
+            297
+          ],
+          [
+            935,
+            301
+          ],
+          [
+            925,
+            299
+          ],
+          [
+            914,
+            300
+          ],
+          [
+            905,
+            304
+          ]
+        ],
+        [
+          [
+            991,
+            303
+          ],
+          [
+            1005,
+            307
+          ],
+          [
+            1017,
+            313
+          ],
+          [
+            1026,
+            320
+          ],
+          [
+            1029,
+            324
+          ],
+          [
+            1023,
+            321
+          ],
+          [
+            1013,
+            315
+          ],
+          [
+            1003,
+            311
+          ],
+          [
+            990,
+            308
+          ]
+        ],
+        [
+          [
+            949,
+            389
+          ],
+          [
+            953,
+            388
+          ],
+          [
+            958,
+            391
+          ],
+          [
+            961,
+            394
+          ],
+          [
+            960,
+            397
+          ],
+          [
+            953,
+            397
+          ],
+          [
+            947,
+            395
+          ],
+          [
+            947,
+            392
+          ]
+        ]
+      ]
+    },
+    {
+      "target": "leftwhite",
+      "source": "whiteplate",
+      "crop": [
+        0,
+        0,
+        966.5,
+        813
+      ],
+      "rect": [
+        886,
+        291,
+        89,
+        75
+      ],
+      "polygons": [
+        [
+          [
+            914,
+            314
+          ],
+          [
+            922,
+            311
+          ],
+          [
+            931,
+            313
+          ],
+          [
+            938,
+            318
+          ],
+          [
+            940,
+            325
+          ],
+          [
+            938,
+            335
+          ],
+          [
+            935,
+            341
+          ],
+          [
+            920,
+            341
+          ],
+          [
+            914,
+            336
+          ],
+          [
+            911,
+            328
+          ],
+          [
+            911,
+            320
+          ]
+        ]
+      ]
+    },
+    {
+      "target": "rightwhite",
+      "source": "whiteplate",
+      "crop": [
+        966.5,
+        0,
+        1933,
+        813
+      ],
+      "rect": [
+        973,
+        306,
+        89,
+        75
+      ],
+      "polygons": [
+        [
+          [
+            998,
+            323
+          ],
+          [
+            1007,
+            324
+          ],
+          [
+            1018,
+            327
+          ],
+          [
+            1027,
+            332
+          ],
+          [
+            1033,
+            338
+          ],
+          [
+            1029,
+            347
+          ],
+          [
+            1022,
+            355
+          ],
+          [
+            1013,
+            357
+          ],
+          [
+            1001,
+            352
+          ],
+          [
+            995,
+            347
+          ],
+          [
+            993,
+            339
+          ],
+          [
+            994,
+            330
+          ]
+        ]
+      ]
+    }
+  ],
+  "atlas_size": 4096,
+  "pixels_per_unit": 1253,
+  "layers": [
+    {
+      "id": "HitAreaBody",
+      "source": "mask",
+      "rect": [
+        760,
+        430,
+        560,
+        670
+      ],
+      "mesh": [
+        1,
+        1
+      ],
+      "opacity": 0,
+      "neutral_opacity": 0,
+      "group": "all"
+    },
+    {
+      "id": "HitAreaHead",
+      "source": "mask",
+      "rect": [
+        800,
+        150,
+        380,
+        300
+      ],
+      "mesh": [
+        1,
+        1
+      ],
+      "opacity": 0,
+      "neutral_opacity": 0,
+      "group": "all"
+    },
+    {
+      "id": "EyeApertureLeft",
+      "source": "mask",
+      "rect": [
+        881,
+        299,
+        66,
+        48
+      ],
+      "mesh": [
+        2,
+        2
+      ],
+      "group": "all",
+      "neutral_opacity": 0,
+      "effects": {
+        "ParamEyeLOpen": {
+          "type": "aperture",
+          "pivot": [
+            923,
+            342
+          ],
+          "points": [
+            [
+              0,
+              0.001
+            ],
+            [
+              0.25,
+              0.25
+            ],
+            [
+              0.65,
+              0.65
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1.15,
+              1.15
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "EyeApertureRight",
+      "source": "mask",
+      "rect": [
+        976,
+        308,
+        77,
+        55
+      ],
+      "mesh": [
+        2,
+        2
+      ],
+      "group": "all",
+      "neutral_opacity": 0,
+      "effects": {
+        "ParamEyeROpen": {
+          "type": "aperture",
+          "pivot": [
+            1017,
+            357
+          ],
+          "points": [
+            [
+              0,
+              0.001
+            ],
+            [
+              0.25,
+              0.25
+            ],
+            [
+              0.65,
+              0.65
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1.15,
+              1.15
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "Base",
+      "source": "base",
+      "rect": [
+        0,
+        0,
+        2347,
+        1253
+      ],
+      "mesh": [
+        40,
+        28
+      ],
+      "group": "all"
+    },
+    {
+      "id": "EyeLeft",
+      "source": "leftwhite",
+      "polygon": [
+        [
+          892,
+          311
+        ],
+        [
+          901,
+          307
+        ],
+        [
+          914,
+          303
+        ],
+        [
+          927,
+          303
+        ],
+        [
+          936,
+          307
+        ],
+        [
+          940,
+          314
+        ],
+        [
+          943,
+          319
+        ],
+        [
+          940,
+          326
+        ],
+        [
+          940,
+          336
+        ],
+        [
+          936,
+          342
+        ],
+        [
+          918,
+          343
+        ],
+        [
+          905,
+          340
+        ],
+        [
+          897,
+          334
+        ],
+        [
+          890,
+          323
+        ],
+        [
+          885,
+          322
+        ],
+        [
+          888,
+          316
+        ]
+      ],
+      "mesh": [
+        8,
+        6
+      ],
+      "group": "all",
+      "masks": [
+        "EyeApertureLeft"
+      ],
+      "effects": {
+        "ParamEyeLOpen": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.25,
+              1
+            ],
+            [
+              1.15,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "IrisLeft",
+      "source": "original",
+      "polygon": [
+        [
+          914,
+          314
+        ],
+        [
+          922,
+          311
+        ],
+        [
+          931,
+          313
+        ],
+        [
+          938,
+          318
+        ],
+        [
+          940,
+          325
+        ],
+        [
+          938,
+          335
+        ],
+        [
+          935,
+          341
+        ],
+        [
+          920,
+          341
+        ],
+        [
+          914,
+          336
+        ],
+        [
+          911,
+          328
+        ],
+        [
+          911,
+          320
+        ]
+      ],
+      "mesh": [
+        6,
+        6
+      ],
+      "group": "all",
+      "masks": [
+        "EyeApertureLeft"
+      ],
+      "effects": {
+        "ParamEyeBallX": {
+          "type": "translate",
+          "x": 2.5,
+          "value_mode": "raw"
+        },
+        "ParamEyeBallY": {
+          "type": "translate",
+          "y": -1.8,
+          "value_mode": "raw"
+        }
+      }
+    },
+    {
+      "id": "EyeClosedLeft",
+      "source": "original",
+      "polygon": [
+        [
+          885,
+          316
+        ],
+        [
+          894,
+          315
+        ],
+        [
+          902,
+          308
+        ],
+        [
+          916,
+          303
+        ],
+        [
+          929,
+          304
+        ],
+        [
+          936,
+          309
+        ],
+        [
+          941,
+          318
+        ],
+        [
+          935,
+          316
+        ],
+        [
+          927,
+          311
+        ],
+        [
+          918,
+          310
+        ],
+        [
+          907,
+          315
+        ],
+        [
+          899,
+          322
+        ],
+        [
+          891,
+          323
+        ],
+        [
+          885,
+          322
+        ]
+      ],
+      "rect": [
+        882,
+        319,
+        63,
+        27
+      ],
+      "mesh": [
+        8,
+        3
+      ],
+      "group": "all",
+      "neutral_opacity": 0,
+      "effects": {
+        "ParamEyeLOpen": [
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                1
+              ],
+              [
+                0.25,
+                0.95
+              ],
+              [
+                0.65,
+                0.3
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1.15,
+                0
+              ]
+            ]
+          },
+          {
+            "type": "translate",
+            "y": -19,
+            "value_mode": "raw"
+          }
+        ],
+        "ParamEyeLSmile": {
+          "type": "curve",
+          "bend": -1.3
+        }
+      }
+    },
+    {
+      "id": "EyeRight",
+      "source": "rightwhite",
+      "polygon": [
+        [
+          985,
+          313
+        ],
+        [
+          997,
+          312
+        ],
+        [
+          1007,
+          317
+        ],
+        [
+          1021,
+          321
+        ],
+        [
+          1033,
+          326
+        ],
+        [
+          1043,
+          327
+        ],
+        [
+          1040,
+          334
+        ],
+        [
+          1049,
+          343
+        ],
+        [
+          1043,
+          348
+        ],
+        [
+          1032,
+          351
+        ],
+        [
+          1025,
+          357
+        ],
+        [
+          1015,
+          359
+        ],
+        [
+          1004,
+          356
+        ],
+        [
+          994,
+          353
+        ],
+        [
+          989,
+          344
+        ],
+        [
+          987,
+          334
+        ],
+        [
+          986,
+          326
+        ],
+        [
+          980,
+          325
+        ]
+      ],
+      "mesh": [
+        8,
+        6
+      ],
+      "group": "all",
+      "masks": [
+        "EyeApertureRight"
+      ],
+      "effects": {
+        "ParamEyeROpen": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.25,
+              1
+            ],
+            [
+              1.15,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "IrisRight",
+      "source": "original",
+      "polygon": [
+        [
+          998,
+          323
+        ],
+        [
+          1007,
+          324
+        ],
+        [
+          1018,
+          327
+        ],
+        [
+          1027,
+          332
+        ],
+        [
+          1033,
+          338
+        ],
+        [
+          1029,
+          347
+        ],
+        [
+          1022,
+          355
+        ],
+        [
+          1013,
+          357
+        ],
+        [
+          1001,
+          352
+        ],
+        [
+          995,
+          347
+        ],
+        [
+          993,
+          339
+        ],
+        [
+          994,
+          330
+        ]
+      ],
+      "mesh": [
+        6,
+        6
+      ],
+      "group": "all",
+      "masks": [
+        "EyeApertureRight"
+      ],
+      "effects": {
+        "ParamEyeBallX": {
+          "type": "translate",
+          "x": 2.5,
+          "value_mode": "raw"
+        },
+        "ParamEyeBallY": {
+          "type": "translate",
+          "y": -1.8,
+          "value_mode": "raw"
+        }
+      }
+    },
+    {
+      "id": "EyeClosedRight",
+      "source": "original",
+      "polygon": [
+        [
+          980,
+          320
+        ],
+        [
+          989,
+          313
+        ],
+        [
+          998,
+          313
+        ],
+        [
+          1009,
+          318
+        ],
+        [
+          1025,
+          324
+        ],
+        [
+          1037,
+          327
+        ],
+        [
+          1044,
+          326
+        ],
+        [
+          1041,
+          334
+        ],
+        [
+          1034,
+          335
+        ],
+        [
+          1025,
+          331
+        ],
+        [
+          1012,
+          325
+        ],
+        [
+          1002,
+          321
+        ],
+        [
+          993,
+          320
+        ],
+        [
+          986,
+          325
+        ],
+        [
+          980,
+          325
+        ]
+      ],
+      "rect": [
+        977,
+        334,
+        71,
+        29
+      ],
+      "mesh": [
+        8,
+        3
+      ],
+      "group": "all",
+      "neutral_opacity": 0,
+      "effects": {
+        "ParamEyeROpen": [
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                1
+              ],
+              [
+                0.25,
+                0.95
+              ],
+              [
+                0.65,
+                0.3
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1.15,
+                0
+              ]
+            ]
+          },
+          {
+            "type": "translate",
+            "y": -24,
+            "value_mode": "raw"
+          }
+        ],
+        "ParamEyeRSmile": {
+          "type": "curve",
+          "bend": -1.3
+        }
+      }
+    },
+    {
+      "id": "BrowLeft",
+      "source": "original",
+      "polygon": [
+        [
+          902,
+          301
+        ],
+        [
+          911,
+          296
+        ],
+        [
+          925,
+          295
+        ],
+        [
+          934,
+          297
+        ],
+        [
+          935,
+          301
+        ],
+        [
+          925,
+          299
+        ],
+        [
+          914,
+          300
+        ],
+        [
+          905,
+          304
+        ]
+      ],
+      "mesh": [
+        6,
+        2
+      ],
+      "group": "all",
+      "effects": {
+        "ParamBrowLY": {
+          "type": "translate",
+          "y": -2.0
+        },
+        "ParamBrowLAngle": {
+          "type": "rotate",
+          "degrees": 6
+        }
+      }
+    },
+    {
+      "id": "BrowRight",
+      "source": "original",
+      "polygon": [
+        [
+          991,
+          303
+        ],
+        [
+          1005,
+          307
+        ],
+        [
+          1017,
+          313
+        ],
+        [
+          1026,
+          320
+        ],
+        [
+          1029,
+          324
+        ],
+        [
+          1023,
+          321
+        ],
+        [
+          1013,
+          315
+        ],
+        [
+          1003,
+          311
+        ],
+        [
+          990,
+          308
+        ]
+      ],
+      "mesh": [
+        6,
+        2
+      ],
+      "group": "all",
+      "effects": {
+        "ParamBrowRY": {
+          "type": "translate",
+          "y": -2.0
+        },
+        "ParamBrowRAngle": {
+          "type": "rotate",
+          "degrees": 6
+        }
+      }
+    },
+    {
+      "id": "Mouth",
+      "source": "original",
+      "polygon": [
+        [
+          949,
+          389
+        ],
+        [
+          953,
+          388
+        ],
+        [
+          958,
+          391
+        ],
+        [
+          961,
+          394
+        ],
+        [
+          960,
+          397
+        ],
+        [
+          953,
+          397
+        ],
+        [
+          947,
+          395
+        ],
+        [
+          947,
+          392
+        ]
+      ],
+      "mesh": [
+        6,
+        4
+      ],
+      "group": "all",
+      "effects": {
+        "ParamMouthOpenY": {
+          "type": "scale",
+          "y": 1.9,
+          "pivot": [
+            953,
+            389
+          ],
+          "value_mode": "raw"
+        },
+        "ParamMouthForm": {
+          "type": "curve",
+          "bend": 1.5
+        },
+        "ParamMouthRound": {
+          "type": "scale",
+          "x": -0.25,
+          "pivot": [
+            953,
+            393
+          ]
+        }
+      }
+    }
+  ],
+  "groups": {
+    "all": {
+      "effects": {
+        "ParamAngleX": {
+          "type": "translate",
+          "x": 3.0,
+          "weight_rect": [
+            790,
+            100,
+            1170,
+            485,
+            55
+          ]
+        },
+        "ParamAngleY": {
+          "type": "translate",
+          "y": -2.5,
+          "weight_rect": [
+            790,
+            100,
+            1170,
+            485,
+            55
+          ]
+        },
+        "ParamAngleZ": {
+          "type": "rotate",
+          "degrees": 0.8,
+          "pivot": [
+            960,
+            443
+          ],
+          "weight_rect": [
+            790,
+            100,
+            1170,
+            485,
+            55
+          ]
+        },
+        "ParamBodyAngleZ": {
+          "type": "rotate",
+          "degrees": 0.25,
+          "pivot": [
+            960,
+            760
+          ]
+        },
+        "ParamBreath": {
+          "type": "scale",
+          "y": 0.0012,
+          "pivot": [
+            960,
+            800
+          ]
+        },
+        "ParamBodyAngleX": {
+          "type": "translate",
+          "x": 1.5,
+          "weight_y": [
+            800,
+            100
+          ]
+        }
+      }
+    }
+  },
+  "parameters": [
+    {
+      "id": "ParamAngleX",
+      "min": -15,
+      "max": 15,
+      "default": 0,
+      "purpose": "头部左右浅转",
+      "keys": [
+        -15,
+        0,
+        15
+      ]
+    },
+    {
+      "id": "ParamAngleY",
+      "min": -12,
+      "max": 12,
+      "default": 0,
+      "purpose": "抬头/低头",
+      "keys": [
+        -12,
+        0,
+        12
+      ]
+    },
+    {
+      "id": "ParamAngleZ",
+      "min": -12,
+      "max": 12,
+      "default": 0,
+      "purpose": "轻微侧倾",
+      "keys": [
+        -12,
+        0,
+        12
+      ]
+    },
+    {
+      "id": "ParamEyeLOpen",
+      "min": 0,
+      "max": 1.15,
+      "default": 1,
+      "purpose": "左眼开合",
+      "keys": [
+        0,
+        0.25,
+        0.65,
+        1,
+        1.15
+      ]
+    },
+    {
+      "id": "ParamEyeROpen",
+      "min": 0,
+      "max": 1.15,
+      "default": 1,
+      "purpose": "右眼开合",
+      "keys": [
+        0,
+        0.25,
+        0.65,
+        1,
+        1.15
+      ]
+    },
+    {
+      "id": "ParamEyeLSmile",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "左侧笑眼弧度",
+      "keys": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamEyeRSmile",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "右侧笑眼弧度",
+      "keys": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowLY",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "左眉高度",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowRY",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "右眉高度",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowLAngle",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "左眉倾斜",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowRAngle",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "右眉倾斜",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamMouthOpenY",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "音量口型/张口",
+      "keys": [
+        0,
+        0.15,
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "ParamMouthForm",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "抿嘴/笑弧",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBodyAngleX",
+      "min": -5,
+      "max": 5,
+      "default": 0,
+      "purpose": "身体轻微左右倾",
+      "keys": [
+        -5,
+        0,
+        5
+      ]
+    },
+    {
+      "id": "ParamBodyAngleZ",
+      "min": -5,
+      "max": 5,
+      "default": 0,
+      "purpose": "身体轻微侧倾",
+      "keys": [
+        -5,
+        0,
+        5
+      ]
+    },
+    {
+      "id": "ParamBreath",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "克制呼吸",
+      "keys": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamMouthRound",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "keys": [
+        0,
+        1
+      ],
+      "purpose": "Original round-mouth variant"
+    },
+    {
+      "id": "ParamEyeBallX",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "keys": [
+        -1,
+        0,
+        1
+      ],
+      "purpose": "Independent iris tracking inside the real eyelid clip mask"
+    },
+    {
+      "id": "ParamEyeBallY",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "keys": [
+        -1,
+        0,
+        1
+      ],
+      "purpose": "Independent iris tracking inside the real eyelid clip mask"
+    }
+  ],
+  "expressions": [
+    {
+      "name": "E01_LowEnergy",
+      "reference": "E01",
+      "values": {
+        "ParamEyeLOpen": 0.65,
+        "ParamEyeROpen": 0.65,
+        "ParamMouthOpenY": 0.05,
+        "ParamMouthForm": 0,
+        "ParamAngleZ": -1
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E02_TiredBlink",
+      "reference": "E02",
+      "values": {
+        "ParamEyeLOpen": 0,
+        "ParamEyeROpen": 0,
+        "ParamMouthOpenY": 0.12,
+        "ParamMouthForm": -0.1,
+        "ParamAngleY": -4
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E03_Hesitant",
+      "reference": "E03",
+      "values": {
+        "ParamEyeLOpen": 1,
+        "ParamEyeROpen": 1,
+        "ParamBrowLY": 0.35,
+        "ParamBrowRY": 0.35,
+        "ParamBrowLAngle": 0.25,
+        "ParamBrowRAngle": -0.25,
+        "ParamMouthOpenY": 0.2,
+        "ParamMouthForm": -0.3,
+        "ParamMouthRound": 0.4
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E04_GentleReminder",
+      "reference": "E04",
+      "values": {
+        "ParamEyeLOpen": 0.5,
+        "ParamEyeROpen": 0.5,
+        "ParamAngleY": -3,
+        "ParamBodyAngleX": 3,
+        "ParamMouthOpenY": 0.16
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E05_Weary",
+      "reference": "E05",
+      "values": {
+        "ParamAngleY": -10,
+        "ParamAngleZ": 5,
+        "ParamEyeLOpen": 0.2,
+        "ParamEyeROpen": 0.2
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E06_BattleSmile",
+      "reference": "E06",
+      "values": {
+        "ParamEyeLOpen": 0.7,
+        "ParamEyeROpen": 0.7,
+        "ParamBrowLAngle": -0.7,
+        "ParamBrowRAngle": 0.7,
+        "ParamMouthForm": 0.9,
+        "ParamMouthOpenY": 0.35
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E07_SharpGaze",
+      "reference": "E07",
+      "values": {
+        "ParamEyeLOpen": 0.55,
+        "ParamEyeROpen": 0.55,
+        "ParamBrowLAngle": -0.8,
+        "ParamBrowRAngle": 0.8
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E08_Dizzy",
+      "reference": "E08",
+      "values": {
+        "ParamEyeLOpen": 1,
+        "ParamEyeROpen": 1,
+        "ParamMouthOpenY": 0.35,
+        "ParamMouthForm": -0.2,
+        "ParamAngleZ": 6,
+        "ParamMouthRound": 0.75
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E09_Vulnerable",
+      "reference": "E09",
+      "values": {
+        "ParamEyeLOpen": 0.35,
+        "ParamEyeROpen": 0.35,
+        "ParamBrowLY": 0.25,
+        "ParamBrowRY": 0.25,
+        "ParamMouthForm": -0.35,
+        "ParamAngleY": -3
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E10_SoftGaze",
+      "reference": "E10",
+      "values": {
+        "ParamEyeLOpen": 0.6,
+        "ParamEyeROpen": 0.6,
+        "ParamMouthForm": 0.35,
+        "ParamMouthOpenY": 0.03,
+        "ParamAngleZ": -7
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E11_ClosedEyeSmile",
+      "reference": "E11",
+      "values": {
+        "ParamEyeLOpen": 0,
+        "ParamEyeROpen": 0,
+        "ParamEyeLSmile": 0.75,
+        "ParamEyeRSmile": 0.75,
+        "ParamMouthForm": 0.65,
+        "ParamMouthOpenY": 0.1,
+        "ParamAngleZ": -7
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    },
+    {
+      "name": "E12_BrightLaugh",
+      "reference": "E12",
+      "values": {
+        "ParamEyeLOpen": 0,
+        "ParamEyeROpen": 0,
+        "ParamEyeLSmile": 1,
+        "ParamEyeRSmile": 1,
+        "ParamMouthForm": 1,
+        "ParamMouthOpenY": 0.65,
+        "ParamBodyAngleZ": -4
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Original official pose and pixels retained. Facial affine interpretation only; no arm redraw, props, glow, spiral eyes or blush is claimed."
+    }
+  ],
+  "hit_areas": [
+    {
+      "Name": "Head",
+      "Id": "HitAreaHead"
+    },
+    {
+      "Name": "Body",
+      "Id": "HitAreaBody"
+    }
+  ],
+  "copyright": {
+    "art": "Official character artwork derivative for local evaluation only. Not included in open-source toolkit distribution. Ownership remains with the official rights holder.",
+    "tool": "Original toolkit MIT; third-party serializer MIT."
+  },
+  "adaptations": [
+    "Full original pose/face/hair/clothes/weapon/flame wings retained. Base patch changes only explicit eye/brow/mouth polygons. Neutral parts restore original feature pixels.",
+    "Separate original irises move within native clipping masks; original lashes are preserved.",
+    "Closed lids are a small affine lowering of the original upper lash strip. Mouth is the original small mouth warped for lip sync.",
+    "No claim of official Live2D, reconstructed 3D or rights to redistribute official textures.",
+    "Source-only recipe: local-assets are intentionally excluded from this public distribution. This example cannot build until the user supplies independently permitted matching sources. Use robot or deskbot for a turnkey build."
+  ],
+  "limits": {
+    "keyforms_per_mesh": 15000
+  }
+}

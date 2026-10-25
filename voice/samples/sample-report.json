@@ -1,0 +1,56 @@
+{
+  "ok": true,
+  "testedAt": "2026-10-25T08:10:12.795943+00:00",
+  "model": "Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "speaker": "Serena",
+  "attention": "sdpa",
+  "samples": [
+    {
+      "voice": "phoenix-soft",
+      "sample_rate": 24000,
+      "audio_seconds": 5.2,
+      "generation_seconds": 15.8813,
+      "first_audio_seconds": 15.8813,
+      "rtf": 3.0541,
+      "peak": 0.22852,
+      "rms": 0.03469,
+      "file": "phoenix-soft.wav",
+      "text": "先休息一下吧。我在这里，慢慢来就好。"
+    },
+    {
+      "voice": "phoenix-drowsy",
+      "sample_rate": 24000,
+      "audio_seconds": 4.48,
+      "generation_seconds": 6.673,
+      "first_audio_seconds": 6.673,
+      "rtf": 1.4895,
+      "peak": 0.38477,
+      "rms": 0.04674,
+      "file": "phoenix-drowsy.wav",
+      "text": "唔，今天也辛苦了。让我陪你安静一会儿。"
+    },
+    {
+      "voice": "phoenix-focused",
+      "sample_rate": 24000,
+      "audio_seconds": 4.56,
+      "generation_seconds": 12.3795,
+      "first_audio_seconds": 12.3795,
+      "rtf": 2.7148,
+      "peak": 0.39453,
+      "rms": 0.04749,
+      "file": "phoenix-focused.wav",
+      "text": "收到。我先整理重点，再把下一步清楚地告诉你。"
+    }
+  ],
+  "network": {
+    "enabled": true,
+    "blocked_attempts": 0
+  },
+  "latency_definition": "Batch API: first audio available after full waveform generation; no 97ms streaming claim.",
+  "provenance": "Fixed original test text and generic style descriptions. No actor reference audio or voice cloning.",
+  "model_load_seconds": 6.9809,
+  "optional_generic_audio_loader_disabled": true,
+  "torch": "2.14.0+cu134",
+  "cuda": "13.4",
+  "device": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)"
+}

@@ -1,0 +1,8 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: precise-object-edit. Image 1 is an exact cropped official illustration reference of Phoenix Reffaella (菲欧妮), 480x480 source. It is an EDIT TARGET, not a style inspiration. Create a technical Live2D skin underlay by removing ONLY the two eyes (lashes, whites, irises, pupils), the two eyebrows, and the tiny mouth. Inpaint those small regions with natural clean facial skin matching the surrounding shading. Preserve the original asymmetric three-quarter head angle, face outline, chin shape, tiny nose, pale blonde hair including every forelock, bronze round hair ornaments, costume, neck, pose, colors, lighting, line thickness and all surrounding content. Do not redesign, beautify, make younger, rounder, more symmetrical or more front-facing. Do not move or redraw ANY hair or accessories; the rest of the target must be as unchanged as possible. No new eyes, eyelids, lips or eyebrows. This is only an intermediate featureless skin underlay, not a finished face. Preserve the existing transparent background, no text or watermark. Keep precisely the same square crop and framing.",
+  "reference": "face-reference-crop.png: direct official illustration crop, research/rig reference only",
+  "result": "face-underlay-generated.png",
+  "compositingRule": "Use generated pixels only for tiny facial feature underlay masks; keep all other original official image pixels unchanged. Do not mark official-derived texture as wholly original fan art.",
+  "status": "Recorded local official-pixel-preserving authoring recipe. Neither its official reference image nor its generated underlay is redistributed."
+}

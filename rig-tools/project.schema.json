@@ -1,0 +1,497 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:layered-rig:project:v1",
+  "title": "Layered Rig Project",
+  "type": "object",
+  "required": [
+    "version",
+    "name",
+    "canvas",
+    "sources",
+    "layers",
+    "parameters"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$"
+    },
+    "canvas": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 32,
+        "maximum": 8192
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "asset_root": {
+      "type": "string",
+      "default": "."
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minProperties": 1
+    },
+    "atlas_grid": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "atlas_size": {
+      "enum": [
+        256,
+        512,
+        1024,
+        2048,
+        4096
+      ]
+    },
+    "pixels_per_unit": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "allow_opaque_sources": {
+      "type": "boolean"
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/layer"
+      },
+      "minItems": 1
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/parameter"
+      }
+    },
+    "groups": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "effects"
+        ],
+        "properties": {
+          "effects": {
+            "$ref": "#/$defs/effects"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "expressions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/expression"
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "keyforms_per_mesh": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50000
+        }
+      },
+      "additionalProperties": false
+    },
+    "copyright": {
+      "type": "object"
+    },
+    "adaptations": {
+      "type": "array"
+    },
+    "hit_areas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "Name",
+          "Id"
+        ],
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "source_overlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "target",
+          "source",
+          "rect",
+          "polygons"
+        ],
+        "properties": {
+          "target": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "rect": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "crop": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "polygons": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "minItems": 3
+            }
+          },
+          "feather": {
+            "type": "number",
+            "minimum": 0
+          },
+          "preserve_target_alpha": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "effect": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "translate",
+            "rotate",
+            "scale",
+            "aperture",
+            "curve",
+            "opacity",
+            "multiply_color"
+          ]
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "degrees": {
+          "type": "number"
+        },
+        "bend": {
+          "type": "number"
+        },
+        "pivot": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "weight_y": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "value_mode": {
+          "enum": [
+            "raw",
+            "normalized"
+          ]
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 2
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "minItems": 2
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "weight_rect": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 5,
+          "maxItems": 5
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "opacity"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "points"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "multiply_color"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "channels"
+            ]
+          }
+        }
+      ]
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/effect"
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/effect"
+            },
+            "minItems": 1
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "required": [
+        "id",
+        "min",
+        "max",
+        "default"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,62}$"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "default": {
+          "type": "number"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 9,
+          "uniqueItems": true
+        },
+        "purpose": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "layer": {
+      "type": "object",
+      "required": [
+        "id",
+        "source"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,62}$"
+        },
+        "source": {
+          "type": "string"
+        },
+        "cell": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "rect": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "polygon": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 3
+        },
+        "mesh": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 128
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "group": {
+          "type": "string"
+        },
+        "effects": {
+          "$ref": "#/$defs/effects"
+        },
+        "masks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,62}$"
+          },
+          "uniqueItems": true
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "neutral_opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "grid": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "additionalProperties": false
+    },
+    "expression": {
+      "type": "object",
+      "required": [
+        "name",
+        "values"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "reference": {
+          "type": "string"
+        },
+        "evidence_file": {
+          "type": "string"
+        },
+        "adaptation": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

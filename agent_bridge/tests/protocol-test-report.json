@@ -1,0 +1,28 @@
+{
+  "test": "agent-bridge-protocol-and-file-boundary",
+  "testedAt": "2026-10-25T08:33:58.772655+00:00",
+  "protocolVersion": "2025-11-25",
+  "transport": "stdio",
+  "python": "3.13.17",
+  "testsRun": 18,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsedSeconds": 1.612,
+  "ok": true,
+  "scope": [
+    "real subprocess stdio initialize/tools-list/tools-call/ping/parse-error",
+    "structuredContent and text JSON parity",
+    "fixed shell-free child argv and synthetic filenames",
+    "project/asset/model/output traversal and external paths",
+    "symlink or Windows junction escape",
+    "single startup-authorized external Core file",
+    "nonempty output preservation",
+    "child error/invalid JSON/timeout"
+  ],
+  "fixture": "Synthetic temporary inputs and stub rig; no private media or account data.",
+  "limitations": [
+    "Builder/Core integration is recorded separately.",
+    "Application-level path checks are not an operating-system sandbox."
+  ]
+}

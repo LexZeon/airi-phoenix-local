@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "scope": "Published parameterized template, synthetic settings, isolated local HTTP; no real AIRI settings or model processes touched",
+  "checks": [
+    "environment paths and port select only the isolated fixture",
+    "external metadata and own-console model endpoints rejected",
+    "isolated HTTP health and bootstrap are real",
+    "missing CSRF and cross-origin writes rejected",
+    "preference save does not modify AIRI settings",
+    "actual fixture apply preserves character and unrelated settings with exact backup",
+    "arbitrary launcher action rejected"
+  ],
+  "checksPassed": 7,
+  "liveAiriRestarted": false,
+  "privatePathsOrSettingsIncluded": false,
+  "uiRetested": false,
+  "uiEvidence": "Historical deployed-console checks are separate in ../verification-summary.json"
+}

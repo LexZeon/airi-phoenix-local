@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "case": "Extract the single public ZIP into an unrelated temporary directory; run its bundled robot with external licensed Core",
+  "steps": [
+    {
+      "stage": "inspect",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "build",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "code": "OK"
+    }
+  ],
+  "markdownMissingLinks": [],
+  "privateDataCopied": false,
+  "coreBundled": false,
+  "geometryCases": 72
+}

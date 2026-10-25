@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "testedAt": "2026-10-25T08:13:29.500487+00:00",
+  "service": "airi-phoenix-qwen-tts",
+  "checks": [
+    {
+      "name": "GET /health",
+      "ok": true
+    },
+    {
+      "name": "GET /v1/models",
+      "ok": true
+    },
+    {
+      "name": "GET /v1/audio/voices",
+      "ok": true
+    },
+    {
+      "name": "HEAD health",
+      "ok": true
+    },
+    {
+      "name": "CORS preflight",
+      "ok": true
+    },
+    {
+      "name": "unknown-model",
+      "ok": true
+    },
+    {
+      "name": "unknown-voice",
+      "ok": true
+    },
+    {
+      "name": "empty-input",
+      "ok": true
+    },
+    {
+      "name": "unsupported-format",
+      "ok": true
+    },
+    {
+      "name": "POST actual wav",
+      "ok": true,
+      "bytes": 145964,
+      "wall_seconds": 7.4041,
+      "audio_seconds": "3.04",
+      "generation_seconds": "7.3999"
+    },
+    {
+      "name": "POST actual mp3",
+      "ok": true,
+      "bytes": 20424,
+      "wall_seconds": 4.762,
+      "audio_seconds": "3.04",
+      "generation_seconds": "4.7595"
+    }
+  ],
+  "metrics": {
+    "tts_requests": 2,
+    "tts_failures": 0,
+    "last_generation_seconds": 4.7468,
+    "last_audio_seconds": 3.04,
+    "last_rtf": 1.5614
+  },
+  "network": {
+    "enabled": true,
+    "blocked_attempts": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "testedAt": "2026-10-25T08:22:02.591477+00:00",
+  "test": "bounded-local-voice-queue",
+  "syntheticOnly": true,
+  "acceptedQueueCount": 8,
+  "ninthRequestStatus": 429,
+  "queueReleasedAfterDisconnect": true,
+  "disconnectCleanupSeconds": 0.458,
+  "concurrentChunks": [
+    {
+      "status": 200,
+      "audio_bytes": 46124,
+      "wave_header": true
+    },
+    {
+      "status": 200,
+      "audio_bytes": 61484,
+      "wave_header": true
+    }
+  ],
+  "requestsActiveAfterTest": 0,
+  "successfulSynthesisDelta": 2,
+  "network": {
+    "enabled": true,
+    "blocked_attempts": 0
+  }
+}

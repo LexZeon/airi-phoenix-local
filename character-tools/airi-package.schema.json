@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AIRI share package manifest (observed application version)",
+  "type": "object",
+  "required": ["format", "version", "card"],
+  "properties": {
+    "format": {"const": "airi-character-card"},
+    "version": {"const": 1},
+    "card": {"type": "object", "required": ["path", "spec"], "properties": {"path": {"const": "card.json"}, "spec": {"const": "chara_card_v3"}}},
+    "resources": {"type": "object", "required": ["displayModel"], "properties": {
+      "displayModel": {"type": "object", "required": ["path", "format", "name"], "properties": {
+        "path": {"type": "string"},
+        "format": {"enum": ["live2d-zip", "spine-zip", "tachie-zip", "vrm"]},
+        "name": {"type": "string"},
+        "controls": {"type": "object", "required": ["disabledExpressions", "disabledMotions"], "properties": {
+          "disabledExpressions": {"type": "array", "items": {"type": "string"}},
+          "disabledMotions": {"type": "array", "items": {"type": "string"}}
+        }}
+      }}
+    }}
+  },
+  "$comment": "ZIP additionally contains card.json (CCv3) and every resource referenced here. This schema describes the manifest only; AIRI remains the authoritative importer."
+}

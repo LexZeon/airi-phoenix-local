@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "ccv3": "Parsed by the installed AIRI @proj-airi/ccc source schema",
+  "sillyTavernV2": "Required field types checked against Character Card V2 specification",
+  "expressions": {
+    "count": 12,
+    "parser": "All names and reset accepted by actual AIRI normalizeActPayload",
+    "executor": "Actual AIRI expression context accepted all names, changed a synthetic test parameter, rejected unknown names and reset on timer"
+  },
+  "merge": "Existing cards, caller input and edits remain unchanged; duplicate initialization is idempotent",
+  "limitation": "This does not exercise a running renderer or guarantee that every expression visibly animates the eventual model."
+}

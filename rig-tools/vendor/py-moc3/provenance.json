@@ -1,0 +1,32 @@
+{
+  "revision": "2fb112e11a2d495557cfd09fbea72015cbfd47c5",
+  "repository": "https://github.com/Ludentes/py-moc3",
+  "license": "MIT",
+  "files": [
+    {
+      "sha256": "0a457e9bdc6ffb7cccdf6f2fbf1a5d7ab19a635ae38bb166a74cb22c4312abf0",
+      "snapshotSha256": "0a457e9bdc6ffb7cccdf6f2fbf1a5d7ab19a635ae38bb166a74cb22c4312abf0",
+      "file": "LICENSE",
+      "identical": true
+    },
+    {
+      "sha256": "bc8497e1322b4d8cb136e23aeaafff075b12e0a776b27030b4584310c586e4ef",
+      "snapshotSha256": "bc8497e1322b4d8cb136e23aeaafff075b12e0a776b27030b4584310c586e4ef",
+      "file": "src/moc3/__init__.py",
+      "identical": true
+    },
+    {
+      "sha256": "c93fe7a7455480fcfb153e7b4900f5ba597c779ed1f8493647ec6a6974a1f82b",
+      "snapshotSha256": "c93fe7a7455480fcfb153e7b4900f5ba597c779ed1f8493647ec6a6974a1f82b",
+      "file": "src/moc3/_core.py",
+      "identical": true
+    },
+    {
+      "sha256": "c20af5c978f2c88a913c0b9b8f969c6422baa79cebb19b00918d3885b0ca24dc",
+      "snapshotSha256": "c20af5c978f2c88a913c0b9b8f969c6422baa79cebb19b00918d3885b0ca24dc",
+      "file": "src/moc3/__main__.py",
+      "identical": true
+    }
+  ],
+  "copyright": "2026 Ludentes"
+}

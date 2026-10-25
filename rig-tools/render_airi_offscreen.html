@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent}canvas{display:block}</style><script src="/core.js"></script></head><body><script type="module">
+window.testReady=(async()=>{
+ const config=await(await fetch('/config.json')).json();
+ console.log('Config loaded');
+ const [{t:Application},{_:TickerPlugin,b:extensions,g:Ticker},{i:Live2DModel}]=await Promise.all([import('/airi/assets/'+config.app),import('/airi/assets/'+config.display),import('/airi/assets/'+config.live2d)]);
+ Live2DModel.registerTicker(Ticker);extensions.add(TickerPlugin);
+ console.log('Pixi modules loaded');
+ const app=new Application({width:1024,height:1536,resolution:1,preserveDrawingBuffer:true,backgroundColor:0x202735,backgroundAlpha:1,autoStart:false,antialias:true});document.body.appendChild(app.view);app.ticker.stop();
+ const model=await Live2DModel.from('/model/'+config.model,{autoInteract:false,autoUpdate:false});app.stage.addChild(model);
+ console.log('Model loaded');
+ const scale=Math.min(1000/model.width,1512/model.height);model.scale.set(scale);model.anchor.set(.5,.5);model.position.set(512,768);
+ model.internalModel.coreModel.update();model.internalModel.update=()=>{};
+ const core=model.internalModel.coreModel._model;
+ const originalUVs=core.drawables.vertexUvs.map(array=>Float32Array.from(array));
+ const originalXYs=core.drawables.vertexPositions.map(array=>Float32Array.from(array));
+ const defaults=Float32Array.from(core.parameters.defaultValues);
+ window.renderVariant=async(name,flipUV,flipY)=>{
+  core.drawables.vertexUvs.forEach((array,index)=>{array.set(originalUVs[index]);if(flipUV)for(let i=1;i<array.length;i+=2)array[i]=1-array[i];});
+  core.drawables.vertexPositions.forEach((array,index)=>{array.set(originalXYs[index]);if(flipY)for(let i=1;i<array.length;i+=2)array[i]=-array[i];});
+  app.renderer.render(app.stage);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));app.renderer.render(app.stage);
+  const gl=app.renderer.gl,pixels=new Uint8Array(1024*1536*4);gl.readPixels(0,0,1024,1536,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let nonzero=0;for(let i=3;i<pixels.length;i+=4)if(pixels[i])nonzero++;
+  return{name,flipUV,flipY,width:app.view.width,height:app.view.height,modelWidth:model.width,modelHeight:model.height,nontransparentPixels:nonzero,rendererType:app.renderer.type,glVersion:app.renderer.gl.getParameter(app.renderer.gl.VERSION),expressionDefinitions:model.internalModel.motionManager.expressionManager?.definitions,parameterIds:Array.from(core.parameters.ids),png:app.view.toDataURL('image/png')};
+ };
+ window.renderPose=async(name,values)=>{
+  core.parameters.values.set(defaults);
+  for(const [id,value] of Object.entries(values)){const index=core.parameters.ids.indexOf(id);if(index>=0)core.parameters.values[index]=Math.max(core.parameters.minimumValues[index],Math.min(core.parameters.maximumValues[index],value));}
+  core.update();
+  core.drawables.vertexUvs.forEach((array,index)=>array.set(originalUVs[index]));
+  app.renderer.render(app.stage);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));app.renderer.render(app.stage);
+  return{name,values,glVersion:app.renderer.gl.getParameter(app.renderer.gl.VERSION),png:app.view.toDataURL('image/png')};
+ };
+ return true;
+})();window.testReady.catch(error=>console.error(error.stack));
+</script></body></html>

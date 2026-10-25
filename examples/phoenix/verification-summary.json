@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-25",
+  "scope": "Sanitized local candidate checks, no official or derived media distributed",
+  "neutral": {
+    "dimensions": [
+      2347,
+      1253
+    ],
+    "changedRgbPixels": 0,
+    "alphaEqual": true,
+    "channelExtrema": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "outsidePatchChanges": 0
+  },
+  "core": {
+    "status": "PASS",
+    "meshes": 14,
+    "parameters": 19,
+    "expressions": 12,
+    "geometryCases": 133,
+    "invalidMagicRejected": true
+  },
+  "webgl": {
+    "runtime": "Actual existing AIRI Pixi/Cubism in isolated offscreen Electron",
+    "uniqueExpressionImages": 12,
+    "expressionCount": 12,
+    "trackingInfluences": [
+      "IrisLeft",
+      "IrisRight"
+    ]
+  },
+  "desktopAcceptance": "Visible in actual AIRI desktop per local acceptance update; framing/12-expression/audio combined acceptance pending",
+  "excluded": [
+    "official input images",
+    "official-derived underlays/textures/model packages",
+    "Core",
+    "private desktop screenshots"
+  ],
+  "separateCards": {
+    "official2d": "visible; framing and combined acceptance pending",
+    "standing2d": "in production",
+    "userProvided3d": "foreground display verified locally; model not redistributed"
+  }
+}

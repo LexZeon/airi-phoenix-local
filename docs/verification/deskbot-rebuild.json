@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "stages": [
+    {
+      "stage": "inspect",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "build",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "code": "OK"
+    }
+  ],
+  "core": {
+    "status": "PASS",
+    "meshes": 8,
+    "parameters": 7,
+    "expressions": 4,
+    "geometryCases": 77
+  },
+  "runtimeFiles": [
+    "DeskBot.model3.json",
+    "DeskBot.moc3",
+    "textures/texture_00.png",
+    "expressions/expression_01.exp3.json",
+    "expressions/expression_02.exp3.json",
+    "expressions/expression_03.exp3.json",
+    "expressions/expression_04.exp3.json",
+    "motions/idle.motion3.json",
+    "motions/capability-demo.motion3.json",
+    "build-manifest.json",
+    "TOOL-LICENSE.txt",
+    "THIRD-PARTY-py-moc3-LICENSE.txt"
+  ],
+  "motionGroups": [
+    "Idle",
+    "Demo"
+  ],
+  "coreIncluded": false,
+  "motionAuthoring": "Project-owned post-build motion3 data; the generic builder schema does not author motions.",
+  "unperformed": [
+    "AIRI desktop import, ACT expression and speech/lip-sync integration",
+    "Cubism Editor .cmo3 authoring"
+  ]
+}

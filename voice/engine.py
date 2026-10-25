@@ -27,7 +27,8 @@ class TTSEngine:
         self.config = json.loads(Path(style_file).read_text(encoding="utf-8-sig"))
         self.lock = threading.Lock()
         self.ready = False
-        self.metrics = {"tts_requests": 0, "tts_failures": 0, "last_generation_seconds": None, "last_audio_seconds": None, "last_rtf": None}
+        self.metrics = {"tts_requests": 0, "tts_failures": 0, "last_generation_seconds": None, "last_audio_seconds": None, "last_rtf": None,
+                        "last_voice": None, "last_profile": None}
         began = time.monotonic()
         self.model = Qwen3TTSModel.from_pretrained(
             str(Path(model_dir).resolve(strict=True)), device_map="cuda:0",
@@ -35,6 +36,30 @@ class TTSEngine:
         )
         self.load_seconds = time.monotonic() - began
         self.ready = True
+
+    @contextlib.contextmanager
+    def predictor_output_mode(self, hidden_states):
+        """Apply one optional residual-predictor setting only inside the GPU lock."""
+        if hidden_states is not False:
+            yield
+            return
+        if not self.lock.locked():
+            raise RuntimeError("The local speech generation lock is required")
+        predictor = self.model.model.talker.code_predictor
+        had_own = "generate" in vars(predictor)
+        previous_own = vars(predictor).get("generate")
+        original = predictor.generate
+        def generate(*args, **kwargs):
+            kwargs["output_hidden_states"] = False
+            return original(*args, **kwargs)
+        predictor.generate = generate
+        try:
+            yield
+        finally:
+            if had_own:
+                predictor.generate = previous_own
+            else:
+                delattr(predictor, "generate")
 
     @contextlib.contextmanager
     def generation_slot(self, cancelled, queue_timeout, generation_timeout):
@@ -76,14 +101,16 @@ class TTSEngine:
             raise ValueError("Unknown voice alias")
         if isinstance(speed, bool) or not isinstance(speed, (int, float)) or not 0.75 <= speed <= 1.25:
             raise ValueError("speed must be between 0.75 and 1.25")
-        instructions = self.config["voices"][selected]["instructions"]
+        profile = self.config["voices"][selected]
+        instructions = profile["instructions"]
+        profile_mode = "predictor-hidden-off" if profile.get("predictor_hidden_states") is False else "default"
         if speed != 1:
             instructions += f" 目标语速约为平常的百分之{round(speed * 100)}，保持自然音高。"
         with self.generation_slot(cancelled, queue_timeout, generation_timeout):
             began = time.monotonic()
             self.torch.manual_seed(self.config["seed"])
             try:
-                with self.torch.inference_mode():
+                with self.torch.inference_mode(), self.predictor_output_mode(profile.get("predictor_hidden_states")):
                     wavs, sample_rate = self.model.generate_custom_voice(
                         text=text.strip(), language=self.config["language"], speaker=self.config["speaker"],
                         instruct=instructions, max_new_tokens=self.config["max_new_tokens"],
@@ -103,8 +130,9 @@ class TTSEngine:
                 duration = audio.size / sample_rate
                 self.metrics.update(tts_requests=self.metrics["tts_requests"] + 1,
                                     last_generation_seconds=round(elapsed, 4), last_audio_seconds=round(duration, 4),
-                                    last_rtf=round(elapsed / duration, 4))
+                                    last_rtf=round(elapsed / duration, 4), last_voice=selected, last_profile=profile_mode)
                 return output.getvalue(), {"voice": selected, "sample_rate": int(sample_rate),
+                    "profile": profile_mode,
                     "audio_seconds": round(duration, 4), "generation_seconds": round(elapsed, 4),
                     "first_audio_seconds": round(elapsed, 4), "rtf": round(elapsed / duration, 4),
                     "peak": round(float(np.max(np.abs(audio))), 5), "rms": round(float(np.sqrt(np.mean(audio ** 2))), 5)}

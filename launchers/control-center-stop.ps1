@@ -11,7 +11,7 @@ $controlStatePath = Join-Path $controlData 'server.json'
 $controlScript = Join-Path $controlRoot 'server.py'
 try {
     if (-not (Test-Path -LiteralPath $controlStatePath)) { Write-Output 'Control center has no recorded server.'; exit 0 }
-    $controlState = Get-Content -LiteralPath $controlStatePath -Raw | ConvertFrom-Json
+    $controlState = Get-Content -LiteralPath $controlStatePath -Encoding UTF8 -Raw | ConvertFrom-Json
     if ($controlState.app -ne 'airi-local-control-center' -or $controlState.script -ne $controlScript) { throw 'Control-center ownership record does not match.' }
     $controlProcess = Get-CimInstance Win32_Process -Filter ('ProcessId=' + [int]$controlState.pid) -ErrorAction SilentlyContinue
     if (-not $controlProcess) { Write-Output 'Control center is already stopped.'; exit 0 }

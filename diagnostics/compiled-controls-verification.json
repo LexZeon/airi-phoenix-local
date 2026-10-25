@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "scope": "Actual compiled AIRI manifest inspector; separate hidden renderer and profile; no live Pinia/card/profile mutation",
+  "manifestBundle": "manifest-DfyKl-vK.js",
+  "zipSha256": "3534daba4ebc313cafef35f448ac0229808a05c6cbe94cd306f38281688f5002",
+  "expressions": [
+    {
+      "name": "E01_LowEnergy",
+      "parameterCount": 5
+    },
+    {
+      "name": "E02_TiredBlink",
+      "parameterCount": 5
+    },
+    {
+      "name": "E03_Hesitant",
+      "parameterCount": 9
+    },
+    {
+      "name": "E04_GentleReminder",
+      "parameterCount": 5
+    },
+    {
+      "name": "E05_Weary",
+      "parameterCount": 4
+    },
+    {
+      "name": "E06_BattleSmile",
+      "parameterCount": 6
+    },
+    {
+      "name": "E07_SharpGaze",
+      "parameterCount": 4
+    },
+    {
+      "name": "E08_Dizzy",
+      "parameterCount": 6
+    },
+    {
+      "name": "E09_Vulnerable",
+      "parameterCount": 6
+    },
+    {
+      "name": "E10_SoftGaze",
+      "parameterCount": 5
+    },
+    {
+      "name": "E11_ClosedEyeSmile",
+      "parameterCount": 7
+    },
+    {
+      "name": "E12_BrightLaugh",
+      "parameterCount": 7
+    }
+  ],
+  "motions": 0,
+  "archiveBytes": 11258699
+}

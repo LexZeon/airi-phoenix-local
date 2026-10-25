@@ -1,0 +1,170 @@
+{
+  "ok": true,
+  "testedAt": "2026-10-25",
+  "syntheticOnly": true,
+  "text": "先休息一下吧。我在这里，慢慢来就好。",
+  "speaker": "Serena",
+  "voice": "phoenix-soft",
+  "environment": {
+    "torch": "2.14.0+cu134",
+    "cuda": "13.4",
+    "device": "NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)",
+    "cpu_threads": 20,
+    "interop_threads": 20,
+    "talker": {
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16",
+      "attention": "sdpa",
+      "use_cache": true
+    },
+    "predictor": {
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16",
+      "attention": "sdpa",
+      "use_cache": true
+    },
+    "tokenizer": {
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16",
+      "attention": "sdpa",
+      "use_cache": null
+    },
+    "flash_sdp_enabled": true,
+    "memory_efficient_sdp_enabled": true,
+    "math_sdp_enabled": true
+  },
+  "firstComparison": {
+    "totalGenerations": 21,
+    "measuredRuns": 16,
+    "summary": {
+      "cases": {
+        "baseline": {
+          "n": 8,
+          "median_wall_seconds": 6.120358599997417,
+          "min_wall_seconds": 5.9605967000097735,
+          "max_wall_seconds": 7.771688699998776,
+          "median_rtf": 1.1769920384610417,
+          "distinct_audio_hashes": 1
+        },
+        "non_streaming_true": {
+          "n": 2,
+          "median_wall_seconds": 9.035526200001186,
+          "min_wall_seconds": 8.141962699999567,
+          "max_wall_seconds": 9.929089700002805,
+          "median_rtf": 1.283455426136532,
+          "distinct_audio_hashes": 1
+        },
+        "subtalker_greedy": {
+          "n": 2,
+          "median_wall_seconds": 7.4484636500055785,
+          "min_wall_seconds": 6.5510120000108145,
+          "max_wall_seconds": 8.345915300000343,
+          "median_rtf": 1.2754218578776677,
+          "distinct_audio_hashes": 1
+        },
+        "predictor_hidden_off": {
+          "n": 2,
+          "median_wall_seconds": 6.0932189999948605,
+          "min_wall_seconds": 6.073609300001408,
+          "max_wall_seconds": 6.112828699988313,
+          "median_rtf": 1.1717728846143962,
+          "distinct_audio_hashes": 1
+        },
+        "combo": {
+          "n": 2,
+          "median_wall_seconds": 8.229024249994836,
+          "min_wall_seconds": 7.367117999994662,
+          "max_wall_seconds": 9.090930499995011,
+          "median_rtf": 1.2544244283528714,
+          "distinct_audio_hashes": 1
+        }
+      },
+      "paired": {
+        "non_streaming_true": {
+          "baseline_median_seconds": 6.0461633000013535,
+          "candidate_median_seconds": 9.035526200001186,
+          "candidate_over_baseline": 1.4944231162263122,
+          "speedup": 0.6691545313653742
+        },
+        "subtalker_greedy": {
+          "baseline_median_seconds": 6.053516299994953,
+          "candidate_median_seconds": 7.4484636500055785,
+          "candidate_over_baseline": 1.2304358790628496,
+          "speedup": 0.8127201238325731
+        },
+        "predictor_hidden_off": {
+          "baseline_median_seconds": 7.71627135000017,
+          "candidate_median_seconds": 6.0932189999948605,
+          "candidate_over_baseline": 0.789658466325802,
+          "speedup": 1.2663702634037408
+        },
+        "combo": {
+          "baseline_median_seconds": 6.836860299998079,
+          "candidate_median_seconds": 8.229024249994836,
+          "candidate_over_baseline": 1.203626209825751,
+          "speedup": 0.8308227187448585
+        }
+      }
+    }
+  },
+  "counterbalancedFollowup": {
+    "totalGenerations": 10,
+    "measuredRuns": 8,
+    "order": "ABBA then BAAB",
+    "summary": {
+      "cases": {
+        "baseline": {
+          "n": 4,
+          "median_wall_seconds": 7.440694850003638,
+          "min_wall_seconds": 6.00131710000278,
+          "max_wall_seconds": 7.684980100006214,
+          "median_rtf": 1.4309028557699304,
+          "distinct_audio_hashes": 1
+        },
+        "predictor_hidden_off": {
+          "n": 4,
+          "median_wall_seconds": 5.959130549999827,
+          "min_wall_seconds": 5.92222789999505,
+          "max_wall_seconds": 6.021655399992596,
+          "median_rtf": 1.145986644230736,
+          "distinct_audio_hashes": 1
+        }
+      },
+      "paired": {
+        "predictor_hidden_off": {
+          "baseline_median_seconds": 7.440694850003638,
+          "candidate_median_seconds": 5.959130549999827,
+          "candidate_over_baseline": 0.8008836096802053,
+          "speedup": 1.2486208831259542
+        }
+      }
+    }
+  },
+  "baselineAndHiddenOffBitIdentical": true,
+  "defaultChanged": false,
+  "backgroundVisionEnabled": true,
+  "productionModelRemainedLoaded": true,
+  "liveAliasHttpVerification": "passed: warmup plus ABBA, profile response headers confirmed, four bit-identical WAVs",
+  "testCounts": {
+    "candidateHelper": 5,
+    "engineProfile": 4
+  },
+  "limits": [
+    "This loads a second model instance; the existing API, LLM, vision and rendering may compete for GPU/host memory.",
+    "ABBA compares candidates against nearby baseline runs under the same background, not an exclusive-GPU ceiling.",
+    "This direct-engine comparison excludes HTTP queue wait, MP3 encoding and the live server's socket-cancellation checks; use a separate end-to-end probe for those.",
+    "Coarse phase boundaries synchronize CUDA; nested predictor time is host elapsed time, not isolated GPU compute time.",
+    "All audio is generated in batches; first audio is available only after generation finishes.",
+    "No automatic quality rating or default selection is made. Listen to saved synthetic samples before choosing."
+  ],
+  "liveHttpSummary": {
+    "phoenix-soft": {
+      "n": 2,
+      "median_complete_wav_seconds": 7.579736900006537
+    },
+    "phoenix-soft-efficient": {
+      "n": 2,
+      "median_complete_wav_seconds": 6.08175995000056
+    }
+  }
+}

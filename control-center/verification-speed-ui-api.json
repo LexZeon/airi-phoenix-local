@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "newChoicesInstalled": [
+    "qwen-efficient",
+    "sapi-huihui"
+  ],
+  "measuredEvidencePresent": true,
+  "threeSamplesValidWav": true,
+  "localSapiTokenExcludedFromBootstrap": true,
+  "defaultStillOriginalSerena": true
+}

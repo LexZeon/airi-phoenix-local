@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-25",
+  "mode": "Independent read-only source review; no runtime/profile changes or synthesis",
+  "sourceFilesReviewed": 178,
+  "restrictedMediaWeightsCorePrivatePathsCredentialsFound": false,
+  "binaryWhitelistReviewed": true,
+  "markdownLinksIntact": true,
+  "causalEvidence": "38970ms scene SDK observation correctly marked INCONCLUSIVE, no remaining false causal voice-chain PASS found",
+  "findings": [
+    {
+      "issue": "Additional-card speech providers omitted by launcher",
+      "resolution": "Final host launcher enumerates additional-card speech overrides; synchronized after verified multi-card mapping and preserved-default UI/API checks"
+    },
+    {
+      "issue": "Primary disabled skips additional/sticker/idle bootstrap",
+      "resolution": "Explicit snapshot prerequisite documented; not claimed as a standalone MMD wrapper"
+    },
+    {
+      "issue": "Launcher overwrites APP_USER_DATA_PATH and updater backs up fixed profile",
+      "resolution": "Document direct-wrapper override vs one-click fixed profile separately"
+    },
+    {
+      "issue": "Legacy shared ASR fixture requires test_wavs/zh.wav",
+      "resolution": "Document fixture dependency and alternative fixed synthetic HTTP probe"
+    }
+  ]
+}

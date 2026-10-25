@@ -1,0 +1,34 @@
+{
+  "character": "Phoenix Reffaella / 菲欧妮·蕾法爱菈",
+  "officialStickerPackVerified": false,
+  "selectedMethod": "Static crops of locally cached official video storyboard images, with per-image source/hash/crop provenance.",
+  "officialCatalog": {
+    "url": "https://bbs-api.miyoushe.com/misc/api/emoticon_set?gids=8",
+    "verifiedResult": "retcode=0; three Zenless-related sets returned; no item name/metadata matched 菲欧妮, 菲歐妮, or Phoenix in this returned catalog.",
+    "limit": "This does not establish that no official pack exists elsewhere. Third-party reposts and leak packs were not adopted."
+  },
+  "videoSources": [
+    {
+      "id": "demo",
+      "title": "Phoenix Character Demo - Do Not Die Challenge",
+      "officialPage": "https://www.youtube.com/watch?v=wHxjO2Ut3Ic",
+      "officialChinesePage": "https://www.bilibili.com/video/BV1d5JQ6pEFS/",
+      "officialWebsiteIndex": "https://zenless.hoyoverse.com/zh-cn/video?catchSpider=1",
+      "channel": "@ZZZ_Official",
+      "channelId": "UC2SpC8rL9LaeQriE4YNdyzA",
+      "usedNominalSeconds": [16, 26, 68, 86, 128]
+    },
+    {
+      "id": "ep",
+      "title": "Phoenix EP - 1% Battery Girl",
+      "officialPage": "https://www.youtube.com/watch?v=AkWvzeXDUxY",
+      "officialChinesePage": "https://www.bilibili.com/video/BV1SknF6KE5g/",
+      "officialWebsiteIndex": "https://zenless.hoyoverse.com/zh-cn/video?catchSpider=1",
+      "channel": "@ZZZ_Official",
+      "channelId": "UC2SpC8rL9LaeQriE4YNdyzA",
+      "usedNominalSeconds": [50, 140, 208, 212]
+    }
+  ],
+  "imageLimits": "Sources are 320x180 public storyboard samples at nominal 2-second spacing. Crops are static, approximately 150-225 pixels, with no upscaling or AI redraw; emotion names are original descriptions.",
+  "publication": "Official source images, storyboard sheets, cropped stickers, signed media URLs, private paths, and application data are excluded. This file records canonical source pages and the verified method only."
+}

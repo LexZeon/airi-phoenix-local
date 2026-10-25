@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "commit": "f2fa8ecab66e0815b9ded6c10e97f3c212843dbb",
+  "anonymousPublicDownload": true,
+  "url": "https://raw.githubusercontent.com/LexZeon/airi-phoenix-local/f2fa8ecab66e0815b9ded6c10e97f3c212843dbb/dist/airi-character-forge-0.2.0.zip",
+  "bytes": 740609,
+  "sha256": "ade95b4a688f29626d8b9bb079f4778bb597c481ec30152f505c49101b8c6ff0",
+  "reviewedRemoteTreeFiles": 101,
+  "scope": "First published source/tool bundle; later working-tree additions are not implied to be in this immutable commit."
+}

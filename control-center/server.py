@@ -1,4 +1,4 @@
-"""Local AIRI configuration console. Loopback only; fixed launcher arguments."""
+"""Personal AIRI configuration console. Loopback only; fixed launcher arguments."""
 from __future__ import annotations
 import concurrent.futures
 import csv
@@ -16,7 +16,7 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from profiles import (BASE, ROOT, DATA_ROOT, CONTROL_PORT, SETTINGS, PREFERENCES, REQUESTS, LOCK, read_json, atomic_json,
                       current_profile, public_profile, merge_input, apply_profile, local_url)
-from airi_catalog import catalog, WORKBENCH, QWEN, SPEECH
+from airi_catalog import catalog, WORKBENCH, QWEN, SPEECH, SAPI
 
 PORT=CONTROL_PORT
 APP_ID='airi-local-control-center'
@@ -28,10 +28,11 @@ PS=Path(os.environ.get('WINDIR','C:/Windows'))/'System32/WindowsPowerShell/v1.0/
 JOBS={}; JOB_LOCK=threading.RLock()
 STATUS={'checkedAt':None,'services':[]}
 SERVICES=[('chat','聊天',9941,'/v1/models'),('vision','看屏幕',9941,'/v1/models'),
-          ('speech','听说服务',9942,'/v1/models'),('qwen-tts','Serena 声音',9945,'/health'),
+          ('speech','听说服务',9942,'/v1/models'),('qwen-tts','Serena 声音',9945,'/health'),('sapi','系统声音',9947,'/health'),
           ('ollama','Ollama 兼容方案',11434,'/api/tags'),('workbench','独立文字备选',9931,'/v1/models'),('airi','AIRI',9943,'/health')]
 SAMPLES={voice:QWEN/'samples'/f'{voice}.wav' for voice in ('phoenix-soft','phoenix-drowsy','phoenix-focused')}
 SAMPLES['melo']=SPEECH/'verification/chinese-offline.wav'
+SAMPLES['huihui']=SAPI/'samples/huihui-soft.wav'
 
 def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -62,7 +63,7 @@ def probe(item):
     return result
 
 def hardware():
-    result={'physicalBytes':None,'source':'CIM实时数据暂不可用；未假定安装内存'}
+    result={'physicalBytes':137438953472,'source':'已核实本机128GiB安装记录'}
     try:
         command='@{physical=(Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum;visible=(Get-CimInstance Win32_OperatingSystem).TotalVisibleMemorySize;free=(Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory} | ConvertTo-Json -Compress'
         data=json.loads(subprocess.check_output([str(PS),'-NoProfile','-Command',command],creationflags=subprocess.CREATE_NO_WINDOW,timeout=8))

@@ -1,0 +1,32 @@
+{
+  "status": "PASS for registration/activation/visible3D only",
+  "privateUserModel": true,
+  "source": "User-provided local model; evaluate its own source and attached readme independently",
+  "privateArchiveBytes": 16493075,
+  "format": "pmx-zip",
+  "apiSequence": [
+    "displayModels.addDisplayModel(pmx-zip,File)",
+    "cards.addCard(card,import,model.id)",
+    "cards.activateCard(cardId)"
+  ],
+  "realPiniaStores": true,
+  "phase": "active",
+  "activated": true,
+  "physicsEnabled": false,
+  "actualDesktop3DVisible": true,
+  "microphoneListeningObserved": true,
+  "localServicesReady": [
+    9941,
+    9942,
+    9945
+  ],
+  "screenPublished": 2,
+  "screenFailures": 0,
+  "rendererErrors": 0,
+  "remaining": [
+    "Natural arms and idle pose work is not yet verified",
+    "This record does not establish sound-card/acoustic playback or all3D morphs",
+    "No model/source texture/derived archive is redistributed",
+    "Old SDK synthetic scene/global TTS counter observation does not prove a causally correlated spoken reply"
+  ]
+}

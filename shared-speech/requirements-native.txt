@@ -1,0 +1,6 @@
+sherpa-onnx==2.0.0
+sherpa-onnx-core==2.0.0
+fastapi==0.128.0
+uvicorn==0.40.0
+python-multipart==0.0.21
+starlette==0.50.0

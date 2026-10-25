@@ -6,6 +6,7 @@
 | --- | --- |
 | 原创代码、文档、提示词 | 根目录 MIT；作者署名 LexZeon。角色 IP 不因此转移。 |
 | 原创几何 robot/DeskBot | 随包 MIT；无第三方角色、官方像素或 Core。 |
+| 原创12秒骨骼待机VMD | 随包 MIT；由程序生成，只含旋转/微位移，不含用户PMX、纹理、第三方动作或头/眼/嘴/morph轨道。不同骨架需重新适配。 |
 | MOC3 serializer | [Ludentes/py-moc3](https://github.com/Ludentes/py-moc3)，固定 `2fb112e11a2d495557cfd09fbea72015cbfd47c5`；完整 MIT 通知和文件哈希在 `rig-tools/vendor/py-moc3`。未带其他无统一许可角色案例。 |
 | Live2D Core／SDK | 不打包，不自动下载。用户提供合法取得的现有 Core；遵守 [Live2D 许可](https://www.live2d.com/eula/live2d-proprietary-software-license-agreement_en.html)。 |
 | Qwen3-TTS | 适配代码 MIT；[上游程序](https://github.com/QwenLM/Qwen3-TTS)及 [CustomVoice 权重](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice)采用各自 Apache-2.0；版本/哈希见 `voice/models.lock.json`。程序不附权重或第三方依赖二进制。 |

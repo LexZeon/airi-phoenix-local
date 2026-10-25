@@ -8,6 +8,8 @@
 - `prompts/face-underlay-generation.json`与`eye-whites-generation.json`：当前保真小区域补绘记录。
 - `prompts/base-generation.json`与`facial-generation.json`：旧v1被否决的正面重绘历史，非当前成品，也不附该画稿。
 
-当前本机常服保持2347×1253原姿势，完成14 drawable/19参数/12表情：左右眨眼、独立裁切虹膜、口型、浅头动/呼吸、Head/Body HitAreas。中性RGBA与原图全等；实际AIRI WebGL离屏及Core133组合通过。官图2D实际桌面已可见，位置/12表情与语音联合验收仍在进行；站姿2D与两套时装待制作。另有用户自有3D前台显示已验证，作为独立卡，不包含其模型文件。公开只附sanitized数值报告，不附官图派生预览。
+当前本机常服保持2347×1253原姿势，完成14 drawable/19参数/12表情：左右眨眼、独立裁切虹膜、口型、浅头动/呼吸、Head/Body HitAreas。中性RGBA与原图全等；实际AIRI WebGL离屏及Core133组合通过。官图2D实际桌面已可见，主app已注册12表情，视觉/语音联合验收另验；站姿2D已通过Core135组合、真实WebGL29帧并导入独立卡；两套时装由用户暂缓。另有用户自有3D前台显示已验证，作为独立卡，不包含其模型文件。公开只附sanitized数值报告，不附官图派生预览。
 
 配方的`base/original/leftwhite/rightwhite`分别引用相同原图文件，仅在内存中按明确polygon做不同技术补底；`skin`和`whiteplate`来自外部图像工具。只有拥有相应使用权限的本地项目才应提供这些来源。不要为方便构建而从第三方镜像打包素材。可运行示例请改用`rig-tools/examples/robot`或`examples/deskbot`。
+
+站姿配方与新atlas提示词单独保存；[站姿数值报告](standing-verification-summary.json)无私人路径、图片或模型。受认可身体底稿保持，新五官atlas重做，未复用旧幼圆脸五官。

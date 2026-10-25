@@ -1,0 +1,170 @@
+{
+  "ok": true,
+  "synthetic_only": true,
+  "text": "先休息一下吧。我在这里，慢慢来就好。",
+  "default_changed": false,
+  "model": "phoenix-qwen3-tts-local",
+  "runs": [
+    {
+      "voice": "phoenix-soft",
+      "first_response_seconds": 7.545351300010225,
+      "first_complete_wav_seconds": 7.5456223000073805,
+      "audio_seconds": 5.2,
+      "rtf": 1.4510812115398808,
+      "headers": {
+        "X-AIRI-Audio-Seconds": "5.2",
+        "X-AIRI-Generation-Seconds": "7.5323",
+        "X-AIRI-RTF": "1.4485",
+        "X-AIRI-Voice-Profile": "default"
+      },
+      "audio_sha256": "845dbba822164162816d65dd58a4a7cfe2edfa1e41c8e48d6a979a2cd7fde6ef",
+      "sample_file": "alias-1.wav"
+    },
+    {
+      "voice": "phoenix-soft-efficient",
+      "first_response_seconds": 6.175642400005017,
+      "first_complete_wav_seconds": 6.175965400005225,
+      "audio_seconds": 5.2,
+      "rtf": 1.1876856538471587,
+      "headers": {
+        "X-AIRI-Audio-Seconds": "5.2",
+        "X-AIRI-Generation-Seconds": "6.1558",
+        "X-AIRI-RTF": "1.1838",
+        "X-AIRI-Voice-Profile": "predictor-hidden-off"
+      },
+      "audio_sha256": "845dbba822164162816d65dd58a4a7cfe2edfa1e41c8e48d6a979a2cd7fde6ef",
+      "sample_file": "alias-2.wav"
+    },
+    {
+      "voice": "phoenix-soft-efficient",
+      "first_response_seconds": 5.9872865000070306,
+      "first_complete_wav_seconds": 5.987554499995895,
+      "audio_seconds": 5.2,
+      "rtf": 1.151452788460749,
+      "headers": {
+        "X-AIRI-Audio-Seconds": "5.2",
+        "X-AIRI-Generation-Seconds": "5.9697",
+        "X-AIRI-RTF": "1.148",
+        "X-AIRI-Voice-Profile": "predictor-hidden-off"
+      },
+      "audio_sha256": "845dbba822164162816d65dd58a4a7cfe2edfa1e41c8e48d6a979a2cd7fde6ef",
+      "sample_file": "alias-3.wav"
+    },
+    {
+      "voice": "phoenix-soft",
+      "first_response_seconds": 7.613641599993571,
+      "first_complete_wav_seconds": 7.613851500005694,
+      "audio_seconds": 5.2,
+      "rtf": 1.4642022115395565,
+      "headers": {
+        "X-AIRI-Audio-Seconds": "5.2",
+        "X-AIRI-Generation-Seconds": "7.5957",
+        "X-AIRI-RTF": "1.4606",
+        "X-AIRI-Voice-Profile": "default"
+      },
+      "audio_sha256": "845dbba822164162816d65dd58a4a7cfe2edfa1e41c8e48d6a979a2cd7fde6ef",
+      "sample_file": "alias-4.wav"
+    }
+  ],
+  "waveforms_bit_identical": true,
+  "summary": {
+    "phoenix-soft": {
+      "n": 2,
+      "median_complete_wav_seconds": 7.579736900006537
+    },
+    "phoenix-soft-efficient": {
+      "n": 2,
+      "median_complete_wav_seconds": 6.08175995000056
+    }
+  },
+  "split_runs": [
+    {
+      "parts": [
+        {
+          "voice": "phoenix-soft",
+          "first_response_seconds": 2.9381766000005882,
+          "first_complete_wav_seconds": 2.9384469999931753,
+          "audio_seconds": 2.48,
+          "rtf": 1.1848576612875708,
+          "headers": {
+            "X-AIRI-Audio-Seconds": "2.48",
+            "X-AIRI-Generation-Seconds": "2.9155",
+            "X-AIRI-RTF": "1.1755",
+            "X-AIRI-Voice-Profile": "default"
+          },
+          "audio_sha256": "475414f84a7deb5b8d4b30cc059f1f74a41582c505e33c8f4eb96c6a65f14d4f",
+          "sample_file": "split-1-1.wav"
+        },
+        {
+          "voice": "phoenix-soft",
+          "first_response_seconds": 4.120901999995112,
+          "first_complete_wav_seconds": 4.12128500000108,
+          "audio_seconds": 3.6,
+          "rtf": 1.144801388889189,
+          "headers": {
+            "X-AIRI-Audio-Seconds": "3.6",
+            "X-AIRI-Generation-Seconds": "4.1047",
+            "X-AIRI-RTF": "1.1401",
+            "X-AIRI-Voice-Profile": "default"
+          },
+          "audio_sha256": "30f415126fbfcf87645414446c69fe2496fb822188644e9af9e4bd89c35832d7",
+          "sample_file": "split-1-2.wav"
+        }
+      ],
+      "first_playable_seconds": 2.9384469999931753,
+      "total_generation_seconds": 7.059731999994256,
+      "total_audio_seconds": 6.08,
+      "virtual_gap_seconds": 1.6412850000010804,
+      "virtual_playback_finish_seconds": 10.659731999994255
+    },
+    {
+      "parts": [
+        {
+          "voice": "phoenix-soft",
+          "first_response_seconds": 2.7803274000034435,
+          "first_complete_wav_seconds": 2.780535300000338,
+          "audio_seconds": 2.48,
+          "rtf": 1.1211835887098136,
+          "headers": {
+            "X-AIRI-Audio-Seconds": "2.48",
+            "X-AIRI-Generation-Seconds": "2.7642",
+            "X-AIRI-RTF": "1.1145",
+            "X-AIRI-Voice-Profile": "default"
+          },
+          "audio_sha256": "475414f84a7deb5b8d4b30cc059f1f74a41582c505e33c8f4eb96c6a65f14d4f",
+          "sample_file": "split-2-1.wav"
+        },
+        {
+          "voice": "phoenix-soft",
+          "first_response_seconds": 4.0875230000092415,
+          "first_complete_wav_seconds": 4.087754799998947,
+          "audio_seconds": 3.6,
+          "rtf": 1.135487444444152,
+          "headers": {
+            "X-AIRI-Audio-Seconds": "3.6",
+            "X-AIRI-Generation-Seconds": "4.0711",
+            "X-AIRI-RTF": "1.1308",
+            "X-AIRI-Voice-Profile": "default"
+          },
+          "audio_sha256": "30f415126fbfcf87645414446c69fe2496fb822188644e9af9e4bd89c35832d7",
+          "sample_file": "split-2-2.wav"
+        }
+      ],
+      "first_playable_seconds": 2.780535300000338,
+      "total_generation_seconds": 6.868290099999285,
+      "total_audio_seconds": 6.08,
+      "virtual_gap_seconds": 1.6077547999989474,
+      "virtual_playback_finish_seconds": 10.468290099999285
+    }
+  ],
+  "split_scope": "Sequential API prefetch simulation: second generation starts when the first WAV becomes playable. Gap is calculated, no audio was played. AIRI already chunks text; this is not proof of a new integrated playback speedup. Splitting can alter prosody and pauses.",
+  "testedAt": "2026-10-25",
+  "health": {
+    "requestsBefore": 0,
+    "requestsAfter": 9,
+    "failuresAfter": 0,
+    "readyAfter": true,
+    "lastVoiceAfter": "phoenix-soft",
+    "lastProfileAfter": "default"
+  }
+}

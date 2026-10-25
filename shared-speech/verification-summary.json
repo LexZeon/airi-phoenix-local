@@ -1,0 +1,72 @@
+{
+  "external_network_requests_blocked": {
+    "blocked_attempts": 2,
+    "enabled": true,
+    "self_test_passed": true
+  },
+  "service_health": {
+    "service": "airi-offline-speech",
+    "ready": true,
+    "asr_model": "sensevoice-local",
+    "tts_model": "melo-tts-zh-en",
+    "voice": "zh_default",
+    "architecture": "ARM64",
+    "sherpa_version": "2.0.0",
+    "offline_network_guard": {
+      "blocked_attempts": 2,
+      "enabled": true,
+      "self_test_passed": true
+    },
+    "metrics": {
+      "asr_requests": 3,
+      "tts_requests": 2
+    },
+    "sample_rate": 44100
+  },
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "sensevoice-local",
+        "object": "model",
+        "created": 0,
+        "owned_by": "local"
+      },
+      {
+        "id": "melo-tts-zh-en",
+        "object": "model",
+        "created": 0,
+        "owned_by": "local"
+      }
+    ]
+  },
+  "wav_asr": {
+    "text": "开饭时间早上9点至下午5点。",
+    "seconds": 0.189
+  },
+  "webm_asr": {
+    "text": "开饭时间早上9点至下午5点。",
+    "seconds": 0.192
+  },
+  "tts_input": "你好，我是你的本地语音助手。断网以后也可以用中文和你聊天。",
+  "wav_tts": {
+    "bytes": 412328,
+    "content_type": "audio/wav",
+    "audio_seconds": "4.674",
+    "generation_seconds": "4.716",
+    "sha256": "a32839d0ae64258f8f571017158fbe84f94defd5e2dd8328e70f5a04bf1f294b"
+  },
+  "mp3_tts": {
+    "bytes": 17389,
+    "content_type": "audio/mpeg",
+    "audio_seconds": "2.122",
+    "generation_seconds": "2.34",
+    "sha256": "f58f4d696bf18501092808e3f52dd5df003ddceb1c9548593d342d93f92e4a51"
+  },
+  "generated_speech_asr": {
+    "text": "你好，我是你的本地语音助手，问完以后也可以用中文和你聊天。",
+    "seconds": 0.181
+  },
+  "scope": "Synthetic fixed text/model test audio; no physical microphone or acoustic playback measurement",
+  "publicPackageIncludesGeneratedAudio": false
+}

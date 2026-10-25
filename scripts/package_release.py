@@ -12,13 +12,13 @@ ROOT = Path(__file__).resolve().parents[1]
 VERSION = "0.2.0"
 FOLDER = "airi-character-forge"
 ROOT_FILES = {".gitignore", "AGENTS.md", "LICENSE", "README.md", "RIGHTS.md", "SKILL.md", "START_HERE.md"}
-FOLDERS = {"agents", "agent_bridge", "character-tools", "control-center", "launchers", "docs", "examples", "prompts", "rig-tools", "scripts", "voice"}
+FOLDERS = {"agents", "agent_bridge", "airi-integration", "character-tools", "control-center", "diagnostics", "launchers", "mmd-tools", "docs", "examples", "prompts", "rig-tools", "scripts", "shared-speech", "sticker-tools", "voice"}
 TEXT_SUFFIXES = {".py", ".md", ".txt", ".json", ".cjs", ".mjs", ".html", ".yaml"}
 BINARY_FILES = {"rig-tools/examples/robot/artwork/parts.png", "examples/deskbot/artwork/parts.png",
     "docs/images/robot-preview.png", "voice/samples/phoenix-soft.wav",
-    "voice/samples/phoenix-drowsy.wav", "voice/samples/phoenix-focused.wav"}
-EXCLUDE_PARTS = {".git", "__pycache__", "node_modules", ".venv", "runtime", "state", "logs", "backups", "work", "output", "local-assets", "electron-profile", ".browser-profile"}
-EXTRA_SOURCE_FILES = {"control-center/web/app.js", "control-center/web/style.css", "control-center/web/favicon.svg", "launchers/airi-select-profile.ps1", "launchers/control-center-start.ps1", "launchers/control-center-stop.ps1"}
+    "voice/samples/phoenix-drowsy.wav", "voice/samples/phoenix-focused.wav", "mmd-tools/examples/natural-idle.vmd"}
+EXCLUDE_PARTS = {".git", "__pycache__", "node_modules", ".venv", "runtime", "state", "logs", "backups", "work", "output", "local-assets", "electron-profile", "isolated-profile", ".browser-profile"}
+EXTRA_SOURCE_FILES = {"control-center/web/app.js", "control-center/web/style.css", "control-center/web/favicon.svg", "launchers/airi-select-profile.ps1", "launchers/control-center-start.ps1", "launchers/control-center-stop.ps1", "airi-integration/character-3d-bootstrap.js", "mmd-tools/mmd-idle-driver.js", "voice/bench_sapi.ps1", "voice/windows-sapi/.gitignore", "voice/windows-sapi/common.ps1", "voice/windows-sapi/start.ps1", "voice/windows-sapi/stop.ps1", "voice/windows-sapi/worker.ps1", "airi-integration/offline-shell/character-bootstrap.js", "airi-integration/offline-shell/character-3d-bootstrap.js", "airi-integration/offline-shell/character-view-controller.js", "airi-integration/offline-shell/mmd-idle-driver.js", "launchers/airi-env.ps1", "launchers/airi-start.ps1", "launchers/airi-stop.ps1", "launchers/airi-update.ps1", "launchers/airi-model-common.ps1", "launchers/airi-model-start.ps1", "launchers/airi-model-stop.ps1", "launchers/airi-model-health.ps1", "launchers/airi-speech-start.ps1", "launchers/airi-speech-stop.ps1"}
 
 
 def source_files():
@@ -60,7 +60,7 @@ def verify(archive):
             path = Path(entry["file"])
             if path.is_absolute() or ".." in path.parts or any(part in EXCLUDE_PARTS for part in path.parts):
                 raise ValueError("Excluded or unsafe archive path: "+entry["file"])
-            if path.suffix.lower() in {".png", ".wav"} and entry["file"] not in BINARY_FILES:
+            if path.suffix.lower() in {".png", ".wav", ".vmd"} and entry["file"] not in BINARY_FILES:
                 raise ValueError("Unreviewed binary artwork/audio: "+entry["file"])
         return {"ok": True, "version": manifest["version"], "sourceFiles": len(manifest["files"]),
             "archiveFiles": len(expected), "bytes": archive.stat().st_size,

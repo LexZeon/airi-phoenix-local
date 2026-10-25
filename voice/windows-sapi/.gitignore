@@ -1,0 +1,9 @@
+api-token.txt
+state.json
+worker-state.json
+*.tmp
+logs/
+samples/
+verification.json
+token-verification.json
+__pycache__/

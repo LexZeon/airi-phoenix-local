@@ -1,0 +1,45 @@
+{
+  "test": "airi-app-llm-to-local-tts",
+  "syntheticOnly": true,
+  "startedAt": "2026-10-25T08:54:21.260Z",
+  "inputSent": true,
+  "matchedAssistantEvents": 1,
+  "matchedCompleteEvents": 1,
+  "replyCharacters": 10,
+  "expectedPhraseObserved": true,
+  "connectionErrorCount": 0,
+  "ttsRequestDelta": 1,
+  "deliveryMode": "broadcast",
+  "serverErrorKinds": [],
+  "status": "INCONCLUSIVE_AS_CAUSAL_VOICE_CHAIN",
+  "before": {
+    "ttsRequests": 2,
+    "helper": {
+      "rendererErrorCount": 0,
+      "blockedAssetPaths": [],
+      "redirectedVadRequests": 0,
+      "redirectedBundledAssetRequests": 2,
+      "servedAssetRequests": 0,
+      "screenFailureCount": 0
+    }
+  },
+  "after": {
+    "helper": {
+      "rendererErrorCount": 0,
+      "blockedAssetPaths": [],
+      "redirectedVadRequests": 0,
+      "redirectedBundledAssetRequests": 2,
+      "servedAssetRequests": 0,
+      "screenFailureCount": 0
+    },
+    "ttsRequests": 3
+  },
+  "elapsedMs": 38970,
+  "finishedAt": "2026-10-25T08:55:00.230Z",
+  "scope": "Synthetic scene binding has speaks=false in the inspected compiled host gate. Assistant message/complete are completion events, not TTFT. Global ttsRequestDelta is not correlated to the test binding and can come from another request.",
+  "ttsHealth": "http://127.0.0.1:9945/health",
+  "originalVerifierStatus": "pass",
+  "validatedObservation": "SDK synthetic completed text response, with contemporaneous global TTS counter change",
+  "physicalPlaybackProven": false,
+  "llmToTtsCausalCorrelationProven": false
+}

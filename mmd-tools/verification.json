@@ -1,0 +1,59 @@
+{
+  "ok": true,
+  "verifiedAt": "2026-10-25",
+  "airiCommit": "f1b81967f0d476eecf4e8848760f4de106310a9e",
+  "mmdRuntime": "@moeru/three-mmd 0.2.0-beta.2",
+  "example": {
+    "file": "examples/natural-idle.vmd",
+    "bytes": 41144,
+    "sha256": "d6e7aa76016faf1c9b1c00786194b1db07a0e05054d99754df9546d14f326b41",
+    "durationSeconds": 12,
+    "boneKeyframes": 370,
+    "boneTracks": 10,
+    "morphKeyframes": 0,
+    "headEyeMouthTracks": false
+  },
+  "parser": {
+    "implementation": "Installed @moeru/three-mmd VmdObject.ParseFromBuffer",
+    "normalizedQuaternions": true,
+    "seamlessLoopEndpoints": true,
+    "firstFrame": 0,
+    "lastFrame": 360,
+    "ok": true
+  },
+  "helperTests": {
+    "ok": true,
+    "count": 5,
+    "checks": [
+      "native-store-install",
+      "content-hash-idempotence",
+      "invalid-vmd-rejected",
+      "missing-store-timeout",
+      "late-pinia-resolution"
+    ]
+  },
+  "independentRenderer": {
+    "component": "packages/stage-ui-mmd/src/components/scenes/MMD.vue",
+    "nativeMotionRegistered": true,
+    "nativeAddMotionUsed": true,
+    "physicsEnabled": false,
+    "texturedFullBodyRendered": true,
+    "armsLoweredVisualCheck": true,
+    "handsOutsideSkirtVisualCheck": true,
+    "videoDurationSeconds": 12,
+    "privateVideoBytes": 5924982,
+    "mainAiriModifiedOrRestarted": false,
+    "scope": "One locally supplied standard Japanese-named PMX skeleton; visually checked from the preview camera. Other skeletons and accessory collisions require their own validation."
+  },
+  "mainAppIntegration": {
+    "nativeStoreImport": true,
+    "motionName": "airi-natural-idle-d6e7aa76016f",
+    "initialImportReused": false,
+    "physicsEnabled": false,
+    "mainWindowVisualCheck": "passed actual native foreground observation of natural idle",
+    "laterRestartReused": true
+  },
+  "pending": [
+    "The independent video-only preview did not receive an audio source; actual audio-driven lip-sync is not claimed by this test."
+  ]
+}

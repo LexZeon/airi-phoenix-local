@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
-"""Generate three fixed synthetic samples and record actual batch latency/RTF."""
+"""Generate configured fixed synthetic samples and record actual batch latency/RTF."""
 
 import argparse
 from datetime import datetime, timezone
@@ -40,7 +40,7 @@ def main():
             report["samples"].append({**metrics, "file": filename, "text": style["sample_text"]})
             (args.out / "sample-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             print(json.dumps({"sample_ready": filename, **metrics}, ensure_ascii=False), flush=True)
-        report["ok"] = len(report["samples"]) == 3 and network["blocked_attempts"] == 0
+        report["ok"] = len(report["samples"]) == len(engine.config["voices"]) and network["blocked_attempts"] == 0
     except Exception as error:
         report["error_type"] = type(error).__name__
         raise

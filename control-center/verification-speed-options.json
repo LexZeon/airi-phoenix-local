@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "testedChoices": [
+    "qwen-efficient",
+    "sapi-huihui"
+  ],
+  "threeCardSelectionsMatch": true,
+  "avatarPathsPreserved": true,
+  "tokenExcludedFromPublicProfileAndCatalog": true,
+  "realConfigurationChanged": false
+}

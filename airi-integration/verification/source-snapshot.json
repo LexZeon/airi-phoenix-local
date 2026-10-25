@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-25",
+  "liveFilesModifiedByPublishing": false,
+  "containsPrivateSettings": false,
+  "files": [
+    {
+      "published": "airi-integration/offline-shell/character-3d-bootstrap.js",
+      "origin": "runtime/airi-offline/character-3d-bootstrap.js",
+      "originSha256": "4f9425bae699c30d5d1247cced33d7df284000a0388ac4bbc8bc4820d53162b2",
+      "publishedSha256": "4f9425bae699c30d5d1247cced33d7df284000a0388ac4bbc8bc4820d53162b2",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/character-bootstrap.js",
+      "origin": "runtime/airi-offline/character-bootstrap.js",
+      "originSha256": "480fa48775ff5a4441bf3bb9d3898bd60503fbe210c99485da91cd8c4b26dfe5",
+      "publishedSha256": "480fa48775ff5a4441bf3bb9d3898bd60503fbe210c99485da91cd8c4b26dfe5",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/character-view-controller.js",
+      "origin": "runtime/airi-offline/character-view-controller.js",
+      "originSha256": "7aa726e6ed15bc8cb024a367cc1d766fa73c30cdd2a46dffabf7dde5dfd6fd32",
+      "publishedSha256": "7aa726e6ed15bc8cb024a367cc1d766fa73c30cdd2a46dffabf7dde5dfd6fd32",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/main.cjs",
+      "origin": "runtime/airi-offline/main.cjs",
+      "originSha256": "063de417dad2f792e86c3a1ff41601cf6cf037205303f8a630d535509f1e40ff",
+      "publishedSha256": "063de417dad2f792e86c3a1ff41601cf6cf037205303f8a630d535509f1e40ff",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/mmd-idle-driver.js",
+      "origin": "runtime/airi-offline/mmd-idle-driver.js",
+      "originSha256": "2227ff0ac218009b538cc68b7c25c2f34775bb0a35d30971b612d9c9f4122df7",
+      "publishedSha256": "2227ff0ac218009b538cc68b7c25c2f34775bb0a35d30971b612d9c9f4122df7",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/package.json",
+      "origin": "runtime/airi-offline/package.json",
+      "originSha256": "cd3bf80228418e0d9a1bca1d888fe5d54427d5f308e8af706e48cb3bb6c72142",
+      "publishedSha256": "cd3bf80228418e0d9a1bca1d888fe5d54427d5f308e8af706e48cb3bb6c72142",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/preload.cjs",
+      "origin": "runtime/airi-offline/preload.cjs",
+      "originSha256": "d1132da809e10172132fd5d32fc28d52dc9a19f6ed3d2730ae56c3af3b9c6ad2",
+      "publishedSha256": "d1132da809e10172132fd5d32fc28d52dc9a19f6ed3d2730ae56c3af3b9c6ad2",
+      "changes": "none"
+    },
+    {
+      "published": "airi-integration/offline-shell/README.txt",
+      "origin": "runtime/airi-offline/README.txt",
+      "originSha256": "51974fabc1a42f154caf897e8fee2a23efed9530efc2c7ef57af934344053d7a",
+      "publishedSha256": "c9d044ea7e2c2ede436575bd1638395c9e62a6fc05c849d114fe0a58a6fbe5a0",
+      "changes": "publication copy: clarify fixed launcher profile and primary-managed-character prerequisite"
+    },
+    {
+      "published": "launchers/airi-env.ps1",
+      "origin": "launchers/airi-env.ps1",
+      "originSha256": "25c8529e80b69c44d20747358fdcefb7925254b83609480fab10e6349b5e3c2b",
+      "publishedSha256": "8ed6cdf9b7a1acdfd563021a7b7bf1f3844b6caa799dcc6b6f941798d215a242",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-model-common.ps1",
+      "origin": "launchers/airi-model-common.ps1",
+      "originSha256": "a80cf5a94207a8e9de17016d017c4378ee6a41f3c735789f63408ed460198e4e",
+      "publishedSha256": "f027ee2282d7fa9f65b01afbdfa73e7de26b001cc257415d1859d4cf098a5e84",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-model-health.ps1",
+      "origin": "launchers/airi-model-health.ps1",
+      "originSha256": "b25feff6b7c034bed05325d27ca12a663b9628f77ba5ce1fde9762d3ced4e55d",
+      "publishedSha256": "c7efb927afd385f8e1234703f22f5bffdcb7504efa489f46405dbbf006ec6ae7",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-model-start.ps1",
+      "origin": "launchers/airi-model-start.ps1",
+      "originSha256": "6ae623d5e03df55b7c8f66caa3c02dbf10fb580bcf8cb02ffc70bb892a2078a4",
+      "publishedSha256": "f77f7cf8596b106d977d920ff94f3ff1a4959d94d2c19adbbdf0485abdb4dd00",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-model-stop.ps1",
+      "origin": "launchers/airi-model-stop.ps1",
+      "originSha256": "c2d18c8865a501f071bb07bd43a0c8d9591a83c8e13501d519776b739d620305",
+      "publishedSha256": "6c9187902ccb0391783d936deab54dd92ddf33e9a2ae432f3659c9d9f09d1518",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-select-profile.ps1",
+      "origin": "launchers/airi-select-profile.ps1",
+      "originSha256": "8f9f7fc5843c957cfdd62729b6e89754a507aee3202bddf9f9c7a9ae438c69ab",
+      "publishedSha256": "ea343b7d4f550039920c0d651e54883825a60c1106f3e841009f1f25aa0089cb",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-speech-start.ps1",
+      "origin": "launchers/airi-speech-start.ps1",
+      "originSha256": "6890e00b5f4053c1e3d12b81a41e1af621c795c36e99a23bfb8c058776a86000",
+      "publishedSha256": "fdefa9c4799a5994278e98fed32c1af4ef0273ad7fec4a3f94642c4be46872c4",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-speech-stop.ps1",
+      "origin": "launchers/airi-speech-stop.ps1",
+      "originSha256": "af8b321e5b36d5066079124c6c9380e15c130eda69d6680c66dea02767193d4a",
+      "publishedSha256": "a2625af84cf1252f6028bfb1459e7af595f8a24d4898a84c7e648d4c626e6604",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    },
+    {
+      "published": "launchers/airi-start.ps1",
+      "origin": "launchers/airi-start.ps1",
+      "originSha256": "f5b56c27353284d1ff6e9d06323c8cf3d3c4e3bcfca5196497eb44964db13f4f",
+      "publishedSha256": "f5b56c27353284d1ff6e9d06323c8cf3d3c4e3bcfca5196497eb44964db13f4f",
+      "changes": "none"
+    },
+    {
+      "published": "launchers/airi-stop.ps1",
+      "origin": "launchers/airi-stop.ps1",
+      "originSha256": "d68adb98cfb398ddd18869b734ca4b39080ce17011e9dda117700cb468d4d8a2",
+      "publishedSha256": "d68adb98cfb398ddd18869b734ca4b39080ce17011e9dda117700cb468d4d8a2",
+      "changes": "none"
+    },
+    {
+      "published": "launchers/airi-update.ps1",
+      "origin": "launchers/airi-update.ps1",
+      "originSha256": "635f42b3019ab5ae3dac1e763ee68f4fce36e36672abb36ddcf834991c2bc8c1",
+      "publishedSha256": "09e6e67ca2396b39a36f19bb71795ce0823c6c9e64c2d43bbc9800d69ffb7312",
+      "changes": "publication copy: environment-configurable roots/model locations; UTF-8 BOM; generic app identity where applicable"
+    }
+  ]
+}

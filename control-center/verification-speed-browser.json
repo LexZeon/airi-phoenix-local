@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "surface": "actual in-app browser at loopback control console",
+  "selectedVoiceAfterReload": "qwen-soft",
+  "newOptionsVisible": ["qwen-efficient", "sapi-huihui"],
+  "efficientEvidenceRendered": {"audioSeconds": 5.2, "playableWavWaitSeconds": 6.08},
+  "sapiEvidenceRendered": {"audioSeconds": 5.41, "medianPlayableWavWaitSeconds": 0.06},
+  "resourcesCollapsedAfterReload": true,
+  "noHorizontalOverflowAtObservedViewport": true,
+  "autoplayElements": 0,
+  "clickedApplyOrRemember": false,
+  "configurationChanged": false,
+  "scope": "DOM selection/evidence display only. No speaker playback or new host speech causality claim."
+}

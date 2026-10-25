@@ -158,7 +158,8 @@ def main():
                 else:
                     media_type = "audio/wav"
                 self.send_bytes(200, audio, media_type, {"X-AIRI-Audio-Seconds": metrics["audio_seconds"],
-                    "X-AIRI-Generation-Seconds": round(time.monotonic() - began, 4), "X-AIRI-RTF": metrics["rtf"]})
+                    "X-AIRI-Generation-Seconds": round(time.monotonic() - began, 4), "X-AIRI-RTF": metrics["rtf"],
+                    "X-AIRI-Voice-Profile": metrics["profile"]})
             except ConnectionAbortedError:
                 return
             except TimeoutError:

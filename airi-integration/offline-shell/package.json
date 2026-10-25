@@ -1,0 +1,7 @@
+{
+  "name": "airi-offline",
+  "version": "0.12.0",
+  "private": true,
+  "description": "Local-only launcher for the installed AIRI desktop source build",
+  "main": "main.cjs"
+}

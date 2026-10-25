@@ -4,6 +4,7 @@ import argparse
 import copy
 import datetime
 import ipaddress
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -31,6 +32,8 @@ CHOICES = {
  'sensevoice': ('asr', 'http://127.0.0.1:9942/v1/', 'sensevoice-local', None),
  'melo': ('tts', 'http://127.0.0.1:9942/v1/', 'melo-tts-zh-en', 'zh_default'),
  'qwen-soft': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-soft'),
+ 'qwen-efficient': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-soft-efficient'),
+ 'sapi-huihui': ('tts', 'http://127.0.0.1:9947/v1/', 'windows-sapi-local', 'huihui'),
  'qwen-drowsy': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-drowsy'),
  'qwen-focused': ('tts', 'http://127.0.0.1:9945/v1/', 'phoenix-qwen3-tts-local', 'phoenix-focused'),
 }
@@ -114,6 +117,13 @@ def endpoint(profile, module):
     choice = profile['selections'][module]
     if choice in ('custom','ollama'): return dict(profile['custom'][module])
     _, base, model, voice = CHOICES[choice]
+    if choice == 'sapi-huihui':
+        token_module = Path(os.environ.get('AIRI_SAPI_ROOT', str(BASE / 'runtime/airi-sapi'))) / 'token_store.py'
+        if not token_module.is_file(): raise ValueError('系统语音适配器尚未安装。')
+        spec = importlib.util.spec_from_file_location('airi_sapi_local_token', token_module)
+        module_object = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module_object)
+        return {'baseUrl':base,'model':model,'apiKey':module_object.ensure_token(),'voice':voice}
     return {'baseUrl': base, 'model': model, 'apiKey': 'local-offline' if module in ('asr','tts') else 'local', 'voice': voice}
 
 def current_profile():
@@ -188,6 +198,9 @@ def apply_profile(profile, settings_path=SETTINGS):
             if module=='vision': config.setdefault('screen',{}).update(baseUrl=chosen['baseUrl'],model=chosen['model'])
         config.setdefault('character',{})['modulesOverride']=overrides
         config['character']['selectionRevision']=revision
+        for character in config.get('additionalCharacters', []):
+            character['modulesOverride'] = json.loads(json.dumps(overrides))
+            character['selectionRevision'] = revision
         config['controlCenterSelection']=profile
         config['revision']=revision
         backup = settings_path.with_name(settings_path.name + '.' + revision + '.bak')
@@ -200,4 +213,5 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--apply-file',type=Path,required=True);args=parser.parse_args()
     request=args.apply_file.resolve();request.relative_to(REQUESTS.resolve())
     if not re.fullmatch(r'selection-[a-f0-9]{32}\.json', request.name) or request.parent != REQUESTS.resolve(): raise SystemExit('Invalid managed request path')
-    print(json.dumps(apply_profile(read_json(request)),ensure_ascii=False))
+    # ASCII JSON survives Windows PowerShell 5 native-output code-page decoding.
+    print(json.dumps(apply_profile(read_json(request)),ensure_ascii=True))

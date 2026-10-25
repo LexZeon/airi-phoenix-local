@@ -1,10 +1,10 @@
 {
   "ok": true,
   "version": "0.2.0",
-  "sourceFiles": 99,
-  "archiveFiles": 100,
-  "bytes": 740609,
-  "sha256": "ade95b4a688f29626d8b9bb079f4778bb597c481ec30152f505c49101b8c6ff0",
+  "sourceFiles": 193,
+  "archiveFiles": 194,
+  "bytes": 937829,
+  "sha256": "f2b43e81cd3f51d040cf2e901386b4540a5772924866a5ba27b2b6a2a76e455b",
   "excludedVerified": [
     "Core/SDK binaries",
     "official and official-derived media/models",
@@ -13,5 +13,31 @@
     "browser profiles/caches",
     ".git",
     "runtime user settings"
-  ]
+  ],
+  "singleZipSmoke": {
+    "ok": true,
+    "case": "Extract final single public ZIP in unrelated temporary directory; actual inspect/build/Core validate",
+    "steps": [
+      {
+        "stage": "inspect",
+        "ok": true,
+        "code": "OK"
+      },
+      {
+        "stage": "build",
+        "ok": true,
+        "code": "OK"
+      },
+      {
+        "stage": "validate",
+        "ok": true,
+        "code": "OK"
+      }
+    ],
+    "externalLicensedCore": true,
+    "coreBundled": false,
+    "privateDataCopied": false,
+    "geometryCases": 72,
+    "archiveSha256": "f2b43e81cd3f51d040cf2e901386b4540a5772924866a5ba27b2b6a2a76e455b"
+  }
 }

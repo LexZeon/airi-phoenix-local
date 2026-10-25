@@ -1,0 +1,1558 @@
+{
+  "canvas": [
+    1024,
+    1536
+  ],
+  "atlas_grid": [
+    4,
+    4
+  ],
+  "sources": {
+    "base": "assets/rig-base-approved.png",
+    "face": "assets/facial-atlas-v2.png",
+    "mask": "assets/solid-mask.png",
+    "maskL": "assets/eye-mask-left.png",
+    "maskR": "assets/eye-mask-right.png",
+    "partEyeLeft": "assets/parts/EyeLeft.png",
+    "partIrisLeft": "assets/parts/IrisLeft.png",
+    "partEyeRight": "assets/parts/EyeRight.png",
+    "partIrisRight": "assets/parts/IrisRight.png",
+    "partEyeClosedLeft": "assets/parts/EyeClosedLeft.png",
+    "partEyeClosedRight": "assets/parts/EyeClosedRight.png",
+    "partBrowLeft": "assets/parts/BrowLeft.png",
+    "partBrowRight": "assets/parts/BrowRight.png",
+    "partMouthNeutral": "assets/parts/MouthNeutral.png",
+    "partMouthSmile": "assets/parts/MouthSmile.png",
+    "partMouthWorried": "assets/parts/MouthWorried.png",
+    "partMouthOpen": "assets/parts/MouthOpen.png",
+    "partMouthSurprised": "assets/parts/MouthSurprised.png"
+  },
+  "layers": [
+    {
+      "id": "HitAreaBody",
+      "source": "mask",
+      "rect": [
+        300,
+        560,
+        420,
+        910
+      ],
+      "mesh": [
+        1,
+        1
+      ],
+      "opacity": 0,
+      "neutral_opacity": 0,
+      "group": "base"
+    },
+    {
+      "id": "HitAreaHead",
+      "source": "mask",
+      "rect": [
+        300,
+        25,
+        420,
+        500
+      ],
+      "mesh": [
+        1,
+        1
+      ],
+      "opacity": 0,
+      "neutral_opacity": 0,
+      "group": "head"
+    },
+    {
+      "id": "EyeApertureLeft",
+      "source": "maskL",
+      "rect": [
+        395,
+        354,
+        103,
+        42
+      ],
+      "group": "head",
+      "mesh": [
+        6,
+        4
+      ],
+      "neutral_opacity": 0,
+      "effects": {
+        "ParamEyeLOpen": {
+          "type": "aperture",
+          "points": [
+            [
+              0,
+              0.01
+            ],
+            [
+              0.25,
+              0.25
+            ],
+            [
+              0.65,
+              0.65
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1.15,
+              1.15
+            ]
+          ],
+          "pivot": [
+            456.86804921887534,
+            379.05986807503507
+          ]
+        },
+        "ParamEyeLSmile": {
+          "type": "scale",
+          "y": -0.15,
+          "pivot": [
+            456.86804921887534,
+            379.05986807503507
+          ]
+        }
+      }
+    },
+    {
+      "id": "EyeApertureRight",
+      "source": "maskR",
+      "rect": [
+        548,
+        354,
+        103,
+        42
+      ],
+      "group": "head",
+      "mesh": [
+        6,
+        4
+      ],
+      "neutral_opacity": 0,
+      "effects": {
+        "ParamEyeROpen": {
+          "type": "aperture",
+          "points": [
+            [
+              0,
+              0.01
+            ],
+            [
+              0.25,
+              0.25
+            ],
+            [
+              0.65,
+              0.65
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1.15,
+              1.15
+            ]
+          ],
+          "pivot": [
+            592.2212408878507,
+            378.95358163083614
+          ]
+        },
+        "ParamEyeRSmile": {
+          "type": "scale",
+          "y": -0.15,
+          "pivot": [
+            592.2212408878507,
+            378.95358163083614
+          ]
+        }
+      }
+    },
+    {
+      "id": "Base",
+      "source": "base",
+      "mesh": [
+        20,
+        32
+      ],
+      "group": "base",
+      "rect": [
+        0,
+        0,
+        1024,
+        1536
+      ],
+      "effects": {}
+    },
+    {
+      "id": "EyeLeft",
+      "source": "partEyeLeft",
+      "group": "head",
+      "mesh": [
+        6,
+        4
+      ],
+      "rect": [
+        395,
+        354,
+        103,
+        42
+      ],
+      "effects": {
+        "ParamEyeLOpen": [
+          {
+            "type": "aperture",
+            "points": [
+              [
+                0,
+                0.02
+              ],
+              [
+                0.25,
+                0.25
+              ],
+              [
+                0.65,
+                0.65
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1.15,
+                1.15
+              ]
+            ],
+            "pivot": [
+              456.86804921887534,
+              379.05986807503507
+            ]
+          },
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                0.15,
+                0.5
+              ],
+              [
+                0.25,
+                1
+              ],
+              [
+                1.15,
+                1
+              ]
+            ]
+          }
+        ],
+        "ParamEyeLSmile": {
+          "type": "scale",
+          "y": -0.12,
+          "pivot": [
+            456.86804921887534,
+            379.05986807503507
+          ]
+        }
+      }
+    },
+    {
+      "id": "IrisLeft",
+      "source": "partIrisLeft",
+      "rect": [
+        440.0688821272554,
+        360.9466605278653,
+        34,
+        36
+      ],
+      "mesh": [
+        4,
+        4
+      ],
+      "group": "head",
+      "masks": [
+        "EyeApertureLeft"
+      ],
+      "effects": {
+        "ParamEyeBallX": {
+          "type": "translate",
+          "x": 3.0,
+          "value_mode": "raw"
+        },
+        "ParamEyeBallY": {
+          "type": "translate",
+          "y": -1.5,
+          "value_mode": "raw"
+        },
+        "ParamEyeLOpen": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.25,
+              0
+            ],
+            [
+              0.65,
+              1
+            ],
+            [
+              1.15,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "EyeRight",
+      "source": "partEyeRight",
+      "group": "head",
+      "mesh": [
+        6,
+        4
+      ],
+      "rect": [
+        548,
+        354,
+        103,
+        42
+      ],
+      "effects": {
+        "ParamEyeROpen": [
+          {
+            "type": "aperture",
+            "points": [
+              [
+                0,
+                0.02
+              ],
+              [
+                0.25,
+                0.25
+              ],
+              [
+                0.65,
+                0.65
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1.15,
+                1.15
+              ]
+            ],
+            "pivot": [
+              592.2212408878507,
+              378.95358163083614
+            ]
+          },
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                0.15,
+                0.5
+              ],
+              [
+                0.25,
+                1
+              ],
+              [
+                1.15,
+                1
+              ]
+            ]
+          }
+        ],
+        "ParamEyeRSmile": {
+          "type": "scale",
+          "y": -0.12,
+          "pivot": [
+            592.2212408878507,
+            378.95358163083614
+          ]
+        }
+      }
+    },
+    {
+      "id": "IrisRight",
+      "source": "partIrisRight",
+      "rect": [
+        575.2729681117634,
+        360.9633279759567,
+        34,
+        36
+      ],
+      "mesh": [
+        4,
+        4
+      ],
+      "group": "head",
+      "masks": [
+        "EyeApertureRight"
+      ],
+      "effects": {
+        "ParamEyeBallX": {
+          "type": "translate",
+          "x": 3.0,
+          "value_mode": "raw"
+        },
+        "ParamEyeBallY": {
+          "type": "translate",
+          "y": -1.5,
+          "value_mode": "raw"
+        },
+        "ParamEyeROpen": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.25,
+              0
+            ],
+            [
+              0.65,
+              1
+            ],
+            [
+              1.15,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "EyeClosedLeft",
+      "source": "partEyeClosedLeft",
+      "neutral_opacity": 0,
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        395,
+        374,
+        103,
+        10
+      ],
+      "effects": {
+        "ParamEyeLOpen": [
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                1
+              ],
+              [
+                0.25,
+                0.7
+              ],
+              [
+                0.4,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1.15,
+                0
+              ]
+            ]
+          },
+          {
+            "type": "translate",
+            "y": -25,
+            "value_mode": "raw"
+          }
+        ],
+        "ParamEyeLSmile": {
+          "type": "curve",
+          "bend": -3
+        }
+      }
+    },
+    {
+      "id": "EyeClosedRight",
+      "source": "partEyeClosedRight",
+      "neutral_opacity": 0,
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        548,
+        374,
+        103,
+        10
+      ],
+      "effects": {
+        "ParamEyeROpen": [
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                1
+              ],
+              [
+                0.25,
+                0.7
+              ],
+              [
+                0.4,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1.15,
+                0
+              ]
+            ]
+          },
+          {
+            "type": "translate",
+            "y": -25,
+            "value_mode": "raw"
+          }
+        ],
+        "ParamEyeRSmile": {
+          "type": "curve",
+          "bend": -3
+        }
+      }
+    },
+    {
+      "id": "BrowLeft",
+      "source": "partBrowLeft",
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        393,
+        326,
+        106,
+        12
+      ],
+      "effects": {
+        "ParamBrowLY": {
+          "type": "translate",
+          "y": -7
+        },
+        "ParamBrowLAngle": {
+          "type": "rotate",
+          "degrees": 12
+        }
+      }
+    },
+    {
+      "id": "BrowRight",
+      "source": "partBrowRight",
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        548,
+        326,
+        106,
+        12
+      ],
+      "effects": {
+        "ParamBrowRY": {
+          "type": "translate",
+          "y": -7
+        },
+        "ParamBrowRAngle": {
+          "type": "rotate",
+          "degrees": 12
+        }
+      }
+    },
+    {
+      "id": "MouthNeutral",
+      "source": "partMouthNeutral",
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        493,
+        434,
+        40,
+        7
+      ],
+      "effects": {
+        "ParamMouthOpenY": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              1
+            ],
+            [
+              0.15,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "ParamMouthForm": {
+          "type": "opacity",
+          "points": [
+            [
+              -1,
+              0
+            ],
+            [
+              -0.05,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0.05,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "MouthSmile",
+      "source": "partMouthSmile",
+      "neutral_opacity": 0,
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        490,
+        433,
+        46,
+        10
+      ],
+      "effects": {
+        "ParamMouthOpenY": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              1
+            ],
+            [
+              0.15,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "ParamMouthForm": {
+          "type": "opacity",
+          "points": [
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0.05,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "MouthWorried",
+      "source": "partMouthWorried",
+      "neutral_opacity": 0,
+      "group": "head",
+      "mesh": [
+        6,
+        2
+      ],
+      "rect": [
+        493,
+        434,
+        40,
+        10
+      ],
+      "effects": {
+        "ParamMouthOpenY": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              1
+            ],
+            [
+              0.15,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        "ParamMouthForm": {
+          "type": "opacity",
+          "points": [
+            [
+              -1,
+              1
+            ],
+            [
+              -0.05,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "MouthOpen",
+      "source": "partMouthOpen",
+      "neutral_opacity": 0,
+      "group": "head",
+      "mesh": [
+        6,
+        4
+      ],
+      "rect": [
+        494,
+        434,
+        40,
+        31
+      ],
+      "effects": {
+        "ParamMouthOpenY": [
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                0.15,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "type": "aperture",
+            "pivot": [
+              514,
+              434
+            ],
+            "points": [
+              [
+                0,
+                0.08
+              ],
+              [
+                0.15,
+                0.3
+              ],
+              [
+                0.5,
+                0.65
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ],
+        "ParamMouthRound": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "MouthSurprised",
+      "source": "partMouthSurprised",
+      "neutral_opacity": 0,
+      "group": "head",
+      "mesh": [
+        4,
+        4
+      ],
+      "rect": [
+        502,
+        432,
+        24,
+        34
+      ],
+      "effects": {
+        "ParamMouthOpenY": [
+          {
+            "type": "opacity",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                0.15,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "type": "aperture",
+            "pivot": [
+              514,
+              432
+            ],
+            "points": [
+              [
+                0,
+                0.08
+              ],
+              [
+                0.15,
+                0.3
+              ],
+              [
+                0.5,
+                0.65
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ],
+        "ParamMouthRound": {
+          "type": "opacity",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "BangOccluder",
+      "source": "base",
+      "polygon": [
+        [
+          427,
+          99
+        ],
+        [
+          516,
+          135
+        ],
+        [
+          590,
+          197
+        ],
+        [
+          660,
+          292
+        ],
+        [
+          646,
+          323
+        ],
+        [
+          603,
+          321
+        ],
+        [
+          579,
+          327
+        ],
+        [
+          569,
+          352
+        ],
+        [
+          547,
+          368
+        ],
+        [
+          519,
+          361
+        ],
+        [
+          501,
+          344
+        ],
+        [
+          476,
+          304
+        ],
+        [
+          456,
+          252
+        ],
+        [
+          431,
+          209
+        ]
+      ],
+      "group": "head",
+      "mesh": [
+        12,
+        16
+      ],
+      "effects": {}
+    }
+  ],
+  "version": 1,
+  "name": "PhoenixReffaellaStanding",
+  "asset_root": "local-assets/standing",
+  "atlas_size": 2048,
+  "pixels_per_unit": 1024,
+  "copyright": {
+    "art": "Reference-derived approved standing base plus a separately generated facial atlas, local-only; code MIT does not distribute those assets.",
+    "tool": "Generic rig tool and py-moc3 retain their licenses."
+  },
+  "groups": {
+    "head": {
+      "effects": {
+        "ParamAngleX": {
+          "type": "translate",
+          "x": 8,
+          "weight_y": [
+            470,
+            650
+          ]
+        },
+        "ParamAngleY": [
+          {
+            "type": "translate",
+            "y": -6,
+            "weight_y": [
+              470,
+              650
+            ]
+          },
+          {
+            "type": "scale",
+            "y": 0.012,
+            "pivot": [
+              512,
+              550
+            ],
+            "weight_y": [
+              470,
+              650
+            ]
+          }
+        ],
+        "ParamAngleZ": {
+          "type": "rotate",
+          "degrees": 2.3,
+          "pivot": [
+            512,
+            535
+          ],
+          "weight_y": [
+            470,
+            650
+          ]
+        },
+        "ParamBreath": {
+          "type": "scale",
+          "y": 0.003,
+          "pivot": [
+            512,
+            1350
+          ]
+        },
+        "ParamBodyAngleZ": {
+          "type": "rotate",
+          "degrees": 1.1,
+          "pivot": [
+            512,
+            1200
+          ]
+        }
+      }
+    },
+    "base": {
+      "effects": {
+        "ParamAngleX": {
+          "type": "translate",
+          "x": 8,
+          "weight_y": [
+            470,
+            650
+          ]
+        },
+        "ParamAngleY": [
+          {
+            "type": "translate",
+            "y": -6,
+            "weight_y": [
+              470,
+              650
+            ]
+          },
+          {
+            "type": "scale",
+            "y": 0.012,
+            "pivot": [
+              512,
+              550
+            ],
+            "weight_y": [
+              470,
+              650
+            ]
+          }
+        ],
+        "ParamAngleZ": {
+          "type": "rotate",
+          "degrees": 2.3,
+          "pivot": [
+            512,
+            535
+          ],
+          "weight_y": [
+            470,
+            650
+          ]
+        },
+        "ParamBreath": {
+          "type": "scale",
+          "y": 0.003,
+          "pivot": [
+            512,
+            1350
+          ]
+        },
+        "ParamBodyAngleZ": {
+          "type": "rotate",
+          "degrees": 1.1,
+          "pivot": [
+            512,
+            1200
+          ]
+        },
+        "ParamBodyAngleX": {
+          "type": "translate",
+          "x": 4,
+          "weight_y": [
+            950,
+            500
+          ]
+        }
+      }
+    }
+  },
+  "parameters": [
+    {
+      "id": "ParamAngleX",
+      "min": -15,
+      "max": 15,
+      "default": 0,
+      "purpose": "头部左右浅转",
+      "keys": [
+        -15,
+        0,
+        15
+      ]
+    },
+    {
+      "id": "ParamAngleY",
+      "min": -12,
+      "max": 12,
+      "default": 0,
+      "purpose": "抬头/低头",
+      "keys": [
+        -12,
+        0,
+        12
+      ]
+    },
+    {
+      "id": "ParamAngleZ",
+      "min": -12,
+      "max": 12,
+      "default": 0,
+      "purpose": "轻微侧倾",
+      "keys": [
+        -12,
+        0,
+        12
+      ]
+    },
+    {
+      "id": "ParamEyeLOpen",
+      "min": 0,
+      "max": 1.15,
+      "default": 1,
+      "purpose": "左眼开合",
+      "keys": [
+        0,
+        0.25,
+        0.65,
+        1,
+        1.15
+      ]
+    },
+    {
+      "id": "ParamEyeROpen",
+      "min": 0,
+      "max": 1.15,
+      "default": 1,
+      "purpose": "右眼开合",
+      "keys": [
+        0,
+        0.25,
+        0.65,
+        1,
+        1.15
+      ]
+    },
+    {
+      "id": "ParamEyeLSmile",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "左侧笑眼弧度",
+      "keys": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamEyeRSmile",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "右侧笑眼弧度",
+      "keys": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowLY",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "左眉高度",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowRY",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "右眉高度",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowLAngle",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "左眉倾斜",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamBrowRAngle",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "右眉倾斜",
+      "keys": [
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamMouthOpenY",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "音量口型/张口",
+      "keys": [
+        0,
+        0.15,
+        0.5,
+        1
+      ]
+    },
+    {
+      "id": "ParamMouthForm",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "purpose": "抿嘴/笑弧",
+      "keys": [
+        -1,
+        -0.05,
+        0,
+        0.05,
+        1
+      ]
+    },
+    {
+      "id": "ParamBodyAngleX",
+      "min": -5,
+      "max": 5,
+      "default": 0,
+      "purpose": "身体轻微左右倾",
+      "keys": [
+        -5,
+        0,
+        5
+      ]
+    },
+    {
+      "id": "ParamBodyAngleZ",
+      "min": -5,
+      "max": 5,
+      "default": 0,
+      "purpose": "身体轻微侧倾",
+      "keys": [
+        -5,
+        0,
+        5
+      ]
+    },
+    {
+      "id": "ParamBreath",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "purpose": "克制呼吸",
+      "keys": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "ParamMouthRound",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "keys": [
+        0,
+        1
+      ],
+      "purpose": "Original round-mouth variant"
+    },
+    {
+      "id": "ParamEyeBallX",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "keys": [
+        -1,
+        0,
+        1
+      ],
+      "purpose": "Independent iris tracking inside the real eyelid clip mask"
+    },
+    {
+      "id": "ParamEyeBallY",
+      "min": -1,
+      "max": 1,
+      "default": 0,
+      "keys": [
+        -1,
+        0,
+        1
+      ],
+      "purpose": "Independent iris tracking inside the real eyelid clip mask"
+    }
+  ],
+  "expressions": [
+    {
+      "name": "E01_LowEnergy",
+      "reference": "E01",
+      "values": {
+        "ParamEyeLOpen": 0.85,
+        "ParamEyeROpen": 0.85,
+        "ParamMouthOpenY": 0.05,
+        "ParamMouthForm": 0,
+        "ParamAngleZ": -1
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E02_TiredBlink",
+      "reference": "E02",
+      "values": {
+        "ParamEyeLOpen": 0,
+        "ParamEyeROpen": 0,
+        "ParamMouthOpenY": 0.12,
+        "ParamMouthForm": -0.1,
+        "ParamAngleY": -4
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E03_Hesitant",
+      "reference": "E03",
+      "values": {
+        "ParamEyeLOpen": 1,
+        "ParamEyeROpen": 1,
+        "ParamBrowLY": 0.35,
+        "ParamBrowRY": 0.35,
+        "ParamBrowLAngle": 0.25,
+        "ParamBrowRAngle": -0.25,
+        "ParamMouthOpenY": 0.2,
+        "ParamMouthForm": -0.3,
+        "ParamMouthRound": 0.4
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E04_GentleReminder",
+      "reference": "E04",
+      "values": {
+        "ParamEyeLOpen": 0.5,
+        "ParamEyeROpen": 0.5,
+        "ParamAngleY": -3,
+        "ParamBodyAngleX": 3,
+        "ParamMouthOpenY": 0.16
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E05_Weary",
+      "reference": "E05",
+      "values": {
+        "ParamAngleY": -10,
+        "ParamAngleZ": 5,
+        "ParamEyeLOpen": 0.2,
+        "ParamEyeROpen": 0.2
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E06_BattleSmile",
+      "reference": "E06",
+      "values": {
+        "ParamEyeLOpen": 0.7,
+        "ParamEyeROpen": 0.7,
+        "ParamBrowLAngle": -0.7,
+        "ParamBrowRAngle": 0.7,
+        "ParamMouthForm": 0.9,
+        "ParamMouthOpenY": 0.35
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E07_SharpGaze",
+      "reference": "E07",
+      "values": {
+        "ParamEyeLOpen": 0.55,
+        "ParamEyeROpen": 0.55,
+        "ParamBrowLAngle": -0.8,
+        "ParamBrowRAngle": 0.8
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E08_Dizzy",
+      "reference": "E08",
+      "values": {
+        "ParamEyeLOpen": 1,
+        "ParamEyeROpen": 1,
+        "ParamMouthOpenY": 0.35,
+        "ParamMouthForm": -0.2,
+        "ParamAngleZ": 6,
+        "ParamMouthRound": 0.75
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E09_Vulnerable",
+      "reference": "E09",
+      "values": {
+        "ParamEyeLOpen": 0.35,
+        "ParamEyeROpen": 0.35,
+        "ParamBrowLY": 0.25,
+        "ParamBrowRY": 0.25,
+        "ParamMouthForm": -0.35,
+        "ParamAngleY": -3
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E10_SoftGaze",
+      "reference": "E10",
+      "values": {
+        "ParamEyeLOpen": 0.6,
+        "ParamEyeROpen": 0.6,
+        "ParamMouthForm": 0.35,
+        "ParamMouthOpenY": 0.03,
+        "ParamAngleZ": -7
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E11_ClosedEyeSmile",
+      "reference": "E11",
+      "values": {
+        "ParamEyeLOpen": 0,
+        "ParamEyeROpen": 0,
+        "ParamEyeLSmile": 0.75,
+        "ParamEyeRSmile": 0.75,
+        "ParamMouthForm": 0.65,
+        "ParamMouthOpenY": 0.1,
+        "ParamAngleZ": -7
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    },
+    {
+      "name": "E12_BrightLaugh",
+      "reference": "E12",
+      "values": {
+        "ParamEyeLOpen": 0,
+        "ParamEyeROpen": 0,
+        "ParamEyeLSmile": 1,
+        "ParamEyeRSmile": 1,
+        "ParamMouthForm": 1,
+        "ParamMouthOpenY": 0.65,
+        "ParamBodyAngleZ": -4
+      },
+      "evidence_file": "expression-reference.json",
+      "adaptation": "Standing base body/pose retained. New isolated eye frames/irises/brows/lids/mouth sprites. Expression names are original interpretations, not official animation claims."
+    }
+  ],
+  "adaptations": [
+    "Approved rig-base-v1.png copied byte-for-byte; body, hair, pose and costume unchanged.",
+    "A fresh transparent atlas replaces the rejected old baby-faced facial atlas. Existing old face/tracking atlas files are not used.",
+    "Eyes use independent iris motion clipped by explicit eye aperture masks; separate closed-lash sprites replace open eyes.",
+    "Only shallow 2D mesh deformation; no reconstructed unseen side views or independent arm/hand animation.",
+    "Source-only build006 recipe: local-assets are not bundled. Use robot/DeskBot for a turnkey build. Technical/anchor checks passed; target-app acceptance is recorded separately."
+  ],
+  "hit_areas": [
+    {
+      "Name": "Head",
+      "Id": "HitAreaHead"
+    },
+    {
+      "Name": "Body",
+      "Id": "HitAreaBody"
+    }
+  ],
+  "limits": {
+    "keyforms_per_mesh": 15000
+  }
+}

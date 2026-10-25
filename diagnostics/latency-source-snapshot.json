@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-25",
+  "mode": "read-only source audit; no network tests",
+  "files": [
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/context-bridge-q5xwtBWr.js",
+      "sha256": "ec1dbda0fb17ba8f21dc329921f731dc3ffafab4eca543b5887c556cc9ebc34d",
+      "bytes": 33313
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/hearing-C884hhRK.js",
+      "sha256": "8410b905fd934f471559a22508a32f4ff45d63184b7a1d1c9c6fb4c9f826b880",
+      "bytes": 3612838
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/chat-B825WUc6.js",
+      "sha256": "b410168fe7c7fe32fb4e7e80315dfb357039abe7b00cf0b8d9edbddb2d5d3b71",
+      "bytes": 124528
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/tools-BKt_0CNb.js",
+      "sha256": "dff2e50c0e89b16fb071b203e893eeb6bed9260377eec276dd0f37fa9d495799",
+      "bytes": 1687345
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/pages-0e_WCEAU.js",
+      "sha256": "5ff8bba750692b284c37ed10fbc0c9d7d5d4aee9c2289f74b497f41751b3728e",
+      "bytes": 184642
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/use-push-to-talk-shortcut-6QU1GwbZ.js",
+      "sha256": "a0f89dd343aabdea6b881d0a562245530fdba2a3e516fbe728949598dee4f86d",
+      "bytes": 82755
+    },
+    {
+      "path": "airi/apps/stage-tamagotchi/out/renderer/assets/voice-activity-plugin-Dj2qnaMF.js",
+      "sha256": "faf3d6373b480360fcdc3feda5d5eb7fa7a7b50579bdf5cc120335743af09ffa",
+      "bytes": 2020
+    },
+    {
+      "path": "airi/packages/stage-ui/src/stores/voice.ts",
+      "sha256": "452995fce397a05a28cb9c183a5bd515b5a95d39cb2f3de6fe19be7f3a141e77",
+      "bytes": 25698
+    },
+    {
+      "path": "airi/packages/stage-ui/src/stores/chat.ts",
+      "sha256": "b2e7d00bbfdf17a1e42b1dd0d85297597e5fcd9e65fe21978d42aa004a25af25",
+      "bytes": 75145
+    },
+    {
+      "path": "airi/packages/stage-ui/src/components/scenes/Stage.vue",
+      "sha256": "92d2a8870525887cc72723d3099c2fddcc4beaca198c47ad6ca06b15996ac39a",
+      "bytes": 30625
+    },
+    {
+      "path": "airi/packages/core-agent/src/runtime/chat-orchestrator-runtime.ts",
+      "sha256": "8b571fd515e7124a062e590a04e07c896ae93b9ef9040bb88fcb70084ffbbf0a",
+      "bytes": 62342
+    },
+    {
+      "path": "runtime/airi-offline/verification/verify-app-llm-tts.mjs",
+      "sha256": "f40a16a5dd7a433d8fe59dac657ef72efd00f0f44a07788250917baaacdd7a4e",
+      "bytes": 6989
+    }
+  ]
+}

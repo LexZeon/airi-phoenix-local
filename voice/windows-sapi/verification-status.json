@@ -1,0 +1,210 @@
+{
+  "status": "PASS",
+  "syntheticOnly": true,
+  "audioPlayed": false,
+  "otherServicesChanged": false,
+  "checks": [
+    {
+      "name": "ready-and-exact-service",
+      "pass": true
+    },
+    {
+      "name": "/v1/models-catalog",
+      "pass": true
+    },
+    {
+      "name": "/v1/audio/voices-catalog",
+      "pass": true
+    },
+    {
+      "name": "sample-1-valid-WAV",
+      "pass": true
+    },
+    {
+      "name": "sample-2-valid-WAV",
+      "pass": true
+    },
+    {
+      "name": "sample-3-valid-WAV",
+      "pass": true
+    },
+    {
+      "name": "repeat-audio-is-deterministic",
+      "pass": true
+    },
+    {
+      "name": "missing-auth",
+      "pass": true
+    },
+    {
+      "name": "host-denied",
+      "pass": true
+    },
+    {
+      "name": "origin-denied",
+      "pass": true
+    },
+    {
+      "name": "model-denied",
+      "pass": true
+    },
+    {
+      "name": "voice-denied",
+      "pass": true
+    },
+    {
+      "name": "format-denied",
+      "pass": true
+    },
+    {
+      "name": "style-not-pretended",
+      "pass": true
+    },
+    {
+      "name": "empty-text",
+      "pass": true
+    },
+    {
+      "name": "oversized-text",
+      "pass": true
+    },
+    {
+      "name": "bad-speed",
+      "pass": true
+    },
+    {
+      "name": "file-origin-preflight",
+      "pass": true
+    },
+    {
+      "name": "bad-origin-no-CORS",
+      "pass": true
+    },
+    {
+      "name": "duplicate-host-denied",
+      "pass": true
+    },
+    {
+      "name": "bounded-queue-rejects-ninth",
+      "pass": true,
+      "queued": 7,
+      "active": 1
+    },
+    {
+      "name": "disconnect-cancels-active-and-queued",
+      "pass": true
+    },
+    {
+      "name": "active-cancellation-replaces-owned-worker",
+      "pass": true
+    },
+    {
+      "name": "service-recovers-after-cancellation",
+      "pass": true
+    },
+    {
+      "name": "owned-worker-crash-injected",
+      "pass": true
+    },
+    {
+      "name": "worker-crash-fixed-error",
+      "pass": true
+    },
+    {
+      "name": "worker-crash-recovery",
+      "pass": true
+    },
+    {
+      "name": "repeat-start-is-idempotent",
+      "pass": true
+    },
+    {
+      "name": "stop-refuses-tampered-creation",
+      "pass": true
+    },
+    {
+      "name": "owned-stop",
+      "pass": true
+    },
+    {
+      "name": "repeat-stop-safe",
+      "pass": true
+    },
+    {
+      "name": "start-refuses-unowned-listener",
+      "pass": true
+    },
+    {
+      "name": "stop-refuses-unowned-listener",
+      "pass": true
+    },
+    {
+      "name": "unowned-listener-preserved",
+      "pass": true
+    },
+    {
+      "name": "owned-restart",
+      "pass": true
+    },
+    {
+      "name": "restart-ready-and-new-identity",
+      "pass": true
+    }
+  ],
+  "sampleRuns": [
+    {
+      "wallSeconds": 0.14679359999718145,
+      "sampleRate": 24000,
+      "channels": 1,
+      "bits": 16,
+      "frames": 129948,
+      "audioSeconds": 5.4145,
+      "dataBytes": 259896,
+      "sha256": "32fa6b24848e25f436799cc055a5aa436af81ef946953dddf476801f05e00b6c",
+      "generationSeconds": 0.088692,
+      "queueSeconds": 6.7e-05,
+      "totalSeconds": 0.133012
+    },
+    {
+      "wallSeconds": 0.055359299993142486,
+      "sampleRate": 24000,
+      "channels": 1,
+      "bits": 16,
+      "frames": 129948,
+      "audioSeconds": 5.4145,
+      "dataBytes": 259896,
+      "sha256": "32fa6b24848e25f436799cc055a5aa436af81ef946953dddf476801f05e00b6c",
+      "generationSeconds": 0.025088,
+      "queueSeconds": 0.000101,
+      "totalSeconds": 0.033292
+    },
+    {
+      "wallSeconds": 0.02929230000881944,
+      "sampleRate": 24000,
+      "channels": 1,
+      "bits": 16,
+      "frames": 129948,
+      "audioSeconds": 5.4145,
+      "dataBytes": 259896,
+      "sha256": "32fa6b24848e25f436799cc055a5aa436af81ef946953dddf476801f05e00b6c",
+      "generationSeconds": 0.011184,
+      "queueSeconds": 4e-05,
+      "totalSeconds": 0.017065
+    }
+  ],
+  "testCount": 36,
+  "date": "2026-10-25",
+  "scope": "Actual loopback HTTP/WAV, bounded queue, disconnect cancellation, worker-crash recovery and strict owned-process lifecycle tests; no acoustic playback or AIRI host-chain timing claim.",
+  "serviceLeftReady": true,
+  "defaultAiriVoiceChanged": false,
+  "serenaVoicePreserved": false,
+  "naturalLanguageStyleInstructionsSupported": false,
+  "privateAudioAndTokenExcluded": true,
+  "tokenStore": {
+    "status": "PASS",
+    "concurrentCreateIfMissing": true,
+    "existingTokenPreserved": true,
+    "invalidExistingTokenRejectedAndPreserved": true,
+    "tokenPrintedOrSavedInReport": false
+  }
+}

@@ -4,6 +4,8 @@ Read the project schema and one working example. Inspect alpha bounds and previe
 
 Bind left/right eye openness independently, lips to the target app's mouth-open parameter, and shallow head/body movement to the actual mesh. Preserve texture continuity at neck and hair boundaries. Draw facial features beneath explicit hair occluders when required.
 
+Validate natural gaze separately from pixel differences. A sprite's alpha bounding box can include long outer lashes, so its center is not necessarily the center of the eye-white opening. For a requested frontal neutral gaze, use the actual eye opening's landmark/connected-component center and the iris center, then visually check both eyes together. Verify target-specific X/Y signs and gaze amplitude in actual renders; top-down source-image Y differs from the usual positive-up EyeBallY convention. Preserve an intentionally asymmetric source gaze when fidelity to that exact illustration is the goal. Different PNG hashes, changing pixels and finite Core geometry cannot establish that the gaze looks natural.
+
 Each expression needs distinct parameter values or layers that visibly change the avatar. Record how a reference becomes a practical rig expression. If a reference includes an unavailable arm pose or special iris, omit that feature or describe the translation; do not label an unchanged sprite as that animation.
 
 Suggested iteration request:

@@ -1,0 +1,158 @@
+{
+  "repository": "csukuangfj/vits-melo-tts-zh_en",
+  "revision": "a0d5c6a264c0ef92d70d8661d8cc502d79627cd6",
+  "files": [
+    {
+      "path": "LICENSE",
+      "size": 1053,
+      "sha256": "88a50e5a02bbc2a5c2f084dc19da751aa97b1690f5fda76cd8005c8634d1ca70",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "7c49476032fa4cd6c8faa8eda042f38a31c4ea88",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "size": 257,
+      "sha256": "ae6e44dead53dfdbd5b4a77106226f3118eb910222b46cb5533a3860773fc6c7",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "146aa4632b14918d7f2212fd490d69ea010b3e4c",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/README.md"
+    },
+    {
+      "path": "date.fst",
+      "size": 59154,
+      "sha256": "eb8aa079ae3cb81d8f4404992f39d61a0cb990947512b5b8d1e54d1f6980e718",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "20ec7f4c077f9ec85ca9d01c4b4f4581f6e552ee",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/date.fst"
+    },
+    {
+      "path": "dict/README.md",
+      "size": 683,
+      "sha256": "8bcc7c2ed7dff082d9a99c09de0bfd72249bf3b5c4298a3af328da40cbd8cfd1",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "887911898611a1032f606bdbbdd6315b7bf992f6",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/README.md"
+    },
+    {
+      "path": "dict/hmm_model.utf8",
+      "size": 519739,
+      "sha256": "f17790586ac86dd048c8adffed052c4bd2b28ed0682972c1275e59040c0589a7",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "2e1f807a0f31eeee3abe4cd1e0a0419d143af96a",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/hmm_model.utf8"
+    },
+    {
+      "path": "dict/idf.utf8",
+      "size": 5998717,
+      "sha256": "dbd1e03d72b2263cc8d84a4304ed77677eed9e7deaf43a1a5133bbba9733b535",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "4ca9cecfc1d4108d639f06b83d42ab930a79fa92",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/idf.utf8"
+    },
+    {
+      "path": "dict/jieba.dict.utf8",
+      "size": 5071204,
+      "sha256": "3043b77068e09c9904f27cad82f12b6ebe9dbdb5aeff3b25e45ab7f9c1122b55",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "0015948de30f38fa97dd20adef231c1909bd8efd",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/jieba.dict.utf8"
+    },
+    {
+      "path": "dict/pos_dict/char_state_tab.utf8",
+      "size": 327139,
+      "sha256": "28b7be1dd7369766a51445af4d42e9a2ba4bf374c13be5bc1ca7721e27271dbb",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "e1e4d8d815b2938d199f14c922398714286eef95",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/pos_dict/char_state_tab.utf8"
+    },
+    {
+      "path": "dict/pos_dict/prob_emit.utf8",
+      "size": 1687686,
+      "sha256": "c33c4cb7edf3b3a5947df7209b6e9f267eae1f21335d9e2bd2521ea07105457a",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "cc207d11dc958a46f8f91d142bdb330f2b5d28a0",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/pos_dict/prob_emit.utf8"
+    },
+    {
+      "path": "dict/pos_dict/prob_start.utf8",
+      "size": 4347,
+      "sha256": "13623ea0e9300bdb597cb2da28770b7b385d6c0098d66e516083fb01b6bd5d96",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "433750d56bed6affb5b1b2989044403bcef4448e",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/pos_dict/prob_start.utf8"
+    },
+    {
+      "path": "dict/pos_dict/prob_trans.utf8",
+      "size": 124159,
+      "sha256": "f22363e2307408293d180c6f9f6b5cb75879d52f722f7764fa2d3d0ae2400236",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "87e5ac5ca772a625f0a0f67352e9b31d6872461c",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/pos_dict/prob_trans.utf8"
+    },
+    {
+      "path": "dict/stop_words.utf8",
+      "size": 8974,
+      "sha256": "b788b8a939d2e2fe079abd579ea98f12f9fb84370bfd0dddd81bb9381f7ab42c",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "32ac9e67dc44222534de99cc298dccd4b8de9907",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/stop_words.utf8"
+    },
+    {
+      "path": "dict/user.dict.utf8",
+      "size": 49,
+      "sha256": "495bbf49270408a1234690e1e6a97328f30a482a7a72aa769e8a12e8714b0c62",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "6a42ee4e06fb197d968d2bb39becad65e01b2e57",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/dict/user.dict.utf8"
+    },
+    {
+      "path": "lexicon.txt",
+      "size": 6837671,
+      "sha256": "7236884b02435ac5d10cf69b4be40a61b45aa676b5300f0e412f185748fee528",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "1a1119efceca0c2dae243f84061e70e4e3d99710",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/lexicon.txt"
+    },
+    {
+      "path": "model.int8.onnx",
+      "size": 53517430,
+      "sha256": "f085f5079e05f039b800aeb542f5253c26a303211b0c6465d0d9387977855a63",
+      "verified_against": "Hugging Face LFS SHA256",
+      "remote_hash": "f085f5079e05f039b800aeb542f5253c26a303211b0c6465d0d9387977855a63",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/model.int8.onnx"
+    },
+    {
+      "path": "new_heteronym.fst",
+      "size": 21974,
+      "sha256": "ca14b2127e27baa571664e4bb791e143e7425f56a6bc29db08d74f97e6aa4e29",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "478a809252067229211f7f414414f34f98314d9d",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/new_heteronym.fst"
+    },
+    {
+      "path": "number.fst",
+      "size": 64482,
+      "sha256": "743f402181fcfebf76cc2f0546b71fa26476e626fbe4e460fb7b4c3a7a8bd5bd",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "66c0bd468903fc98d212cd6c3c5b2793ce8eb2c3",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/number.fst"
+    },
+    {
+      "path": "phone.fst",
+      "size": 88630,
+      "sha256": "1ac2b6fa56b1442320c4de7db08353bab8963a2b57f365eebcdd3a2d3562f8d7",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "2eba908c27ec0767281cad25d322008b16869c5b",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/phone.fst"
+    },
+    {
+      "path": "tokens.txt",
+      "size": 655,
+      "sha256": "d18664a7e12bd7ea1022ddaf951e534e136815016c5a809d6b64156bffb4369d",
+      "verified_against": "Hugging Face Git blob SHA1",
+      "remote_hash": "78ed7abf73cfa7955577a2894388dcd8f5a317c3",
+      "url": "https://huggingface.co/csukuangfj/vits-melo-tts-zh_en/resolve/a0d5c6a264c0ef92d70d8661d8cc502d79627cd6/tokens.txt"
+    }
+  ]
+}

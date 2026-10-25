@@ -1,0 +1,88 @@
+{
+  "revision": "reviewed-local-example-v1",
+  "blockNodeEgress": true,
+  "healthPort": 9943,
+  "screen": {
+    "enabled": false,
+    "intervalMs": 20000,
+    "baseUrl": "http://127.0.0.1:9941/v1/",
+    "model": "airi-qwen3.5-9b",
+    "timeoutMs": 90000,
+    "maxTokens": 400
+  },
+  "vadRedirects": {
+    "https://huggingface.co/onnx-community/silero-vad/resolve/main/onnx/model.onnx": "http://127.0.0.1:9942/offline-assets/silero-vad/onnx/model.onnx"
+  },
+  "providers": {
+    "local-chat": {
+      "id": "local-chat",
+      "definitionId": "openai-compatible",
+      "status": "configured",
+      "configuredBy": "user",
+      "config": {
+        "apiKey": "local-offline",
+        "baseUrl": "http://127.0.0.1:9941/v1/",
+        "api": "chat-completions"
+      }
+    },
+    "local-asr": {
+      "id": "local-asr",
+      "definitionId": "openai-compatible-audio-transcription",
+      "status": "configured",
+      "configuredBy": "user",
+      "config": {
+        "apiKey": "local-offline",
+        "baseUrl": "http://127.0.0.1:9942/v1/",
+        "model": "sensevoice-local",
+        "language": "zh"
+      }
+    },
+    "local-voice": {
+      "id": "local-voice",
+      "definitionId": "openai-compatible-audio-speech",
+      "status": "configured",
+      "configuredBy": "user",
+      "config": {
+        "apiKey": "local-offline",
+        "baseUrl": "http://127.0.0.1:9945/v1/",
+        "model": "phoenix-qwen3-tts-local",
+        "voice": "phoenix-soft",
+        "speed": 1
+      }
+    }
+  },
+  "modules": {
+    "consciousness": {
+      "provider": "local-chat",
+      "model": "airi-qwen3.5-9b"
+    },
+    "vision": {
+      "provider": "local-chat",
+      "model": "airi-qwen3.5-9b"
+    },
+    "hearing": {
+      "provider": "local-asr",
+      "model": "sensevoice-local"
+    },
+    "speech": {
+      "provider": "local-voice",
+      "model": "phoenix-qwen3-tts-local",
+      "voice_id": "phoenix-soft"
+    }
+  },
+  "storage": {
+    "settings/audio/input/enabled": "false",
+    "settings/hearing/auto-send-enabled": "false",
+    "settings/analytics/enabled": "false"
+  },
+  "character": {
+    "enabled": false
+  },
+  "additionalCharacters": [],
+  "stickers": {
+    "enabled": false
+  },
+  "mmdIdle": {
+    "enabled": false
+  }
+}

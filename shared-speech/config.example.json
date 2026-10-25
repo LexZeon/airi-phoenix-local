@@ -1,0 +1,7 @@
+{
+  "runtime_python": "/absolute/path/to/existing/python.exe",
+  "asr_directory": "/absolute/path/to/existing/sensevoice",
+  "ffmpeg": "/absolute/path/to/existing/ffmpeg.exe",
+  "asr_threads": 3,
+  "tts_threads": 3
+}

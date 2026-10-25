@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "test": "actual-airi-user-mmd-card-integration",
+  "checkedAtUtc": "2026-10-25T09:00:19.7117758Z",
+  "upstream": "moeru-ai/airi",
+  "version": "0.12.0",
+  "displayFormat": "pmx-zip",
+  "source": "User-selected private local PMX directory",
+  "privateModelExcludedFromPublication": true,
+  "entryBytesUnchanged": true,
+  "primaryPmxOnly": true,
+  "nativeDesktopVisualObserved": true,
+  "activated": true,
+  "phase": "active",
+  "physicsEnabled": false,
+  "rendererErrors": 0,
+  "screenPublished": 15,
+  "screenFailures": 0,
+  "language": "Qwen3.5-9B-Q4_K_M",
+  "asr": "SenseVoice int8",
+  "tts": "Qwen3-TTS 1.7B CustomVoice Serena phoenix-soft",
+  "microphoneUiObserved": "\u6b63\u5728\u542c",
+  "actualLlmToTtsApiVerification": "app-llm-qwen-tts.json; causal chain INCONCLUSIVE, SDK completed text plus global counter only",
+  "limitations": [
+    "A-pose is the initial model rest pose; natural idle not yet applied.",
+    "TTS API acceptance and SDK reply were tested; physical microphone/speaker behavior remains user experiential verification.",
+    "No claim that the blocked official source allows every use; private user files remain local.",
+    "Compiled synthetic scene binding does not pass host speech gate; old globalTTSdelta is not causal voice-chain evidence"
+  ]
+}

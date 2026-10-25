@@ -22,7 +22,7 @@ if ($LASTEXITCODE -ne 0) { throw 'AIRI profile application failed.' }
 $selectionApplied = ($selectionResult -join [Environment]::NewLine) | ConvertFrom-Json
 if (-not $selectionApplied.ok) { throw 'AIRI profile was not applied.' }
 if (-not $StartAiri) { $selectionResult; exit 0 }
-$selectionProfile = Get-Content -LiteralPath $selectionPath -Raw | ConvertFrom-Json
+$selectionProfile = Get-Content -LiteralPath $selectionPath -Encoding UTF8 -Raw | ConvertFrom-Json
 $selectionShell = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
 function Invoke-SelectionLauncher([string]$File, [string[]]$Arguments) {
     & $selectionShell -NoProfile -ExecutionPolicy Bypass -File $File @Arguments
@@ -38,7 +38,7 @@ if ($selectionProfile.selections.chat -eq 'ollama' -or $selectionProfile.selecti
     if (-not $selectionWorkbench) { throw 'Set AIRI_WORKBENCH to the existing optional workbench directory.' }
     Invoke-SelectionLauncher (Join-Path $selectionWorkbench 'Start-Ollama.ps1') @()
 }
-if ($selectionProfile.selections.tts -in @('qwen-soft','qwen-drowsy','qwen-focused')) {
+if ($selectionProfile.selections.tts -in @('qwen-soft','qwen-efficient','qwen-drowsy','qwen-focused')) {
     Invoke-SelectionLauncher (Join-Path $selectionBase 'runtime\airi-qwen-tts\start.ps1') @()
 }
 # Existing AIRI start brings up the already installed visual and SenseVoice/Melo services.

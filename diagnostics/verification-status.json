@@ -1,0 +1,19 @@
+{
+  "implementation": "runtime validated",
+  "runtimeStatus": "HTTP_STAGE_PROBE_PASS",
+  "probeRequestsExecuted": true,
+  "latencyOptimizationsExecuted": true,
+  "reports": [
+    "reports/baseline-2rep.json",
+    "reports/melo-2rep.json",
+    "../voice/tests/candidate-verification.json",
+    "../voice/tests/efficient-http-verification.json",
+    "../voice/tests/sapi-verification.json",
+    "../voice/windows-sapi/verification-status.json"
+  ],
+  "causalAiriVoiceChain": "INCONCLUSIVE; old scene binding does not speak and global TTS counts are uncorrelated",
+  "physicalPlaybackMeasured": false,
+  "onlineCandidates": "UNMEASURED; no credentials supplied or online calls made",
+  "privacy": "Fixed synthetic text and original synthetic WAV; no microphone/screen/chat/raw output saved; no defaults changed",
+  "latencyOptimizationScope": "Synthetic tests of opt-in alias only; default voice and AIRI selection unchanged"
+}

@@ -1,0 +1,37 @@
+{
+  "toolVerificationPassed": true,
+  "preparation": {
+    "actualOfficialFramesPrepared": 9,
+    "totalImageBytes": 392322,
+    "inputOutputHashesRecorded": true,
+    "repeatOutputStable": true,
+    "imagesWithinAIRILimits": true,
+    "sourceKind": "official public storyboard crops; no AI redraw; static only"
+  },
+  "tests": {
+    "pythonActualPNG": {
+      "passed": 5,
+      "failed": 0
+    },
+    "nodeHelperSyntheticStore": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "airiIntegration": {
+    "realStoreAPIInspected": true,
+    "mainAppImportStatus": "passed controlled MAIN-world execution against the actual running AIRI store",
+    "mainAppImportedCount": 9,
+    "mainAppEnabled": true,
+    "mainAppFrequency": 50,
+    "settingsLibraryVisualStatus": "passed actual native AIRI Settings module UI",
+    "chatRenderingStatus": "pending actual saved sticker selected/rendered in a chat reply",
+    "mainAppPersistedCustomEntries": 9,
+    "defaultEntriesPreserved": 12,
+    "toggleObserved": "ON",
+    "frequencyObserved": 50,
+    "actualCustomThumbnailsRendered": true,
+    "screenshotsPublished": false
+  },
+  "publication": "No official artwork, generated private import payload, account state, private paths, or signed media URLs included."
+}

@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "file": "server.py",
+      "sha256": "5eecee91df1acad604c2772663e80a8c747c1178a49eb497792eec6cde31fbb7"
+    },
+    {
+      "file": "worker.ps1",
+      "sha256": "0b597f17e4273f166474123f19f60e1da61e7385ecb7bd9c09ee0e8c795e9b82"
+    },
+    {
+      "file": "common.ps1",
+      "sha256": "7796bcd9dd6b936832c3ab334e01a1c1c7a9b569f76da63ddb7d753277c089f6",
+      "runtimeOriginalSha256": "6cd1958180010a5f1a4c4f3597fbcaf4f4385dfe3472d09cc8dfb33dd7fac303",
+      "publicationChanges": "environment-configurable venv path and UTF-8 config read"
+    },
+    {
+      "file": "start.ps1",
+      "sha256": "333f9dd2c7272be40faac0c03ffd5622519e15d69bc553bafb5bc7e79472d834"
+    },
+    {
+      "file": "stop.ps1",
+      "sha256": "0879dc471c7ff899dd35609c9062038032abaa1beb809fa4518643830bafbc6c"
+    },
+    {
+      "file": "token_store.py",
+      "sha256": "995794f469a7b0c4b60ce329d0a0cd9350f67cd0c24802d54579bef16070b6c8"
+    },
+    {
+      "file": "verify_api.py",
+      "sha256": "17d65962a41ef6681e06c9b98591b2a6a806d7c06767458c7dc2a2da6582dccd"
+    },
+    {
+      "file": "README.md",
+      "sha256": "cf71511f911f3178843440d5398c7245014d2345fb1e047dbab196d16e4be471",
+      "runtimeOriginalSha256": "7d3f1c4578b5bf58d07284e8e649455b2dd5291757c7799fe222c7c1a3b855c9",
+      "publicationChanges": "document public interpreter override"
+    },
+    {
+      "file": ".gitignore",
+      "sha256": "985421f1f0d901ecf807422bd24cee1ae2f9b26871a1974c6f755984901bec9d"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "test": "profile-selection-updates-all-managed-cards",
+  "cards": 3,
+  "avatarPathsPreserved": true,
+  "activationPreserved": true,
+  "realSettingsTouched": false
+}

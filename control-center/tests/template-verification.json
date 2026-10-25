@@ -7,10 +7,11 @@
     "isolated HTTP health and bootstrap are real",
     "missing CSRF and cross-origin writes rejected",
     "preference save does not modify AIRI settings",
+    "all three managed cards receive new modules and revision while model paths and activation are preserved",
     "actual fixture apply preserves character and unrelated settings with exact backup",
     "arbitrary launcher action rejected"
   ],
-  "checksPassed": 7,
+  "checksPassed": 8,
   "liveAiriRestarted": false,
   "privatePathsOrSettingsIncluded": false,
   "uiRetested": false,

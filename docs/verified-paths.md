@@ -73,11 +73,10 @@ python voice/server.py --deps /path/to/isolated-voice-deps --model-dir /path/to/
 适用于：已有兼容offline-settings/revision契约的AIRI wrapper与本机服务，需要明确选择聊天、
 视觉、ASR和TTS。代码和依赖条件见[控制台说明](../control-center/README.md)。发布副本把工作台、
 模型、Python、部署根和私有状态目录改为环境参数，不含那台机器的settings和profile。
-历史实用版25API、18交互UI、7最终只读UI通过；发布副本另有7项真实隔离HTTP/偏好不改设置/
+历史实用版25API、18交互UI、7最终只读UI通过；发布副本另有8项真实隔离HTTP/偏好不改设置/
 apply保留角色与其他设置/精确备份/CSRF/固定命令拒绝测试，见[副本报告](../control-center/tests/template-verification.json)。
 
-这是有验证证据的配置方法和模板，不是已经安装所有后端的通用AIRI安装器。完整wrapper首版尚待
-独立快照/验收收录，未具备说明中的服务和启动器时，不把按钮操作视为部署成功。
+这是有验证证据的配置方法和模板，不是已经安装所有后端的通用AIRI安装器。完整wrapper与路径可配启动器见[快照说明](../airi-integration/offline-shell/SETUP.md)；需先满足既有构建、依赖与模型条件，不把按钮操作当作新机器部署成功。
 
 ## 原创人设与可导出的 AIRI 卡
 
@@ -97,6 +96,25 @@ card-only有意不含动画模型。来源见[设定与表情索引](../examples
 应一起核对；卡不会安装9B、ASR或授予麦克风/屏幕权限。此处的schema/ACT测试不等于
 最新候选已完成真实AIRI import、可见表情、播放和lip sync验收。
 
+## 实际3D接卡与API声链
+
+[可复用方法和源码](../airi-integration/README.md)记录受测AIRI的真实Pinia流程：
+私有`pmx-zip`→addDisplayModel→addCard绑定真实model.id→activateCard；实际桌面完整3D显示通过。
+模型和纹理不发布，按用户自有文件自己的readme/来源记录。原创自然手臂/待机已通过原生VMD解析、实际MMDScene渲染、主app导入和前台可见检查；物理保持关闭。
+
+同一文档附独立synthetic binding验证器：实际SDK合成文本完成已观察，TTS全局计数变化未精确关联（因果INCONCLUSIVE），
+message/complete各1、预期短语出现、TTS增加1，renderer/屏幕/服务错误0。
+38970ms仅是旧SDK文本与同期全局TTS计数观察的总耗时，语音因果关联未证实；它不是TTFT、TTFA或端到端播放延迟。
+用户安排在既有任务完成后才排查端到端延迟，当前不提前优化。
+
+## 聊天贴纸：制备与导入helper
+
+[sticker-tools](../sticker-tools/README.md)查询官方米游社公开catalog，制备显式本地图像配方，
+并通过真实Pinia stickers store API导入。官方catalog本次未匹配到菲欧妮完整包，不能声称全网不存在。
+本机已从原有官方公开视频故事板缓存做9个静态帧crop，哈希/重复一致和尺寸检查通过；图片不公开。
+Pillow5项真实PNG测试与Node5项synthetic store测试通过。真实主app store已导入9个、enabled=true、frequency=50；设置库实际缩略图渲染已通过，真实聊天选图/显示仍待验收，
+不混进已完成端到端方案。它是设备全局贴纸库/频率配置，不是每卡Live2D面部表情。
+
 ## 给自己的 AI agent 使用
 
 完整ZIP的根入口是`SKILL.md`，Skill名`airi-character-forge`；普通agent可直接读文件并调用CLI。
@@ -107,12 +125,35 @@ MCP是可选legacy2025-11-25 stdio接口，18协议/路径边界测试及真实r
 ## 单独列出的未完成项
 
 - 官图2D原生桌面已可见，继续调整位置并联合验证12表情、看鼠标、语音和lip sync。
-- 三张独立卡：官图2D、待制作站姿2D、用户自有3D；3D本机前台显示已验证，卡/来源与附带readme分别记录，模型不公开。
-- 两套时装Live2D制作。
-- 聊天贴纸/表情包的官方资源获取、AIRI配置及实际聊天显示；它不同于model3面部表情。
-- 最新启动器对共享Electron路径的进程区分修复与完整重启验收，待实测证据后再列为可用方法。
-- 最终组合配置的离线启动/停止/更新保留用户自定义数据检查。
-- 现有任务全部完成后，最后再测说话→ASR→LLM→TTS延迟并发布经过验证的测量方法/有效方案；当前未进行这一项优化。
+- 三张独立卡：官图2D、站姿2D、用户自有3D；站姿Core135组合/WebGL29帧并导入独立卡已通过，三卡完整UI/音频联合验收另做。
+- 两套时装由用户暂缓，当前范围不包含；仅保留来源参考。
+- 聊天模型实际选贴纸并在回复中显示的验收；主app导入/持久化/设置/缩略图已通过，它不同于model3面部表情。
+- 新AIRI版本更新后重新核对内部API与用户自定义数据保留；当前版本完整启停已通过。
+- 固定合成输入的HTTP阶段计时已执行，见[探针](../diagnostics/README.md)。真实VAD/host关联/声卡物理播放与候选选型仍分层验收；当前默认保留。
 
 链接配布的条款仅适用于对应来源；用户另行提供的本机3D文件按其自己的readme/来源记录，不能仅凭其他配布页面替它下用途结论。官方或用户自有模型文件都不进入公开ZIP。
 项目持续记录的是已验证方法、适用条件和必要陷阱，不发布聊天流水；见[记录约定](airi-change-recording.md)。
+
+## 原生MMD自然待机方法
+
+[mmd-tools](../mmd-tools/README.md)从实际骨骼方向生成原创12秒VMD，经原生`useMMD().addMotion(File)`和`idleMotionName`播放，不替换AIRI渲染循环。受测VMD370关键帧/10骨骼/0morph，首尾相等且四元数单位化，5项helper检查通过；实际MMDScene独立预览已显示完整贴图与手臂约13度自然下垂。主app store导入ready，当前原生前台已看到自然待机；完整音频/口型联合仍分层验收。
+
+只附原创骨骼动作，不附用户PMX、纹理或视频。不同骨架/裙摆/饰品必须各自检查；当前模型物理关闭，因为此组合会拉伸头发，不能声称物理已修好。待机不写头/眼/嘴/morph轨道以保留原生控制路径，但没有据此冒称真实TTS口型全部验过。
+
+### 视觉语义不能被像素QA代替
+
+站姿build005曾通过135Core组合、29实际WebGL帧和13项像素QA，但用户实图显示双瞳外斜。原因是长外睫扩大眼框alpha bbox，bbox中心偏离眼白开口中心，左右虹膜分别外移约8.868/8.779px。技术测试只证明变化存在，不能证明眼向自然。006已按眼白开口连通区域质心与中央瞳孔质心对齐，缩小gaze幅度并核对Y方向；实际Core投影与额外33张WebGL已通过，主app原生小窗中性姿态已确认无明显此前外斜，但没有完整实机四向极值/独立眨眼证据；这些控制以真实离屏WebGL验收为准。官图2D原画有意目光应保留，不照搬正面中性居中规则。
+
+## Windows一键重启与UTF-8 JSON的已验证修复
+
+本机实际全停/全启后9941、9942、9945与桌面ready，一键start exit0；独立9931工作台原PID保持。站姿模型换新版仍保留cardID，贴纸复用9无重复，原创MMD idle复用同名哈希条目。见[脱敏汇总](../airi-integration/verification/one-click-restart-summary.json)。[wrapper/launcher快照](../airi-integration/offline-shell/SETUP.md)单独收录；这份摘要不等于任意机器安装成功。
+
+必要陷阱：PowerShell5的Get-Content默认会把BOMlessUTF-8中文当ANSI，导致ConvertFrom-Json失败。读取JSON应显式`-Encoding UTF8`；Python CLI经旧native stdout codepage传给PS时输出JSON unicode escapes（ensure_ascii=True），HTTP仍保持UTF-8。配置解析失败只输出固定错误，不把整份带provider字段的JSON打印进日志。发布的控制台选择/停止模板已同步这一修正，私有settings和备份不公开。
+
+### 声链验证的因果边界更正
+
+历史38970ms工具使用overrides.binding，所测compiled scene路径speaks=false。SDK message/complete是生成完成事件而非首token；全局tts_requests在并发运行时无法关联到该请求。故该条只保留SDK合成文本完成与同期计数观察，声链因果INCONCLUSIVE。直接HTTP TTS返回WAV仍是有效独立证据。后续严格端到端测试必须关联正确host会话的合成输入、LLM输出、对应TTS请求与播放，不依靠同时增加的全局计数。
+
+## 已测速度候选与默认保留
+
+[实测选择表](speech-options.md)列Qwen默认与可选省输出别名、Melo和Windows慧慧；[控制台](../control-center/README.md)已经显示两个新选项的实际接口证据并恢复原Serena默认，未自动应用或播放。Qwen可选模式在本句HTTP对照减少约19.8%等待且WAV一致；SAPI三次完整WAV0.147/0.055/0.029s但音色功能不同。系统声线不等于角色风格，云端三项仍UNMEASURED。

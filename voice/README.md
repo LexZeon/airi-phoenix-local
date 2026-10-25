@@ -7,8 +7,11 @@ The default remains `phoenix-soft`. Change the alias per request or edit [styles
 | Alias | Style |
 | --- | --- |
 | `phoenix-soft` | Warm, gentle, slightly tired; a little slower and clear |
+| `phoenix-soft-efficient` | Optional: the same soft instructions and Serena speaker; omits unused residual-predictor hidden states |
 | `phoenix-drowsy` | Quiet and relaxed with mild breathiness |
 | `phoenix-focused` | Warm but attentive, concise and clear |
+
+`phoenix-soft-efficient` is an explicit opt-in candidate. The default remains `phoenix-soft`; no AIRI card is switched by installing it. [Performance comparisons](performance.md) distinguish measured synthetic results from pending integration checks and describe the separate system-voice option.
 
 ## Install once, run offline
 

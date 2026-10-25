@@ -1,4 +1,4 @@
-# AIRI Character Forge · 菲欧妮本地伙伴制作记录
+# AIRI Character Forge · 角色工具与验证方法
 
 把完整 ZIP 交给自己的 AI agent，按需制作人设、Live2D 绑定和表情、原创合成语音与 AIRI 角色包。通用程序由 JSON 驱动，附可运行的原创机器人例子、Skill 和可选 MCP；菲欧妮是制作案例，不是唯一支持的角色。
 
@@ -13,11 +13,12 @@
 | 通用 Live2D 程序 | 真正 MOC3/model3/纹理/exp3 导出；严格 schema、引用检查和外部 Core 验证；原创 robot/DeskBot 可复现 |
 | agent 接口 | CLI JSON、Skill/提示词、legacy MCP 2025-11-25 stdio；不依赖固定 AI 账户 |
 | 菲欧妮人设与表情 | 官方出处、原创人设/对话规则、12 个精确表情名；可导出 AIRI/CCv3/V2 卡 |
-| 聊天贴纸／表情包 | 与Live2D面部表情分开的AIRI配置；官方来源、获取代码和实际聊天显示仍在单独接入中 |
-| 语音 | Qwen3-TTS 1.7B CustomVoice 内置 Serena + 三种原创风格；真实 WAV/MP3/API/队列和离线请求层验证通过 |
+| 聊天贴纸／表情包 | 来源查询、静态PNG制备、真实store导入helper及5+5测试通过；9个本机官方帧制备通过，真实store导入/持久化/设置/缩略图已通过（9新增+12默认，启用50%）；真实聊天选图/显示另验；不带图片 |
+| 语音 | Qwen3-TTS 1.7B CustomVoice 内置 Serena + 三种原创风格；真实 WAV/MP3/API/队列和离线请求层验证通过；可选省输出别名与独立Windows慧慧adapter均有合成输入实测，默认保留 |
 | 常服 Live2D 案例 | 本机官图原像素保真模型：14 drawable、19 实绑参数、12 不同表情，Core 133 组合及实际 AIRI WebGL 离屏通过；中性 RGBA 与原图逐像素一致 |
-| 当前角色交付分工 | 三张独立卡：官图2D（实际桌面已可见，位置/12表情与语音联合待验）、站姿2D（继续制作）、用户自有3D（本机前台显示已验证，模型不公开） |
-| 尚未完成 | 三卡配置与完整功能联合验收、站姿2D和两套时装制作；现有任务完成后再测端到端语音延迟 |
+| 当前角色交付分工 | 三张独立卡：官图2D（实际桌面已可见，已在app注册12表情，完整可见控制/语音联合另验）、站姿2D（技术/Core/WebGL通过；旧眼向问题已在006按开口/瞳孔质心修正，原生小窗中性眼位已无明显外斜；四向极值/独立眨眼仅离屏验证）、用户自有3D（本机前台显示已验证，模型不公开） |
+| 实际接卡／SDK观察 | 用户自有PMX ZIP经真实Pinia注册并激活；SDK合成文本完成已观察，TTS全局计数变化未精确关联（因果INCONCLUSIVE），自然3D待机已接入并可见；物理麦克风/声卡全测另验 |
+| 尚未完成 | 真实聊天选贴纸、完整物理声链与使用者最终语音选型；HTTP/候选与控制台证据已有实测，默认未切 |
 
 官方图片、官图派生纹理/MOC3 包、官方 MMD 包、Core、模型权重和用户配置都不在公开下载中。`examples/phoenix/rig-project.recipe.json`只保留坐标和参数配方，不能在缺少本地来源文件时直接构建；可直接构建的例子是 robot 和 DeskBot。
 
@@ -40,11 +41,18 @@ python rig-tools/rig.py validate --model work/robot/build-001/MyRobot.model3.jso
 - [人设/卡与真实 ACT 表情](character-tools/README.md)、[菲欧妮设定/表情来源](examples/phoenix/sources.json)。
 - [本地语音、样例和延迟](voice/README.md)：9945 `/v1/`，默认 `phoenix-qwen3-tts-local` / `phoenix-soft`；约 4.52 GB 官方权重单独获取，批处理语音需等待整句生成。
 - [语音与 AIRI 接入提示词](prompts/voice-and-airi.md)、[完整制作记录](docs/process-log.md)、[权利边界](RIGHTS.md)。
+- [真实3D接卡与SDK文本观察](airi-integration/README.md)、[聊天贴纸制备/导入工具](sticker-tools/README.md)。
 
-Windows on ARM 的本机部署曾复用已有 Qwen3.5 9B、SenseVoice 和创作环境。这个公开包不包含其他电脑的启动器、硬编码用户路径或已登录应用状态，也不自动接管现有 AIRI 卡和聊天。
+Windows on ARM 的本机部署曾复用已有 Qwen3.5 9B、SenseVoice 和创作环境。公开包提供路径可配置的启动模板，不包含硬编码用户路径或已登录应用状态；接入既有 AIRI 卡和聊天前先按说明备份/选择目标。
 
 原创程序、文档、提示词和机器人素材为 MIT；`py-moc3`保留原 MIT 通知。角色 IP、官方素材、Core、语音模型及各自权利单独处理。本项目是非官方同人技术记录，与 HoYoverse、Live2D 或 AIRI 没有隶属和背书关系。
 
 用户要求本聊天的全部 AIRI 配置、修改与调试持续脱敏记录到 GitHub，约定已写入 [AGENTS.md](AGENTS.md)和[记录工作流](docs/airi-change-recording.md)。
 
-[Windows四模块控制台脱敏模板](control-center/README.md)保留实用版25API/18交互UI/7只读UI结果，并新增发布副本7项隔离HTTP与配置备份验收。它需要已有wrapper/服务，不是通用安装器；完整wrapper快照和目标功能验收后续单独收录。
+[Windows四模块控制台脱敏模板](control-center/README.md)保留实用版25API/18交互UI/7只读UI结果，并新增发布副本8项隔离HTTP与配置备份验收。它需要已有wrapper/服务，不是通用安装器；完整wrapper快照见下方；目标功能验收按层记录。
+
+[原创MMD待机工具](mmd-tools/README.md)通过原生VMD解析与独立实际MMDScene渲染，动作已实际导入主app；不带官模/贴图/第三方动作。[阶段延迟探针](diagnostics/README.md)已有固定输入实测，候选先测后选；默认配置保留。
+
+[离线 wrapper 与一键启动模板](airi-integration/offline-shell/SETUP.md)保留正常 AIRI main/renderer，并记录已实测 Windows UTF-8 与进程身份修复；[9942共享语音](shared-speech/README.md)复用现有 SenseVoice 和小型 Melo，模型、Python 环境和所有真实 settings 均在包外。
+
+[实测语音选择表](docs/speech-options.md)对照Serena默认/可选省输出模式、Melo、系统慧慧和未测云端；保持默认，选择权留给使用者。

@@ -45,7 +45,7 @@
       "IrisRight"
     ]
   },
-  "desktopAcceptance": "Visible in actual AIRI desktop per local acceptance update; framing/12-expression/audio combined acceptance pending",
+  "desktopAcceptance": "Actual AIRI desktop visible; bounded post-activation controls readiness poll observed all 12 expressions. Complete native mouse/blink/lip/audio combined acceptance not claimed.",
   "excluded": [
     "official input images",
     "official-derived underlays/textures/model packages",
@@ -53,8 +53,8 @@
     "private desktop screenshots"
   ],
   "separateCards": {
-    "official2d": "visible; framing and combined acceptance pending",
-    "standing2d": "in production",
-    "userProvided3d": "foreground display verified locally; model not redistributed"
+    "official2d": "visible, 12 active controls registered",
+    "standing2d": "build006 actual native neutral check: no obvious previous outward gaze; native pointer extremes/blink not covered",
+    "userProvided3d": "actual foreground full body and original natural idle; private model excluded"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "status": "PASS per actual host acceptance",
+  "scope": "Managed full stop and one-click start of local AIRI plus9941/9942/9945; unrelated9931preserved",
+  "ownedServicesReadyAfterRestart": [
+    9941,
+    9942,
+    9945
+  ],
+  "desktopReady": true,
+  "unrelatedWorkbenchPidPreserved": true,
+  "launcherExit": 0,
+  "standingModelRevisionUpdatedWithoutChangingCardId": true,
+  "stickersReusedCount": 9,
+  "stickersDuplicated": false,
+  "mmdIdleReused": true,
+  "windowsUtf8Fix": {
+    "powershell5GetContentEncodingUTF8": true,
+    "profileCliStdoutAsciiEscapes": true,
+    "httpRemainsUtf8": true,
+    "failureOutputDoesNotDumpProviderJson": true
+  },
+  "privateSettingsTokensPidsAndImagesIncluded": false
+}

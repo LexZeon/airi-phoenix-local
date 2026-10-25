@@ -1,0 +1,216 @@
+{
+  "build": "build-006",
+  "mocBytes": 23547584,
+  "meshes": 19,
+  "parameters": 19,
+  "expressions": 12,
+  "coreCases": 135,
+  "actualAiriWebGLFrames": 29,
+  "checks": [
+    {
+      "name": "left-blink-is-visible",
+      "pass": true
+    },
+    {
+      "name": "left-blink-preserves-right-eye",
+      "pass": true
+    },
+    {
+      "name": "right-blink-is-visible",
+      "pass": true
+    },
+    {
+      "name": "right-blink-preserves-left-eye",
+      "pass": true
+    },
+    {
+      "name": "mouth-open-is-visible",
+      "pass": true
+    },
+    {
+      "name": "mouth-open-preserves-both-eyes",
+      "pass": true
+    },
+    {
+      "name": "gaze-left-affects-both-eyes",
+      "pass": true
+    },
+    {
+      "name": "gaze-right-affects-both-eyes",
+      "pass": true
+    },
+    {
+      "name": "gaze-up-affects-both-eyes",
+      "pass": true
+    },
+    {
+      "name": "gaze-down-affects-both-eyes",
+      "pass": true
+    },
+    {
+      "name": "twelve-distinct-actual-expression-images",
+      "pass": true
+    },
+    {
+      "name": "actual-webgl2-renderer",
+      "pass": true
+    },
+    {
+      "name": "approved-base-file-unchanged",
+      "pass": true
+    },
+    {
+      "name": "actual-Core-projected-neutral-pupils-align-with-openings",
+      "pass": true,
+      "errorsScreenPx": {
+        "Left": 5.207114569992609e-06,
+        "Right": 1.0888393997738211e-05
+      }
+    },
+    {
+      "name": "four-direction-binocular-gaze-has-same-sign-and-equal-travel",
+      "pass": true
+    },
+    {
+      "name": "both-head-tilts-preserve-iris-opening-alignment",
+      "pass": true
+    },
+    {
+      "name": "combined-head-tilt-and-gaze-stay-binocular",
+      "pass": true
+    }
+  ],
+  "bodySourceUntouched": true,
+  "originalFacialAtlasReused": false,
+  "status": "CORE_WEBGL_ANCHOR_ALIGNMENT_PASS_NATIVE_NEUTRAL_PARTIAL_CHECK",
+  "scope": "Local reference-derived art; no images, model, private card/settings or native screenshot distributed",
+  "additionalAlignmentWebGLFrames": 33,
+  "alignmentMeasurement": {
+    "measurement": "Centroids of actual source sclera/pupil regions projected through actual Core drawable vertex positions and AIRI renderer matrices. Not a claim that mesh metadata alone proves likeness.",
+    "neutralErrorScreenPx": {
+      "Left": 5.207114569992609e-06,
+      "Right": 1.0888393997738211e-05
+    },
+    "gaze": {
+      "gaze-left": {
+        "displacementScreenPx": {
+          "Left": [
+            -2.9296874119810923,
+            0.0
+          ],
+          "Right": [
+            -2.9296875,
+            0.0
+          ]
+        },
+        "binocularDifferencePx": 8.801890771792387e-08
+      },
+      "gaze-right": {
+        "displacementScreenPx": {
+          "Left": [
+            2.9296875,
+            0.0
+          ],
+          "Right": [
+            2.9296875,
+            0.0
+          ]
+        },
+        "binocularDifferencePx": 0.0
+      },
+      "gaze-up": {
+        "displacementScreenPx": {
+          "Left": [
+            0.0,
+            -1.46484375
+          ],
+          "Right": [
+            0.0,
+            -1.4648437499999432
+          ]
+        },
+        "binocularDifferencePx": 5.684341886080802e-14
+      },
+      "gaze-down": {
+        "displacementScreenPx": {
+          "Left": [
+            0.0,
+            1.46484375
+          ],
+          "Right": [
+            0.0,
+            1.4648437500000568
+          ]
+        },
+        "binocularDifferencePx": 5.684341886080802e-14
+      }
+    },
+    "headTilt": {
+      "head-tilt-left": {
+        "pupilOpeningErrorScreenPx": {
+          "Left": 1.3795090223721019e-05,
+          "Right": 1.5601730575903134e-05
+        }
+      },
+      "head-tilt-right": {
+        "pupilOpeningErrorScreenPx": {
+          "Left": 3.373001065273797e-06,
+          "Right": 1.9564960801461887e-05
+        }
+      },
+      "tilt-gaze-left": {
+        "pupilMinusOpeningPx": {
+          "Left": [
+            -2.9273283261956635,
+            0.11755660151226266
+          ],
+          "Right": [
+            -2.9273289824405992,
+            0.11755491175091493
+          ]
+        },
+        "binocularDifferencePx": 1.8127191806681177e-06
+      },
+      "tilt-gaze-right": {
+        "pupilMinusOpeningPx": {
+          "Left": [
+            2.9273262271100293,
+            0.11757349538083872
+          ],
+          "Right": [
+            2.927323943982742,
+            0.11758026166495483
+          ]
+        },
+        "binocularDifferencePx": 7.141097321113924e-06
+      }
+    }
+  },
+  "historicalBuild005Issue": {
+    "leftOutwardPixels": 8.868,
+    "rightOutwardPixels": 8.779,
+    "cause": "Sprite bbox included outer lashes; neutral gaze was visually unacceptable despite pixel-change QA",
+    "correction": "Eye-white opening centroid and central pupil centroid aligned; same center for frame and mask; gaze3/-1.5 author pixels",
+    "notAUniversalLookScore": true
+  },
+  "targetAppAcceptance": "Latest006 actual app visual/audio acceptance remains for parent task",
+  "limitations": [
+    "Shallow2D geometry, no independent arm/hand animation",
+    "No spiral-eye motif or scene props",
+    "User-approved body unchanged; new facial atlas",
+    "Anchor projection precision is not a subjective likeness/naturalness score"
+  ],
+  "nativeUiAcceptance": {
+    "status": "PARTIAL_UI_CHECK",
+    "confirmed": [
+      "Actual native AIRI selected the standing card",
+      "Small window showed centered eyes and no obvious prior outward gaze"
+    ],
+    "limits": [
+      "236x412 native window cannot quantify fine displacement",
+      "Native four-direction pointer extremes not fully tested",
+      "No full independent native blink captured; isolated actual WebGL verifies it"
+    ],
+    "privateScreenshotIncluded": false
+  }
+}

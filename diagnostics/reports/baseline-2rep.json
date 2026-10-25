@@ -1,0 +1,256 @@
+{
+  "tool": "synthetic-loopback-http-stage-probe",
+  "version": "0.1.0",
+  "testedAt": "2026-10-25T09:38:42.524619+00:00",
+  "syntheticOnly": true,
+  "workflow": "Isolated HTTP stages; LLM output is not passed to TTS; their sum is not real conversation latency",
+  "rawInputsOrOutputsSaved": false,
+  "microphoneOrScreenUsed": false,
+  "configurationChanged": false,
+  "onlineCandidates": "UNMEASURED by this loopback-only tool; no credentials or online API calls are inferred",
+  "automaticWarmup": false,
+  "requests": [
+    {
+      "stage": "asr",
+      "run": 1,
+      "ok": true,
+      "metrics": {
+        "response_headers_ms": 2619.11,
+        "first_body_byte_ms": 2619.146,
+        "total_ms": 2619.27,
+        "response_bytes": 62,
+        "transcript_characters": 17,
+        "transcript_saved": false,
+        "audio": {
+          "sample_rate": 24000,
+          "channels": 1,
+          "bits_per_sample": 16,
+          "frames": 124800,
+          "audio_data_bytes": 249600,
+          "wav_audio_seconds": 5.2
+        },
+        "microphone_endpointing_measured": false
+      }
+    },
+    {
+      "stage": "llm",
+      "run": 1,
+      "ok": true,
+      "metrics": {
+        "response_headers_ms": 3333.355,
+        "first_sse_event_ms": 3422.15,
+        "first_token_ms": 3422.444,
+        "first_visible_text_ms": 3422.448,
+        "total_ms": 3607.019,
+        "content_characters": 8,
+        "reasoning_characters": 0,
+        "sse_events": 9,
+        "usage": {
+          "prompt_tokens": 28,
+          "completion_tokens": 7,
+          "total_tokens": 35
+        },
+        "reply_text_saved": false
+      }
+    },
+    {
+      "stage": "tts",
+      "run": 1,
+      "ok": true,
+      "metrics": {
+        "first_body_byte_ms": 8469.486,
+        "api_first_complete_playable_wav_ms": 8469.901,
+        "physical_ttfa_ms": null,
+        "total_ms": 8469.906,
+        "response_bytes": 249644,
+        "wav_audio_seconds": 5.2,
+        "real_time_factor": 1.628828,
+        "steady_state_generation_rtf": null,
+        "virtual_playback_gaps_ms": [],
+        "virtual_playback_total_gap_ms": 0,
+        "sequence_mode": "Sequential HTTP generation with next request starting after previous full WAV; virtual playback begins at first complete WAV",
+        "physical_continuous_playback_measured": false,
+        "audio_saved": false,
+        "segments": [
+          {
+            "response_headers_ms": 8469.464,
+            "first_body_byte_ms": 8469.486,
+            "total_ms": 8469.786,
+            "response_bytes": 249644,
+            "sample_rate": 24000,
+            "channels": 1,
+            "bits_per_sample": 16,
+            "frames": 124800,
+            "audio_data_bytes": 249600,
+            "wav_audio_seconds": 5.2,
+            "real_time_factor": 1.628805,
+            "audio_saved": false,
+            "physical_playback_measured": false,
+            "segment": 1,
+            "complete_wav_ready_from_sequence_start_ms": 8469.901
+          }
+        ]
+      }
+    },
+    {
+      "stage": "asr",
+      "run": 2,
+      "ok": true,
+      "metrics": {
+        "response_headers_ms": 232.885,
+        "first_body_byte_ms": 232.914,
+        "total_ms": 233.012,
+        "response_bytes": 62,
+        "transcript_characters": 17,
+        "transcript_saved": false,
+        "audio": {
+          "sample_rate": 24000,
+          "channels": 1,
+          "bits_per_sample": 16,
+          "frames": 124800,
+          "audio_data_bytes": 249600,
+          "wav_audio_seconds": 5.2
+        },
+        "microphone_endpointing_measured": false
+      }
+    },
+    {
+      "stage": "llm",
+      "run": 2,
+      "ok": true,
+      "metrics": {
+        "response_headers_ms": 26.454,
+        "first_sse_event_ms": 78.97,
+        "first_token_ms": 79.04,
+        "first_visible_text_ms": 79.041,
+        "total_ms": 249.545,
+        "content_characters": 8,
+        "reasoning_characters": 0,
+        "sse_events": 9,
+        "usage": {
+          "prompt_tokens": 28,
+          "completion_tokens": 7,
+          "total_tokens": 35
+        },
+        "reply_text_saved": false
+      }
+    },
+    {
+      "stage": "tts",
+      "run": 2,
+      "ok": true,
+      "metrics": {
+        "first_body_byte_ms": 12064.993,
+        "api_first_complete_playable_wav_ms": 12065.327,
+        "physical_ttfa_ms": null,
+        "total_ms": 12065.331,
+        "response_bytes": 249644,
+        "wav_audio_seconds": 5.2,
+        "real_time_factor": 2.320256,
+        "steady_state_generation_rtf": null,
+        "virtual_playback_gaps_ms": [],
+        "virtual_playback_total_gap_ms": 0,
+        "sequence_mode": "Sequential HTTP generation with next request starting after previous full WAV; virtual playback begins at first complete WAV",
+        "physical_continuous_playback_measured": false,
+        "audio_saved": false,
+        "segments": [
+          {
+            "response_headers_ms": 12064.969,
+            "first_body_byte_ms": 12064.993,
+            "total_ms": 12065.226,
+            "response_bytes": 249644,
+            "sample_rate": 24000,
+            "channels": 1,
+            "bits_per_sample": 16,
+            "frames": 124800,
+            "audio_data_bytes": 249600,
+            "wav_audio_seconds": 5.2,
+            "real_time_factor": 2.320236,
+            "audio_saved": false,
+            "physical_playback_measured": false,
+            "segment": 1,
+            "complete_wav_ready_from_sequence_start_ms": 12065.327
+          }
+        ]
+      }
+    }
+  ],
+  "summaries": {
+    "asr": {
+      "successful_requests": 2,
+      "requested_runs": 2,
+      "total_ms": {
+        "min": 233.012,
+        "median": 1426.141,
+        "max": 2619.27
+      },
+      "first_body_byte_ms": {
+        "min": 232.914,
+        "median": 1426.03,
+        "max": 2619.146
+      }
+    },
+    "llm": {
+      "successful_requests": 2,
+      "requested_runs": 2,
+      "total_ms": {
+        "min": 249.545,
+        "median": 1928.282,
+        "max": 3607.019
+      },
+      "first_token_ms": {
+        "min": 79.04,
+        "median": 1750.742,
+        "max": 3422.444
+      },
+      "first_visible_text_ms": {
+        "min": 79.041,
+        "median": 1750.7445,
+        "max": 3422.448
+      }
+    },
+    "tts": {
+      "successful_requests": 2,
+      "requested_runs": 2,
+      "total_ms": {
+        "min": 8469.906,
+        "median": 10267.6185,
+        "max": 12065.331
+      },
+      "first_body_byte_ms": {
+        "min": 8469.486,
+        "median": 10267.2395,
+        "max": 12064.993
+      },
+      "api_first_complete_playable_wav_ms": {
+        "min": 8469.901,
+        "median": 10267.614,
+        "max": 12065.327
+      },
+      "wav_audio_seconds": {
+        "min": 5.2,
+        "median": 5.2,
+        "max": 5.2
+      },
+      "real_time_factor": {
+        "min": 1.628828,
+        "median": 1.974542,
+        "max": 2.320256
+      },
+      "virtual_playback_total_gap_ms": {
+        "min": 0,
+        "median": 0.0,
+        "max": 0
+      }
+    }
+  },
+  "limits": [
+    "HTTP ASR excludes microphone endpointing/VAD",
+    "LLM TTFT is the first parsed nonempty content/reasoning delta; visible text is recorded separately",
+    "TTS first byte does not imply streaming generation",
+    "WAV duration counts valid sample frames, including silence",
+    "No sound-card/acoustic playback measurement",
+    "Cold load/queue/contention can affect each run"
+  ],
+  "ok": true
+}

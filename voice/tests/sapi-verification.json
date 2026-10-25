@@ -1,0 +1,46 @@
+{
+  "scope": "A separate system voice option; it does not retain Serena or the Qwen style instructions. No default was changed.",
+  "audio_played": false,
+  "runs": [
+    {
+      "audio_sha256": "baabd09d0d6861565c1f7d17913e8ff17e1554484b4a17533c04ef507036af41",
+      "audio_seconds": 5.4145,
+      "sample_rate": 24000,
+      "channels": 1,
+      "wall_seconds": 0.0988028,
+      "number": 1,
+      "bits": 16,
+      "first_complete_wav_seconds": 0.0988028,
+      "bytes": 259942,
+      "sample_file": "huihui-1.wav",
+      "rtf": 0.01824781604949672
+    },
+    {
+      "audio_sha256": "baabd09d0d6861565c1f7d17913e8ff17e1554484b4a17533c04ef507036af41",
+      "audio_seconds": 5.4145,
+      "sample_rate": 24000,
+      "channels": 1,
+      "wall_seconds": 0.011013499999999999,
+      "number": 2,
+      "bits": 16,
+      "first_complete_wav_seconds": 0.011013499999999999,
+      "bytes": 259942,
+      "sample_file": "huihui-2.wav",
+      "rtf": 0.0020340751685289497
+    }
+  ],
+  "serena_voice_preserved": false,
+  "volume": 100,
+  "token": "TTS_MS_ZH-CN_HUIHUI_11.0",
+  "natural_language_style_instructions_supported": false,
+  "ok": true,
+  "synthetic_only": true,
+  "voice": "Microsoft Huihui Desktop",
+  "live_service_changed": false,
+  "engine": "Windows SAPI5",
+  "network_used": false,
+  "text": "先休息一下吧。我在这里，慢慢来就好。",
+  "setup_seconds": 0.3828029,
+  "rate": 0,
+  "integrationStatus": "File-only SAPI synthesis verified; AIRI adapter not covered by this test."
+}

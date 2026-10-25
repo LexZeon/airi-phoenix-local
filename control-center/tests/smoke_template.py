@@ -22,7 +22,9 @@ def main():
         settings = data/"deployment/offline-settings.json"
         settings.parent.mkdir(parents=True)
         original = {"revision": "synthetic-original", "character": {"id": "original-fixture", "keep": True},
-            "unrelated": {"sentinel": "preserve"}, "providers": {}, "storage": {"unrelated/key": "preserve"}}
+            "unrelated": {"sentinel": "preserve"}, "providers": {}, "storage": {"unrelated/key": "preserve"},
+            "additionalCharacters": [{"id": "second-fixture", "modelZip": "private/second.zip", "activate": False},
+                {"id": "third-fixture-3d", "modelZip": "private/third.zip", "activate": True}]}
         raw = json.dumps(original).encode()
         settings.write_bytes(raw)
         with socket.socket() as probe:
@@ -87,6 +89,11 @@ def main():
             assert applied["character"]["id"] == "original-fixture" and applied["character"]["keep"]
             assert applied["storage"]["unrelated/key"] == "preserve"
             assert len(applied["character"]["modulesOverride"]) == 4
+            for before, after in zip(original["additionalCharacters"], applied["additionalCharacters"]):
+                assert after["modelZip"] == before["modelZip"] and after["activate"] == before["activate"]
+                assert after["modulesOverride"] == applied["character"]["modulesOverride"]
+                assert after["selectionRevision"] == applied["revision"]
+            checks.append("all three managed cards receive new modules and revision while model paths and activation are preserved")
             backups = list(settings.parent.glob("offline-settings.json.*.bak"))
             assert len(backups) == 1 and hashlib.sha256(backups[0].read_bytes()).digest() == hashlib.sha256(raw).digest()
             checks.append("actual fixture apply preserves character and unrelated settings with exact backup")

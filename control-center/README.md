@@ -54,3 +54,11 @@ $env:AIRI_CONTROL_DATA_DIR = 'C:\path\to\private\control-state'
 模型列表能连接不证明聊天/视觉/音频格式都被服务实现；真实能力和实际播放仍须分别测试。
 当前控制台不承包聊天贴纸/表情包设置，也不靠人设提示自动授予看屏幕/麦克风权限。
 完整wrapper、最新桌面模型位置/12表情/TTS联合验收另行记录，未提前标为全功能通过。
+
+多卡模块切换已补充：应用新的聊天/视觉/ASR/TTS选择时同步主卡及additionalCharacters的modulesOverride和selectionRevision，保留每张卡的modelZip与activate。三卡隔离回归见[verification-multi-card.json](verification-multi-card.json)，发布副本8项fixture测试也覆盖该路径，未触碰实际设置。
+
+## 已验证的两个可选速度项
+
+最终目录提供 `qwen-efficient` 与 `sapi-huihui`，默认仍为 `qwen-soft`。新UI实际显示Serena同句6.08s与慧慧接口中位约0.06s，已验证切换选择框/证据展示后恢复默认，没有点击应用、自动试听或横向溢出；不把这份UI观察当成扬声器回放。见 [临时三卡映射](verification-speed-options.json)、[接口与样例](verification-speed-ui-api.json)、[真实浏览器](verification-speed-browser.json)。
+
+使用SAPI前将 [voice/windows-sapi](../voice/windows-sapi/README.md) 源码部署到 `<base>/runtime/airi-sapi`，或显式设置 `AIRI_SAPI_ROOT`。内部 `ensure_token()` 只在配置应用时取得本机key；catalog/preferences不返回它。启动模板会检查全局、主角色和所有附加卡的speech provider，需要9947才启动SAPI；默认完整停止只终止经严格身份检查的owned服务，KeepServices保留。无SAPI部署时不要把该选项视为已安装。

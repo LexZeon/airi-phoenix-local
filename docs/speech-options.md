@@ -15,7 +15,7 @@
 
 SenseVoice暖请求0.233s，小LLM的28token测试prompt暖TTFT0.079s；它们说明测试内容下的局部阶段，不代表真实AIRI角色/工具上下文。VAD、文本外层安全分句、TTS排队、解码与播放分别可能增加等待。源码中的1200ms VAD静音阈值只作机制解释，未测真人endpointing。见[阶段探针](../diagnostics/README.md)与[源码审计](../diagnostics/latency-source-audit.md)。
 
-云端可只接TTS而保留本地识别与LLM，但本机没有提供相关key，三项均 **UNMEASURED**；接口、风格能力、计量与OpenAI迁移限制见[云端候选](cloud-tts-candidates.md)。不根据广告数字替用户选默认，也不把未接通的服务标成可用。
+云端可只接TTS而保留本地识别与LLM，但阿里云3.1已有一次固定句真实API连通（首音频1.792s、完整3.28s WAV等待2.375s，n=1）；Azure/OpenAI仍 **UNMEASURED**。这不是横向基准或实际AIRI声链；接口、风格能力、计量与OpenAI迁移限制见[云端候选](cloud-tts-candidates.md)。不根据广告数字替用户选默认，也不把未接通的服务标成可用。
 
 更换方案时只改所选的speech provider/model/voice，保留hearing、vision与角色；多张受管理卡可能各有modulesOverride，须同步所选卡而不是仅修改全局defaults。先保留原选择与revision，失败可回切。自动化结论只写实际覆盖范围：原SDK scene binding测试仅有文本完成观察，语音因果仍INCONCLUSIVE，不拿全局TTS计数作端到端证明。
 
@@ -38,4 +38,4 @@ SenseVoice暖请求0.233s，小LLM的28token测试prompt暖TTFT0.079s；它们�
 
 ## 阿里云配置入口
 
-控制台已提供[阿里云在线语音与固定句试听](../voice/aliyun-tts/README.md)。实现/隔离测试和owned服务启停已验证，真实云请求仍为0；没有云速度或实际人物开口的测量。先保留当前本地声音，自己在密码框保存Key、试听成功、再决定应用。首音频块与完整WAV分开显示，当前AIRI等待后者。
+控制台已提供[阿里云在线语音与固定句试听](../voice/aliyun-tts/README.md)。实现/隔离测试和owned服务启停已验证；0.2.3另有一次3.1固定句云API连通，首音频1.792s、完整WAV2.375s。实际人物开口与物理声链未测。先保留当前本地声音，自己在密码框保存Key、试听成功、再决定应用。首音频块与完整WAV分开显示，当前AIRI等待后者。

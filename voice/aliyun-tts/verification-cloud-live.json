@@ -1,0 +1,23 @@
+{
+  "test": "real-cloud-short-phrase-connectivity",
+  "testedOn": "2026-10-25",
+  "success": true,
+  "model": "qwen-audio-3.1-tts-flash",
+  "voice": "longanlingxin_v3.1",
+  "region": "beijing",
+  "firstAudioMs": 1792.475,
+  "completeWavMs": 2375.227,
+  "audioDurationSeconds": 3.28,
+  "sampleCount": 1,
+  "scope": "One successful fixed synthetic Chinese phrase after compatibility fixes. These are API audio arrival and complete validated WAV times, not a comparative benchmark or microphone-to-speaker latency.",
+  "workspaceKeyWithDotsAccepted": true,
+  "streamingWavPlaceholderObserved": {
+    "riffSize": "0x7fffffbf",
+    "dataSize": "0x7fffff9b",
+    "format": "PCM16-mono-24000Hz"
+  },
+  "successfulSseStopRequiredBeforeNormalization": true,
+  "credentialOrAccountMetadataIncluded": false,
+  "audioIncluded": false,
+  "nativeAiriPlaybackVerifiedByThisTest": false
+}

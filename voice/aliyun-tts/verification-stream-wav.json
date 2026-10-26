@@ -1,0 +1,11 @@
+{
+  "test": "completed-sse-known-streaming-wav-placeholder",
+  "passed": 43,
+  "total": 43,
+  "success": true,
+  "failedChecks": [],
+  "realCredentialsRead": false,
+  "realCloudRequests": 0,
+  "realSettingsChanged": false,
+  "scope": "Synthetic WAV containers and completed SSE only; not cloud latency, voice quality or actual AIRI playback."
+}

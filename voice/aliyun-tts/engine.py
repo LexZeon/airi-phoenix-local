@@ -81,7 +81,7 @@ def _request_spec(text, settings):
     # Re-validate even a programmatic config; it cannot provide an arbitrary endpoint.
     fields = config_store._validated(settings)
     key = settings.get('apiKey')
-    if not isinstance(key, str) or not __import__('re').fullmatch(r'[A-Za-z0-9_-]{16,512}', key):
+    if not isinstance(key, str) or not __import__('re').fullmatch(r'[A-Za-z0-9_.-]{16,512}', key):
         raise EngineError('API_KEY_NOT_CONFIGURED', '请先在控制台保存有效的阿里云 API Key。', 400)
     if fields['mode'] == 'simple':
         host = 'dashscope.aliyuncs.com' if fields['region'] == 'beijing' else 'dashscope-intl.aliyuncs.com'
@@ -141,9 +141,43 @@ def _pcm_wav(pcm, rate=SAMPLE_RATE, channels=1, width=2):
     return output.getvalue(), len(pcm) / (channels * width * rate)
 
 
-def _validated_wav(data):
+def _normalize_streaming_wav(data):
+    """Normalize only the exact streaming header observed from Qwen Audio.
+
+    This does not establish completeness. The caller must first receive the
+    protocol's successful finish_reason=stop. Unknown sizes remain invalid.
+    """
+    if (len(data) < 44 or data[:4] != b'RIFF' or data[8:12] != b'WAVE'
+            or struct.unpack_from('<I', data, 4)[0] != 0x7FFFFFBF):
+        return data
+    if (data[12:16] != b'fmt ' or struct.unpack_from('<I', data, 16)[0] != 16
+            or data[36:40] != b'data' or struct.unpack_from('<I', data, 40)[0] != 0x7FFFFF9B):
+        raise EngineError('UNSUPPORTED_WAV_CONTAINER', '情绪语音返回了未知的流式 WAV 头。')
+    # This observed placeholder is specifically canonical PCM16 mono 24 kHz.
+    # Do not infer PCM layout from unknown or inconsistent format fields.
+    if struct.unpack_from('<HHIIHH', data, 20) != (1, 1, SAMPLE_RATE, SAMPLE_RATE * 2, 2, 16):
+        raise EngineError('UNSUPPORTED_WAV_FORMAT', '情绪语音的流式音频格式暂不支持。')
+    payload_size = len(data) - 44
+    if payload_size <= 0 or payload_size % 2:
+        raise EngineError('INCOMPLETE_WAV_AUDIO', '情绪语音返回的流式音频帧不完整。')
+    # A second recognizable WAV header has no trusted boundary after a size
+    # placeholder. Reject that ambiguity rather than treating it as PCM.
+    embedded = data.find(b'RIFF', 44)
+    while embedded != -1:
+        if data[embedded + 8:embedded + 16] == b'WAVEfmt ':
+            raise EngineError('UNSUPPORTED_WAV_CONTAINER', '流式 WAV 片段边界不明确，请重试。')
+        embedded = data.find(b'RIFF', embedded + 4)
+    normalized = bytearray(data)
+    struct.pack_into('<I', normalized, 4, len(data) - 8)
+    struct.pack_into('<I', normalized, 40, payload_size)
+    return bytes(normalized)
+
+
+def _validated_wav(data, *, allow_streaming_placeholder=False):
     # The expressive model's raw PCM sample format is not documented. Request
     # WAV and validate complete containers instead of guessing byte layout.
+    if allow_streaming_placeholder:
+        data = _normalize_streaming_wav(data)
     offset = 0
     pcm_parts = []
     parameters = None
@@ -251,7 +285,7 @@ def synthesize(text, config=None, cancel=None, *, opener=None):
         if first_audio is None:
             raise EngineError('EMPTY_UPSTREAM_AUDIO', '阿里语音没有返回音频，请检查模型和音色。')
         data = b''.join(chunks)
-        wav, duration = _pcm_wav(data) if fields['mode'] == 'simple' else _validated_wav(data)
+        wav, duration = _pcm_wav(data) if fields['mode'] == 'simple' else _validated_wav(data, allow_streaming_placeholder=stopped)
         elapsed = time.perf_counter() - started
         return {'wav': wav, 'model': model, 'voice': fields['voice'], 'configRevision': settings.get('revision'),
                 'timings': {'firstAudioMs': round((first_audio - started) * 1000, 3),

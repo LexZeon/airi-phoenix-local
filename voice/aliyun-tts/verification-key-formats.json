@@ -1,0 +1,12 @@
+{
+  "test": "synthetic-key-formats-dpapi-and-request-construction",
+  "passed": 47,
+  "total": 47,
+  "success": true,
+  "failedChecks": [],
+  "realCredentialsRead": false,
+  "realCloudRequests": 0,
+  "realSettingsChanged": false,
+  "temporaryDirectoryRemoved": true,
+  "scope": "Synthetic key validation and current-user DPAPI only; no cloud authentication or AIRI playback."
+}

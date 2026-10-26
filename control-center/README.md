@@ -77,8 +77,8 @@ Serena优化版的UI选择、实际voice ID和原模式回退步骤见[启用/�
 
 控制台的任务结果仅在有界内存中保留；外部CLI本身的本地状态和账户行为另循其机制。`state/`与默认`codex-workspace/`都不进入Git和ZIP。窗口关闭会取消本控制台跟踪的活动Codex子进程，不停止AIRI或模型。此功能不是ChatGPT桌面窗口的UI自动化。
 
-[生产页面与回退报告](verification-online-console-production.json)记录原生页面实际显示在线选项、Codex登录/已有目标和工作目录表单，按钮可用；在线下拉展示后恢复本地9B。运行配置最终为9B＋Windows慧慧，屏幕观察关闭、3D近景恢复、9948适配器停止；没有把Serena优化别名误当当前声音。Serena优化仍是可选项。已有任务实际追加保持未测；本页可见/已登录不等于已发送任务。视觉模型“就绪”与屏幕“观察已关闭”现在分别显示。
+[生产页面与回退报告](verification-online-console-production.json)记录原生页面实际显示在线选项、Codex登录/已有目标和工作目录表单，按钮可用；在线下拉展示后恢复本地9B。0.2.1这次验证的回退状态为9B＋Windows慧慧，屏幕观察关闭、3D近景恢复、9948适配器停止；没有把Serena优化别名误当当前声音。Serena优化仍是可选项。已有任务实际追加保持未测；本页可见/已登录不等于已发送任务。视觉模型“就绪”与屏幕“观察已关闭”现在分别显示。
 
 ## 可选阿里云语音
 
-[配置与试听方法](aliyun-console-verified.md)新增“阿里云 · 在线语音”与本机密码框、地域/音色、高级情绪语音和测速。按[部署说明](../voice/aliyun-tts/README.md)先安装标准库adapter到 `<base>/runtime/airi-aliyun-tts`。保存不切换当前声音；试听成功后先选入草稿，再明确应用/重启。真实Key仅以当前用户DPAPI密文保存，AIRI只拿本地token。25项adapter与14项console隔离测试通过；云端请求、速度、音质和实际AIRI出声保持未测。
+[配置与试听方法](aliyun-console-verified.md)新增“阿里云 · 在线语音”与本机密码框、地域/音色、高级情绪语音和测速。按[部署说明](../voice/aliyun-tts/README.md)先安装标准库adapter到 `<base>/runtime/airi-aliyun-tts`。保存不切换当前声音；试听成功后先选入草稿，再明确应用/重启。真实Key仅以当前用户DPAPI密文保存，AIRI只拿本地token。25项adapter与14项console隔离测试通过；0.2.3另完成一次[真实固定句云API连通](../voice/aliyun-tts/verification-cloud-live.json)，首音频1.792s、完整WAV2.375s，n=1。音质比较与实际AIRI播放/物理声链仍未测。

@@ -156,7 +156,7 @@ MCP是可选legacy2025-11-25 stdio接口，18协议/路径边界测试及真实r
 
 ## 已测速度候选与默认保留
 
-[实测选择表](speech-options.md)列Qwen默认与可选省输出别名、Melo和Windows慧慧；[控制台](../control-center/README.md)已经显示两个新选项的实际接口证据并恢复原Serena默认，未自动应用或播放。Qwen可选模式在本句HTTP对照减少约19.8%等待且WAV一致；SAPI三次完整WAV0.147/0.055/0.029s但音色功能不同。系统声线不等于角色风格，云端三项仍UNMEASURED。
+[实测选择表](speech-options.md)列Qwen默认与可选省输出别名、Melo和Windows慧慧；[控制台](../control-center/README.md)已经显示两个新选项的实际接口证据并恢复原Serena默认，未自动应用或播放。Qwen可选模式在本句HTTP对照减少约19.8%等待且WAV一致；SAPI三次完整WAV0.147/0.055/0.029s但音色功能不同。系统声线不等于角色风格。阿里云3.1另有一次固定句API连通，Azure/OpenAI仍未测；不同内容/时段的单次结果不构成横向排名。
 
 ## 文字首字、权限开关与Windows登录
 
@@ -171,3 +171,9 @@ MCP是可选legacy2025-11-25 stdio接口，18协议/路径边界测试及真实r
 [阿里云转接服务](../voice/aliyun-tts/README.md)提供9949完整WAV接口，控制台可见配置/固定句试听/明确应用流程，当前本地选择不变。简易版与高级3.1分别采用对应官方端点和音色；密钥用当前用户DPAPI保存，AIRI只存独立本地token。25项adapter、14项console隔离检查与真实Windows启动/重复启动/健康/停止通过；它们验证可复用程序路径，真实云请求为0。
 
 取得自己的Key后才做云端合成测试；首上游音频、完整WAV、实际AIRI播放分开计量。当前AIRI仍按完整小句播放，不能从上游SSE推断低延迟开口。详见[具体边界与官方来源](../voice/aliyun-tts/verified-method.md)。
+
+### 云端实际连通与格式检查
+
+0.2.3在[47项合成Key/DPAPI](../voice/aliyun-tts/key-validation.md)与[43项合成SSE/WAV](../voice/aliyun-tts/streaming-wav.md)回归后，另通过一次真实3.1固定句API连通：首音频1.792s、完整3.28s WAV2.375s。Key点号兼容与严格已完成流的占位头归一化可复用；不要把未知/有限截断WAV一律放行。该n=1结果不等于实际AIRI播放、物理总延迟或跨候选性能排名，私人Key/Host/音频均不公开。
+
+[实际应用/启动](../voice/aliyun-tts/verification-airi-startup-live.json)另确认全局与三卡speech、保留本地聊天识别和原生听状态；代理短句HTTP200。启动就绪、有效WAV和实际播放是不同验收：尚未测用户实聊/声卡总延迟与长期稳定性，出现过一次待定位的窗口退出。

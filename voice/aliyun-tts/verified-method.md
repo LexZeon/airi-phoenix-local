@@ -45,8 +45,9 @@ channel layout. Advanced mode therefore requests WAV and validates complete RIFF
 containers, sample format, frame lengths and consistency before returning audio.
 Split pieces of one complete container and multiple complete same-format sentence
 containers are supported. Unknown/incomplete containers produce a clear error;
-the adapter does not guess a PCM header or emit noise. Actual advanced cloud output
-has not been verified without a configured account and explicit test.
+the adapter does not guess a PCM header or emit noise. A separately recorded one-phrase advanced cloud trial passed after the exact
+observed streaming-header compatibility fix; it does not establish every output
+format or voice. See the later real-trial section below.
 
 ## Credentials and state
 
@@ -118,4 +119,12 @@ the production controller's rendered interface are separate owner checks.
 
 [Real Windows PowerShell lifecycle](verification-lifecycle-live.json) passed start, duplicate start with the same identity, health and stop. The standard-library adapter resolves a venv redirector to its real base interpreter before launching, so strict listener/executable/PID checks remain valid. Other services and AIRI settings were preserved; the adapter had no Key and made zero cloud calls.
 
-[Actual controller browser acceptance](../../control-center/verification-aliyun-console-production.json) passed the visible no-Key configuration flow and preserved the current local voice and off screen permission. AIRI was stopped and remained stopped. This adds real UI evidence to the offline fixtures; real cloud synthesis, speed, voice quality and native AIRI playback remain unmeasured.
+[Actual controller browser acceptance](../../control-center/verification-aliyun-console-production.json) passed the visible no-Key configuration flow and preserved the current local voice and off screen permission. AIRI was stopped and remained stopped. This adds real UI evidence to the offline fixtures. That no-Key browser check did not measure cloud synthesis, speed, voice quality or native AIRI playback; the later account-backed API trial is recorded separately below.
+
+## Verified credential and streaming-header compatibility
+
+[Key validation](key-validation.md) now accepts dotted cloud credentials consistently at save, decrypted load and request construction; the independent loopback-token rules are unchanged. Forty-seven synthetic, temporary DPAPI/request checks pass without network or real credentials.
+
+[Streaming-WAV validation](streaming-wav.md) normalizes only the observed sentinel pair and canonical PCM16 mono24k header after a successful SSE stop. Forty-three synthetic cases retain rejection of finite truncation, unknown headers, missing stop and inconsistent formats.
+
+[One real fixed-phrase trial](verification-cloud-live.json) passed for the public 3.1 Flash voice preset: first upstream audio1792.475ms, complete validated WAV2375.227ms, duration3.28s. This n=1 API result is not a comparative benchmark, subjective voice review or native AIRI/physical speech-chain test. No Key, workspace Host/ID, account data or audio is included.

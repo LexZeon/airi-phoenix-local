@@ -1,0 +1,46 @@
+{
+  "version": "0.2.3",
+  "publisherReviewOfSource": true,
+  "independentReadOnlyPublicationReview": true,
+  "privatePathsTokenShapesAndRuntimeModelIdsFound": false,
+  "restrictedMediaWeightsCoreProfilesKeysOrDpapiIncluded": false,
+  "cloudKeyValidation": {
+    "dottedCloudKeysAccepted": true,
+    "localLoopbackTokenRulesUnchanged": true
+  },
+  "streamWavValidation": {
+    "onlyExactObservedSentinelPair": true,
+    "canonicalPcm16Mono24000Required": true,
+    "successfulSseStopRequired": true,
+    "finiteTruncationStillRejected": true
+  },
+  "tests": {
+    "keyFormatSyntheticDpapiCases": 47,
+    "completedSseSyntheticWavCases": 43,
+    "existingAdapterOfflineCases": 25,
+    "consoleOfflineCases": 14,
+    "pythonSyntaxFiles": 4
+  },
+  "accountBackedEvidence": {
+    "fixedPhraseSuccessfulTrials": 1,
+    "firstAudioMs": 1792.475,
+    "completeWavMs": 2375.227,
+    "audioDurationSeconds": 3.28,
+    "nativeAiriPlaybackVerifiedByThisTrial": false,
+    "comparativeBenchmark": false
+  },
+  "startupEvidence": {
+    "speechGlobalAndThreeCardsApplied": true,
+    "localChatAndRecognitionPreserved": true,
+    "nativeListeningWindowObserved": true,
+    "screenOff": true,
+    "loginAutostartOffInObservedDeployment": true,
+    "independentProxyShortPhraseHttp200": true,
+    "proxyCompleteWavMs": 2184.301,
+    "proxyAudioDurationSeconds": 1.6,
+    "userConversationOrPhysicalAudioLatencyMeasured": false,
+    "ongoingSessionStabilityVerified": false,
+    "unexplainedEarlyWindowExitObserved": true
+  },
+  "exactArchiveVerification": "Published separately next to final ZIP after fresh extraction and original robot/Core smoke."
+}

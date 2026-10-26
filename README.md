@@ -6,7 +6,7 @@
 
 **先读 [START_HERE.md](START_HERE.md)。** Skill 名为 `$airi-character-forge`，入口为根目录 [SKILL.md](SKILL.md)。
 
-[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.2.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
+[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.3.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
 
 | 模块 | 已有内容与实际状态 |
 | --- | --- |
@@ -18,7 +18,7 @@
 | 常服 Live2D 案例 | 本机官图原像素保真模型：14 drawable、19 实绑参数、12 不同表情，Core 133 组合及实际 AIRI WebGL 离屏通过；中性 RGBA 与原图逐像素一致 |
 | 当前角色交付分工 | 三张独立卡：官图2D（实际桌面已可见，已在app注册12表情，完整可见控制/语音联合另验）、站姿2D（参考脸候选007通过135 Core组合、29＋45实际WebGL帧和33项检查，主app已导入，活动原生视觉检查/用户最终接受另验）、用户自有3D（本机前台显示已验证，模型不公开） |
 | 实际接卡／SDK观察 | 用户自有PMX ZIP经真实Pinia注册并激活；SDK合成文本完成已观察，TTS全局计数变化未精确关联（因果INCONCLUSIVE），自然3D待机已接入并可见；物理麦克风/声卡全测另验 |
-| 尚未完成 | 真实聊天选贴纸、完整物理声链、角色最终视觉接受及云端TTS候选实测；本地HTTP候选与控制台证据已有实测，实际选择依用户配置 |
+| 尚未完成 | 真实聊天选贴纸、完整物理声链、角色最终视觉接受及云端TTS候选多样本比较；阿里云3.1已有一次固定短句连通，本地HTTP候选与控制台证据已有实测，实际选择依用户配置 |
 
 官方图片、官图派生纹理/MOC3 包、官方 MMD 包、Core、模型权重和用户配置都不在公开下载中。`examples/phoenix/rig-project.recipe.json`只保留坐标和参数配方，不能在缺少本地来源文件时直接构建；可直接构建的例子是 robot 和 DeskBot。
 
@@ -63,4 +63,6 @@ Windows on ARM 的本机部署曾复用已有 Qwen3.5 9B、SenseVoice 和创作�
 
 [本机Codex任务入口](control-center/codex-task-assistant-verified.md)复用官方CLI已登录的ChatGPT账号，明确点击才提交任务，附9项离线回归和一次真实只读合成文件验证；已有任务续写未测。[可选在线文字聊天](online-chat/README.md)另提供9948纯文字adapter，保留本地选项；真实AIRI SDK合成文字路径6.461秒通过，直接图片/工具调用与逐token流式不支持，私人任务ID与登录状态不附包。
 
-[可选阿里云语音](voice/aliyun-tts/README.md)已加入角色声音列表与本机密钥/音色/试听面板；25项adapter、14项控制台隔离检查及真实Windows owned服务启停通过。当前没有真实Key，云端合成/速度/实际AIRI播放仍未测，不改变本地9B＋慧慧与关闭屏幕的当前选择。
+[可选阿里云语音](voice/aliyun-tts/README.md)已加入角色声音列表与本机密钥/音色/试听面板；25项adapter、14项控制台隔离检查及真实Windows owned服务启停通过。0.2.3修复含点号工作空间Key与已完成SSE的已知WAV占位头；一次真实3.1固定短句测得首音频1.792s、完整3.28s WAV等待2.375s。仅单次API连通，不是实际AIRI出声或物理声链基准；私人凭证和音频不发布。
+
+[0.2.3实际应用与启动](voice/aliyun-tts/verification-airi-startup-live.json)另已读回三卡Aliyun speech、保留本地聊天/识别、3D/idle与原生“正在听”状态；9949第二短句HTTP200，完整WAV2.184s。它没有播放音频；用户实聊/物理声链与持续稳定性仍需体验，未把启动就绪冒称全功能通过。

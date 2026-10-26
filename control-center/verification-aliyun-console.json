@@ -1,6 +1,6 @@
 {
   "test": "aliyun-console-isolated-dpapi-and-loopback-http-fixtures",
-  "testedAt": "2026-10-25T19:48:52.679114+00:00",
+  "testedAt": "2026-10-26T05:55:19.154231+00:00",
   "passed": 14,
   "total": 14,
   "success": true,
@@ -21,5 +21,5 @@
     "web/aliyun-tts.js": "fb670884016193f13590554e03dfc143c960a7e82e06c7d8ba30a61b42253334",
     "web/aliyun-tts.css": "cf8d87bae03d6603bfc18568becf5d2da3058838bdf92065702dd3b3ff787beb"
   },
-  "runtimeConfigSourceSha256": "d726994c7153a6ea77cae3af4191928d8aecae67072d2f2ebe7523efde964e65"
+  "runtimeConfigSourceSha256": "6a7553fe7f6123ec0f3e5ed0e163f2a3c781527a6f6099be594a02f535202dfa"
 }

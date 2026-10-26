@@ -29,3 +29,11 @@ The existing nine-case `verify_online_choice.py` profile fixture also passes. Py
 ## Production browser acceptance
 
 [The separate actual browser report](verification-aliyun-console-production.json) confirms the restarted controller displayed the Aliyun entry, opened its dialog without selecting a different voice, and operated region/voice and advanced style controls. With no Key, test/apply remained disabled. Closing the unsaved dialog preserved the system-voice selection, the stopped AIRI process and the off screen setting. No credential was entered and no cloud request was sent. This verifies the rendered no-Key workflow, not cloud audio or native AIRI playback.
+
+## Later account-backed API trial
+
+Version0.2.3 separately passed [one real fixed-phrase advanced API trial](../voice/aliyun-tts/verification-cloud-live.json) after dotted-Key and completed-SSE WAV-header fixes. The earlier no-Key production-browser report remains a historical UI check. The new API result measures upstream audio/full WAV only; it does not prove native AIRI playback or physical voice-chain latency, and no private configuration or audio is published.
+
+## Actual profile application and startup
+
+[The separate 0.2.3 startup report](../voice/aliyun-tts/verification-airi-startup-live.json) confirms global/three-card speech selection, retained local chat/recognition, active3D/idle readiness and an observed native listening window. Screen observation stayed off; login autostart was off in this deployment. An independent second synthetic phrase returned HTTP200 and a complete1.6s WAV in2184.301ms through9949, without playback by the check. Different phrases are not a paired performance comparison. One early unexplained window exit required reopening; ongoing session stability, user conversation, visible character inspection and physical audio remain separate acceptance.

@@ -1,0 +1,26 @@
+{
+  "test": "aliyun-profile-application-and-native-airi-startup",
+  "testedOn": "2026-10-25",
+  "success": true,
+  "profileApplied": true,
+  "allManagedSpeechSelectionsUseAliyun": true,
+  "localChatAndRecognitionPreserved": true,
+  "cloudConfiguredAndReady": true,
+  "mainCharacterActive": true,
+  "managed3dCharacterActive": true,
+  "mmdIdleReady": true,
+  "screenObservationEnabled": false,
+  "loginAutostartEnabled": false,
+  "nativeWindowDetected": true,
+  "nativeListeningStateObserved": true,
+  "consoleShowsAiriRunningAndSettingsLoaded": true,
+  "proxyConnectivityCheck": {
+    "httpStatus": 200,
+    "completeWavMs": 2184.301,
+    "audioDurationSeconds": 1.6,
+    "scope": "A second synthetic short phrase through the loopback adapter. Audio was validated in memory and not played by this check."
+  },
+  "actualUserConversationOrMicrophoneToSpeakerLatencyMeasured": false,
+  "nativeVisualScreenshotIncluded": false,
+  "privateSettingsCredentialsAndMediaIncluded": false
+}

@@ -230,7 +230,7 @@ def save_settings(payload, root=None):
             combined['voice'] = 'Serena' if payload['mode'] == 'simple' else 'longanlingxin_v3.1'
         fields = _validated(combined)
         key = payload.get('apiKey', '')
-        if not isinstance(key, str) or (key and not re.fullmatch(r'[A-Za-z0-9_-]{16,512}', key.strip())):
+        if not isinstance(key, str) or (key and not re.fullmatch(r'[A-Za-z0-9_.-]{16,512}', key.strip())):
             raise ConfigError('INVALID_API_KEY', 'API Key 格式无效，请直接粘贴百炼密钥，不加 Bearer 前缀。')
         if payload.get('clearKey') and key.strip():
             raise ConfigError('INVALID_API_KEY', '不能同时填写和清除密钥。')
@@ -252,7 +252,7 @@ def load_private_settings(root=None):
     if fields['mode'] == 'expressive' and not fields['apiHost']:
         raise ConfigError('API_HOST_NOT_CONFIGURED', '情绪语音需要填写百炼控制台的 API Host。')
     key = _unprotect_key(stored['protectedKey'])
-    if not re.fullmatch(r'[A-Za-z0-9_-]{16,512}', key):
+    if not re.fullmatch(r'[A-Za-z0-9_.-]{16,512}', key):
         raise ConfigError('CREDENTIAL_UNAVAILABLE', '本机密钥数据无效，请重新保存。')
     return {**fields, 'apiKey': key, 'revision': stored.get('revision')}
 

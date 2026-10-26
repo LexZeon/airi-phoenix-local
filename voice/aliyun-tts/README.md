@@ -28,8 +28,16 @@
 - [真实Windows生命周期](verification-lifecycle-live.json)：启动、重复启动同实例、健康检查和停止通过；无真实Key，其他服务与AIRI设置不变。
 - [控制台14项隔离测试](../../control-center/verification-aliyun-console.json)：密码不回显、状态/试听/样例、并发与revision、provider别名及网页渲染边界；真实云请求0。
 
-未提供真实Key，因此云端可用性、音质、速度和实际AIRI出声均未验证。当前 AIRI 兼容TTS先等待完整小句的 ArrayBuffer，再播放；云端首包时间不能当作人物开口时间或麦克风到扬声器总延迟。保留现有本地声音，测试成功并明确应用后再切换。
+0.2.2的无Key基线只验证本地程序。0.2.3另完成一次3.1真实固定句API连通：首音频1792.475ms、完整可播WAV2375.227ms、音频3.28秒。它只证明该次账号/网络/模型的连通；音质比较、持续/多样本速度、实际AIRI出声仍未验证。当前 AIRI 兼容TTS先等待完整小句的 ArrayBuffer，再播放；云端首包时间不能当作人物开口时间或麦克风到扬声器总延迟。保留现有本地声音，测试成功并明确应用后再切换。
 
 接口细节、主文档和格式限制见[verified-method.md](verified-method.md)；控制台流程见[方法说明](../../control-center/aliyun-console-verified.md)。
 
 [真实控制台浏览器验收](../../control-center/verification-aliyun-console-production.json)另已通过：下拉打开配置、不切换声音，地域/音色/高级语气可操作，无Key时测试与应用禁用；关闭后仍保留系统声音、AIRI停止和屏幕关闭。此验证未填写凭证或触发云请求。
+
+0.2.3兼容性方法：[云Key格式与47项合成验证](key-validation.md)、[完成SSE后的已知WAV占位头与43项验证](streaming-wav.md)、[真实API单句结果](verification-cloud-live.json)。
+
+## 实际应用与启动范围
+
+[0.2.3应用/启动报告](verification-airi-startup-live.json)确认全局与三张受管理卡的speech选择已应用Aliyun，本地9B聊天和识别保持；helper/profile、活动3D与idle就绪，原生窗口及“正在听”状态已观察，屏幕观察关闭。这个部署当时登录自启关闭；它与历史自启工具验证是不同状态，不自动更改。
+
+另一次不同短句通过9949代理返回HTTP200，完整1.6秒WAV等待2184.301ms，只在内存验证而未播放。它与前述3.28秒样例内容/路径不同，不能相减得到adapter开销或视为同题比较。启动时曾出现一次未定位的窗口退出，重开后当前就绪；连续会话稳定性、用户实聊、实际出声、口型与麦克风到扬声器延迟仍未验收。没有公开原生截图、录音或私人配置。

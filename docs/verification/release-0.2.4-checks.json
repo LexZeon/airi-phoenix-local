@@ -1,0 +1,58 @@
+{
+  "version": "0.2.4",
+  "scope": "AIRI-owned speech assets, independent interpreter selection, and portable dependency migration method",
+  "publisherReviewOfSource": true,
+  "independentReadOnlyPublicationReview": true,
+  "publicTemplateParametersPreserved": true,
+  "privatePathsTokenShapesAndRuntimeModelIdsFound": false,
+  "restrictedMediaWeightsCoreProfilesKeysOrDpapiIncluded": false,
+  "sourceChanges": {
+    "catalogDefaultAsrInsideAiriSpeechRoot": true,
+    "explicitAsrConfigStillPreferred": true,
+    "speechRootEnvironmentOverridePreserved": true,
+    "aliyunNoOtherCompanionVenvFallback": true,
+    "controlLauncherAlreadyRequiresExplicitAiriPython": true,
+    "privateInventoryOrCleanupScriptsPublished": false
+  },
+  "offlineChecks": {
+    "isolatedConsoleCases": 14,
+    "syntheticCatalogCases": 4,
+    "powerShellParseFiles": 2,
+    "explicitAliyunPythonResolution": true,
+    "pythonSyntaxFiles": 2,
+    "modelOrCloudCalls": 0,
+    "realCredentialsRead": false,
+    "realSettingsChanged": false
+  },
+  "existingDeploymentEvidence": {
+    "criticalFilesMigrationSha256Matched": ["SenseVoice model.int8.onnx", "FFmpeg executable"],
+    "wholeDirectoriesMovedOnSameVolume": true,
+    "wholeDirectoryPerFileInventoryVerified": false,
+    "speechReady": true,
+    "speechLocalOutboundGuardEnabled": true,
+    "distributionChineseWavRecognized": true,
+    "migratedFfmpegWebmOpusRecognized": true,
+    "firstWavRequestSeconds": 5.252,
+    "subsequentWebmRequestSeconds": 0.733,
+    "timingsAreComparativeBenchmark": false,
+    "independentPythonConsoleHttp200": true,
+    "newCloudRequests": 0,
+    "microphoneOrSpeakerVerified": false,
+    "existingSelectedCloudTtsStillNeedsNetwork": true,
+    "privateSelectionAndModelFramingPreserved": true
+  },
+  "separateNewerDeploymentLauncher": {
+    "powerShell51RestrictedWmiChildRequiredExplicitProcessBypass": true,
+    "realStartupExitCodeAfterCorrection": 0,
+    "globalExecutionPolicyChanged": false,
+    "jobAndOwnershipGuardsRetained": true,
+    "newerWmiBrokerLifecyclePortedToPublicTemplate": false
+  },
+  "limits": [
+    "Asset hashes and fixed HTTP recognition do not establish microphone-to-speaker latency or native playback.",
+    "The WAV and WebM requests differ in processing and warm state; they are not a performance comparison.",
+    "AIRI-only directory cleanup does not make a selected cloud voice offline.",
+    "The public speech launcher is an older template without the existing deployment's WMI/broker lifecycle."
+  ],
+  "exactArchiveVerification": "Published separately next to final ZIP after fresh extraction and original robot/Core smoke."
+}

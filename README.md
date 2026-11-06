@@ -6,7 +6,7 @@
 
 **先读 [START_HERE.md](START_HERE.md)。** Skill 名为 `$airi-character-forge`，入口为根目录 [SKILL.md](SKILL.md)。
 
-[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.3.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
+[下载单个完整工具 ZIP](https://github.com/LexZeon/airi-phoenix-local/raw/refs/heads/main/dist/airi-character-forge-0.2.4.zip)。解压后保留全部目录；它包含代码、提示词、原创示例与语音样例，外部软件／权重需按说明另行准备。
 
 | 模块 | 已有内容与实际状态 |
 | --- | --- |
@@ -54,6 +54,8 @@ Windows on ARM 的本机部署曾复用已有 Qwen3.5 9B、SenseVoice 和创作�
 [原创MMD待机工具](mmd-tools/README.md)通过原生VMD解析与独立实际MMDScene渲染，动作已实际导入主app；不带官模/贴图/第三方动作。[阶段延迟探针](diagnostics/README.md)已有固定输入实测，候选先测后选；默认配置保留。
 
 [离线 wrapper 与一键启动模板](airi-integration/offline-shell/SETUP.md)保留正常 AIRI main/renderer，并记录已实测 Windows UTF-8 与进程身份修复；[9942共享语音](shared-speech/README.md)复用现有 SenseVoice 和小型 Melo，模型、Python 环境和所有真实 settings 均在包外。
+
+[AIRI 独立部署与共享语音资产迁移](docs/airi-only-deployment.md)说明移除其他桌宠前如何保留已复用的 ASR、FFmpeg 和兼容 Python，逐文件校验后再切换私有配置。0.2.4 的默认清单路径位于 AIRI 自己的语音目录，云语音不再回退到另一款桌宠的 Python 环境；控制台继续显式使用 `AIRI_PYTHON`。启动时是否离线取决于实际选择的模型和服务。
 
 [实测语音选择表](docs/speech-options.md)对照Serena默认/可选省输出模式、Melo、系统慧慧和未测云端；保持默认，选择权留给使用者。
 

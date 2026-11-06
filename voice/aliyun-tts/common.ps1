@@ -1,12 +1,9 @@
 # SPDX-License-Identifier: MIT
 $ErrorActionPreference='Stop'
 function Get-AliyunTtsSpec {
-    $companionBase=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
     $creativePython=Join-Path $env:LOCALAPPDATA 'Programs\SparkAI\envs\creative\Scripts\python.exe'
-    $companionPython=Join-Path $companionBase 'open-llm-vtuber\.venv\Scripts\python.exe'
     $candidate=if($env:AIRI_ALIYUN_TTS_PYTHON){$env:AIRI_ALIYUN_TTS_PYTHON}
         elseif(Test-Path -LiteralPath $creativePython -PathType Leaf){$creativePython}
-        elseif(Test-Path -LiteralPath $companionPython -PathType Leaf){$companionPython}
         else{(Get-Command python.exe -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source}
     if(-not (Test-Path -LiteralPath $candidate -PathType Leaf)){throw 'Python is not installed.'}
     # This adapter uses only the standard library. Launch the real interpreter directly,

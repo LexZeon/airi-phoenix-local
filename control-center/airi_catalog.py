@@ -22,7 +22,7 @@ def installed(path):
 def catalog():
     aliyun=AliyunTtsBridge(BASE/'control-center').status()
     cfg=read_json(SPEECH/'config.json',{})
-    asr=Path(cfg.get('asr_directory',BASE/'open-llm-vtuber/models'))/'model.int8.onnx'
+    asr=Path(cfg.get('asr_directory',SPEECH/'models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17'))/'model.int8.onnx'
     qwen=MODELS/'TTS/Qwen3-TTS-12Hz-1.7B-CustomVoice/model.safetensors'
     assets={
       'qwen9':installed(MODELS/'GGUF/Qwen3.5-9B-Q4_K_M.gguf'),

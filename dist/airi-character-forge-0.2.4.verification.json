@@ -1,0 +1,150 @@
+{
+  "version": "0.2.4",
+  "ok": true,
+  "scope": "Exact public ZIP extracted into an unrelated temporary directory, original bundled robot init/inspect/build and external licensed Core validation",
+  "zipSha256": "167d4ba4ab74081802d89b713f865c05d50c2aae189656c395f2e885795b2b87",
+  "steps": [
+    {
+      "stage": "init",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "inspect",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "build",
+      "ok": true,
+      "code": "OK"
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "code": "OK"
+    }
+  ],
+  "validationSummary": {
+    "status": "PASS",
+    "coreVersion": 83886080,
+    "hasMocConsistency": 1,
+    "invalidMagicRejected": true,
+    "fromArrayBuffer": true,
+    "modelFromMoc": true,
+    "meshes": 6,
+    "parameters": 6,
+    "expressions": 3,
+    "expressionNames": [
+      "Smile",
+      "Surprise",
+      "Sleepy"
+    ],
+    "geometryCases": 72,
+    "minTriangleArea": 4.374174976773393e-05,
+    "parameterTests": [
+      {
+        "id": "ParamAngleX",
+        "changedMeshes": [
+          "Head",
+          "EyeLeft",
+          "EyeRight",
+          "Mouth",
+          "Cheek"
+        ],
+        "context": "defaults"
+      },
+      {
+        "id": "ParamEyeLOpen",
+        "changedMeshes": [
+          "EyeLeft"
+        ],
+        "context": "defaults"
+      },
+      {
+        "id": "ParamEyeROpen",
+        "changedMeshes": [
+          "EyeRight"
+        ],
+        "context": "defaults"
+      },
+      {
+        "id": "ParamMouthOpenY",
+        "changedMeshes": [
+          "Mouth"
+        ],
+        "context": "defaults"
+      },
+      {
+        "id": "ParamBreath",
+        "changedMeshes": [
+          "Body"
+        ],
+        "context": "defaults"
+      },
+      {
+        "id": "ParamCheek",
+        "changedMeshes": [
+          "Cheek"
+        ],
+        "context": "defaults"
+      }
+    ],
+    "vertexCounts": [
+      25,
+      25,
+      12,
+      12,
+      12,
+      12
+    ],
+    "indexCounts": [
+      96,
+      96,
+      36,
+      36,
+      36,
+      36
+    ],
+    "maskCounts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "scope": "Actual Core binary/mesh/parameter/combined-expression validation. Visual likeness and target-app rendering need separate review.",
+    "runtime_references": [
+      {
+        "location": "FileReferences.Moc",
+        "file": "ReleaseRobot.moc3",
+        "bytes": 17728
+      },
+      {
+        "location": "FileReferences.Textures[0]",
+        "file": "textures/texture_00.png",
+        "bytes": 15661
+      },
+      {
+        "location": "FileReferences.Expressions[0].File",
+        "file": "expressions/expression_01.exp3.json",
+        "bytes": 483
+      },
+      {
+        "location": "FileReferences.Expressions[1].File",
+        "file": "expressions/expression_02.exp3.json",
+        "bytes": 477
+      },
+      {
+        "location": "FileReferences.Expressions[2].File",
+        "file": "expressions/expression_03.exp3.json",
+        "bytes": 485
+      }
+    ]
+  },
+  "markdownMissingLinks": [],
+  "coreBundled": false,
+  "privateModelOrProfileUsed": false,
+  "newNativeAppOrCloudTest": false
+}

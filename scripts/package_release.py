@@ -9,7 +9,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.2.3"
+VERSION = "0.2.4"
 FOLDER = "airi-character-forge"
 ROOT_FILES = {".gitignore", "AGENTS.md", "LICENSE", "README.md", "RIGHTS.md", "SKILL.md", "START_HERE.md"}
 FOLDERS = {"agents", "agent_bridge", "airi-integration", "character-tools", "control-center", "diagnostics", "launchers", "mmd-tools", "docs", "examples", "prompts", "rig-tools", "scripts", "shared-speech", "sticker-tools", "voice", "online-chat"}

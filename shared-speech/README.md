@@ -21,4 +21,6 @@ ASR 模型 `sensevoice-local`；TTS 模型 `melo-tts-zh-en`；声音 `zh_default
 
 模型原始来源和逐文件哈希见 [model-source-manifest.json](model-source-manifest.json)；服务适配代码遵循根 MIT，第三方依赖/模型遵循自己的许可。
 
+如果旧部署把这些文件放在另一款桌宠目录中，先按 [AIRI 独立部署迁移方法](../docs/airi-only-deployment.md)逐文件核对并转移到 AIRI 自己的目录，再移除旧部署。迁移不用重新下载权重，更新后的私有 `config.json` 仍是语音服务实际加载位置的依据。
+
 `verify-offline.py`的ASR回归额外要求原SenseVoice配布的 `test_wavs/zh.wav`（包含“时间”的固定中文句）；它不随本包复制。缺少该测试fixture不代表服务不可用，可用自己的固定合成WAV通过[HTTP探针](../diagnostics/README.md)另测；不能把未执行的fixture回归写成PASS。

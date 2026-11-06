@@ -49,6 +49,8 @@ agent先用自己的图像工具得到小范围皮肤/眼白underlay，再以`so
 
 ## 本地有表现风格的中文 TTS
 
+已经有 AIRI 而准备移除另一款桌宠时，先按 [AIRI 独立部署与共享语音资产迁移](airi-only-deployment.md)确认 ASR、FFmpeg 与 Python 的实际来源，再清理旧目录。SenseVoice/FFmpeg 两项关键文件迁移哈希相同、新目录 WAV/WebM 识别和独立 Python 控制台已测；未宣称整目录逐文件资产清单验收，固定音频 HTTP 结果也不代替物理声链验收。默认目录属于 AIRI，显式服务路径仍优先；是否离线由当前模型和服务选择决定。
+
 适用于：已有可用GPU PyTorch/Torchaudio环境，可为1.7B TTS准备约4.52GB本地文件。
 先清点已有ASR/TTS服务和权重，复用匹配文件；不要重复下载或改坏其他程序的环境。
 完整安装、哈希验证、API和试听入口在[voice/README.md](../voice/README.md)。

@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "version": "0.2.4",
+  "sourceFiles": 283,
+  "archiveFiles": 284,
+  "bytes": 1155291,
+  "sha256": "167d4ba4ab74081802d89b713f865c05d50c2aae189656c395f2e885795b2b87",
+  "excludedVerified": [
+    "Core/SDK binaries",
+    "official and official-derived media/models",
+    "weights",
+    "credentials/private paths",
+    "browser profiles/caches",
+    ".git",
+    "runtime user settings"
+  ]
+}
